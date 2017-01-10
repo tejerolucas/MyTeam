@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "847196330898",
+    "firebase_url": "https://soccerapp-5d7ac.firebaseio.com",
+    "project_id": "soccerapp-5d7ac",
+    "storage_bucket": "soccerapp-5d7ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847196330898:android:52e3e8f0cb5aec5e",
+        "android_client_info": {
+          "package_name": "com.lucastejero.myteam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847196330898-uasu771f8ob3lf7klu0f4453v4p18nn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD98ZCzCPQnGY9dJR-hfG3Pn1nUGDNMngM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

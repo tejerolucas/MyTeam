@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MaterialUI/Scripts/Components/Tabs/TabView.cs">
+    <Files>
+      <File FileName="Assets/MaterialUI/Scripts/Components/MaterialAppBar.cs" Line="1" Column="1" />
+      <File FileName="Assets/MaterialUI/Scripts/Components/MaterialNavDrawer.cs" Line="283" Column="105" />
+      <File FileName="Assets/MaterialUI/Editor/Custom Inspectors/MaterialAppBarEditor.cs" Line="74" Column="125" />
+      <File FileName="Assets/MaterialUI/Scripts/Components/Tabs/TabView.cs" Line="665" Column="128" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

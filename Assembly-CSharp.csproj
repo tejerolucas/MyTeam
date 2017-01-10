@@ -1,123 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{38832751-6D2A-3772-E0BD-E12B173BFCE5}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{6C2A4EF4-1AF1-9D76-D92D-3AD4EF116BB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_4_0;UNITY_5_4;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EDITOR_RETINA;ENABLE_RETINA_GUISTYLES;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Examples\Scripts\ConsoleBase.cs" />
-     <Compile Include="Assets\Examples\Scripts\GameGroupsConsole.cs" />
-     <Compile Include="Assets\Examples\Scripts\InteractiveConsole.cs" />
-     <Compile Include="Assets\Facebook\Scripts\AndroidFacebook.cs" />
-     <Compile Include="Assets\Facebook\Scripts\AndroidFacebookLoader.cs" />
-     <Compile Include="Assets\Facebook\Scripts\CanvasFacebookLoader.cs" />
-     <Compile Include="Assets\Facebook\Scripts\EditorFacebook.cs" />
-     <Compile Include="Assets\Facebook\Scripts\EditorFacebookAccessToken.cs" />
-     <Compile Include="Assets\Facebook\Scripts\EditorFacebookLoader.cs" />
-     <Compile Include="Assets\Facebook\Scripts\FB.cs" />
-     <Compile Include="Assets\Facebook\Scripts\FBAppRequestsFilterGroup.cs" />
-     <Compile Include="Assets\Facebook\Scripts\FBScreen.cs" />
-     <Compile Include="Assets\Facebook\Scripts\FBSettings.cs" />
-     <Compile Include="Assets\Facebook\Scripts\IOSFacebook.cs" />
-     <Compile Include="Assets\Facebook\Scripts\IOSFacebookLoader.cs" />
-     <Compile Include="Assets\Facebook\Scripts\NativeDialogModes.cs" />
-     <None Include="Assets\Plugins\Android\facebook\proguard-project.txt" />
-     <None Include="Assets\Plugins\Android\facebook\bin\R.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_blue.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_tooltip_bubble.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-he\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\proguard.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like_selected.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_background.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_checkbox.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_search_box.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_image.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\build.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\styles.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-iw\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_top_button.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_usersettingsfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_section_header.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_item_background.xml" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LengthValidation.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LetterValidation.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\08 - Sliders\Example08.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\09 - Progress Indicators\Example09.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\10 - Vector Images\Example10.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\12 - App Bars\Example12.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\13 - Toasts &amp; Snackbars\Example13.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\14 - Dialogs\Example14.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\15 - Pickers\Example15.cs" />
+     <Compile Include="Assets\MaterialUI\Examples\Scripts\19 - Animation\Example19.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Animation\AutoTween.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Animation\EasyTween.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Animation\Tween.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\ColorCopier.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\DragEventSender.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Interfaces.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\MaterialUIScaler.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\RectTransformSnap.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Ripples\MaterialRipple.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Ripples\Ripple.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Ripples\RippleManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Shadows\AnimatedShadow.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Shadows\MaterialShadow.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\Shadows\ShadowGenerator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\SpriteSwapper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\ToggleBase.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Common\VerticalScrollLayoutElement.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Buttons\MaterialButton.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Buttons\MaterialMovableFab.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogAlert.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogAnimator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogBackground.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogCheckboxList.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogCheckboxOption.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogClickableItem.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogProgress.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogPrompt.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogRadioList.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogRadioOption.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogSections.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogSimpleList.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\DialogSimpleOption.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\MaterialDialog.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\Pickers\DatePicker\DialogDatePicker.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\Pickers\DatePicker\DialogDatePickerDayItem.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\Pickers\DatePicker\DialogDatePickerYearItem.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\Pickers\DatePicker\DialogDatePickerYearList.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\Pickers\TimePicker\DialogTimePicker.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Dialogs\Pickers\TimePicker\DialogTimePickerClock.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialAppBar.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialCheckbox.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialDropdown.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialInputField.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialNavDrawer.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialSlider.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\MaterialSwitch.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Menus\DropdownTrigger.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\OptionData.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\OverscrollConfig.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Progress\CircularProgressIndicator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Progress\LinearProgressIndicator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Progress\ProgressIndicator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\RadioGroups\MaterialRadio.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\RadioGroups\MaterialRadioGroup.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Screens\MaterialScreen.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Screens\ScreenView.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Snackbars\Snackbar.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Snackbars\SnackbarAnimator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Tabs\TabItem.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Tabs\TabPage.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Tabs\TabPagesScrollDetector.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Tabs\TabView.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Toasts\Toast.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\Toasts\ToastAnimator.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\ImageData.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\MaterialIconEnum.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\MaterialIconHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\MaterialUIIconHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\Model\Glyph.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\Model\VectorImageData.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\Model\VectorImageSet.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\VectorImage.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Components\VectorImages\VectorImageManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Managers\DialogManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Managers\PrefabManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Managers\SnackbarManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Managers\ToastManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\Managers\TweenManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\AdaptiveUIGrid.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\ContinuationManager.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\EditorCoroutine.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\EditorUpdate.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\Extensions.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\FPSCounter.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\HSBColor.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InputFieldValidators\TextValidatorUtils.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\ButtonRectInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\ButtonRoundInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\CircleProgressIndicatorInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\DividerInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\EmptyUIObjectInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\InputFieldInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\InstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\MaterialSliderInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\PanelInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\RadioInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\TabViewInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\InstantiationHelpers\ToggleInstantiationHelper.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\MaterialColor.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\MaterialUIVersion.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\TextUnicode.cs" />
+     <Compile Include="Assets\MaterialUI\Scripts\MaterialUtils\Utils.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\IJsonWrapper.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\JsonData.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\JsonException.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\JsonMapper.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\JsonMockWrapper.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\JsonReader.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\JsonWriter.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\Lexer.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\LitJson\ParserToken.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\PropertyDrawers\ObserveAttribute\ObserveAttribute.cs" />
+     <Compile Include="Assets\MaterialUI\Utils\PropertyDrawers\PopupAttribute\PopupAttribute.cs" />
+     <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
-     <None Include="Assets\Plugins\Android\facebook\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_button.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_loginbutton_silver.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector.xml" />
+     <None Include="Assets\MaterialUI\README.txt" />
+     <None Include="Assets\Plugins\Android\firebase-iid-10.0.1\proguard.txt" />
+     <None Include="Assets\Plugins\Android\firebase-iid-10.0.1\AndroidManifest.xml" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+     <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
+     <None Include="Assets\MaterialUI\Materials\SignedDistanceFieldUI.shader" />
+     <None Include="Assets\Plugins\Android\firebase-messaging-unity-1.1.0\R.txt" />
+     <None Include="Assets\MaterialUI\Fonts\Resources\Material Design Icons\LICENSE.txt" />
+     <None Include="Assets\Plugins\Android\firebase-messaging-unity-1.1.0\proguard.txt" />
+     <None Include="Assets\Plugins\Android\firebase-common-10.0.1\AndroidManifest.xml" />
+     <None Include="Assets\MaterialUI\CHANGELOG.txt" />
+     <None Include="Assets\Plugins\Android\firebase-messaging-unity-1.1.0\AndroidManifest.xml" />
+     <None Include="Assets\Firebase\Plugins\link.xml" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />
+     <None Include="Assets\Plugins\Android\firebase-common-10.0.1\proguard.txt" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="IFacebook">
- <HintPath>/Users/lucastejero/MyTeam/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.App">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Auth">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Database">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Database.Unity">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Database.Unity.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Messaging">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.MiniJson">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.Sharpen">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Compat">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Unity.Compat.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Tasks">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-	   Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{38832751-6D2A-3772-E0BD-E12B173BFCE5}</ProjectGuid>
+	<ProjectGuid>{6C2A4EF4-1AF1-9D76-D92D-3AD4EF116BB7}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_1_1;UNITY_5_1;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_LICENSE;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_EDITOR_METRICS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,9 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Amigo.cs" />
      <Compile Include="Assets\Examples\Scripts\ConsoleBase.cs" />
      <Compile Include="Assets\Examples\Scripts\GameGroupsConsole.cs" />
      <Compile Include="Assets\Examples\Scripts\InteractiveConsole.cs" />
+     <Compile Include="Assets\FBHOLDER.cs" />
      <Compile Include="Assets\Facebook\Scripts\AndroidFacebook.cs" />
      <Compile Include="Assets\Facebook\Scripts\AndroidFacebookLoader.cs" />
      <Compile Include="Assets\Facebook\Scripts\CanvasFacebookLoader.cs" />
@@ -62,57 +64,67 @@
      <Compile Include="Assets\Facebook\Scripts\IOSFacebook.cs" />
      <Compile Include="Assets\Facebook\Scripts\IOSFacebookLoader.cs" />
      <Compile Include="Assets\Facebook\Scripts\NativeDialogModes.cs" />
-     <None Include="Assets\Plugins\Android\facebook\proguard-project.txt" />
-     <None Include="Assets\Plugins\Android\facebook\bin\R.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_blue.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_tooltip_bubble.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-he\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\proguard.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like_selected.xml" />
+     <Compile Include="Assets\MiniJSON.cs" />
+     <Compile Include="Assets\TestPArse.cs" />
+     <Compile Include="Assets\Util.cs" />
+     <Compile Include="Assets\iTween.cs" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_background.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_checkbox.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_search_box.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_image.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\build.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\styles.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-iw\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_top_button.xml" />
+     <None Include="Assets\Plugins\Android\facebook\proguard-project.txt" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_usersettingsfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_section_header.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_item_background.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
-     <None Include="Assets\Plugins\Android\facebook\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_top_button.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-iw\strings.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\styles.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_button.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_search_box.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_section_header.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_loginbutton_silver.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_tooltip_bubble.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
+     <None Include="Assets\Plugins\Android\facebook\build.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_checkbox.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-he\strings.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like_selected.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_item_background.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_blue.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_button.xml" />
+     <None Include="Assets\Plugins\Android\facebook\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_image.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector.xml" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="IFacebook">
- <HintPath>/Users/lucastejero/MyTeam/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
