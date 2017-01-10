@@ -1,0 +1,56 @@
+# =============== #
+# Not Ignored     #
+# =============== #
+
+# =============== #
+# Unity generated #
+# =============== #
+/[Bb]uilds/
+/[Ll]ibrary/
+/[Tt]emp/
+Assembly-CSharp*.csproj
+Assembly-UnityScript*.unityproj
+*.apk
+*.apk.meta
+*.pidb.meta
+sysinfo.txt
+
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+bin/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+*.tmp
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==== #
+# misc #
+# ==== #
+*.orig
+*.orig.meta
+*.sqlsuo
+*_ReSharper.*
+*.log
+.sonar/
+.project
