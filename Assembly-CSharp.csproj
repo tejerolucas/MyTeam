@@ -38,13 +38,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/Managed/UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/Managed/UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FirebaseMessaging.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LengthValidation.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LetterValidation.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\08 - Sliders\Example08.cs" />
@@ -168,30 +169,48 @@
      <Compile Include="Assets\MaterialUI\Utils\LitJson\ParserToken.cs" />
      <Compile Include="Assets\MaterialUI\Utils\PropertyDrawers\ObserveAttribute\ObserveAttribute.cs" />
      <Compile Include="Assets\MaterialUI\Utils\PropertyDrawers\PopupAttribute\PopupAttribute.cs" />
-     <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <Compile Include="Assets\Signin.cs" />
+     <Compile Include="Assets\UIHandler.cs" />
+     <Compile Include="Assets\etermaxplayers.cs" />
+     <Compile Include="Assets\eterplayer.cs" />
+     <Compile Include="Assets\firebasetest.cs" />
+     <Compile Include="Assets\loginManager.cs" />
+     <Compile Include="Assets\puntajemanager.cs" />
+     <Compile Include="Assets\toggleicon.cs" />
+     <Compile Include="Assets\togglelist.cs" />
+     <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\AndroidManifest.xml" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
      <None Include="Assets\MaterialUI\README.txt" />
-     <None Include="Assets\Plugins\Android\firebase-iid-10.0.1\proguard.txt" />
-     <None Include="Assets\Plugins\Android\firebase-iid-10.0.1\AndroidManifest.xml" />
-     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+     <None Include="Assets\Firebase\Plugins\link.xml" />
+     <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\AndroidManifest.xml" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-invites-unity\maven-metadata.xml" />
+     <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\proguard.txt" />
+     <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
+     <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
+     <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
      <None Include="Assets\MaterialUI\Materials\SignedDistanceFieldUI.shader" />
-     <None Include="Assets\Plugins\Android\firebase-messaging-unity-1.1.0\R.txt" />
      <None Include="Assets\MaterialUI\Fonts\Resources\Material Design Icons\LICENSE.txt" />
-     <None Include="Assets\Plugins\Android\firebase-messaging-unity-1.1.0\proguard.txt" />
-     <None Include="Assets\Plugins\Android\firebase-common-10.0.1\AndroidManifest.xml" />
-     <None Include="Assets\MaterialUI\CHANGELOG.txt" />
-     <None Include="Assets\Plugins\Android\firebase-messaging-unity-1.1.0\AndroidManifest.xml" />
-     <None Include="Assets\Firebase\Plugins\link.xml" />
-     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
+     <None Include="Assets\Firebase\Editor\FirebaseMessaging.txt" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />
-     <None Include="Assets\Plugins\Android\firebase-common-10.0.1\proguard.txt" />
-     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
+     <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\proguard.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+     <None Include="Assets\MaterialUI\CHANGELOG.txt" />
+     <None Include="Assets\PlayServicesResolver\proguard-messaging-workaround.txt" />
+     <None Include="Assets\Plugins\Android\firebase-common-10.2.0\proguard.txt" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
+     <None Include="Assets\Firebase\Editor\FirebaseDatabase.txt" />
+     <None Include="Assets\Firebase\Plugins\Http\link.xml" />
+     <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
+     <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\R.txt" />
+     <None Include="Assets\Firebase\Editor\FirebaseInvites.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>/Users/lucastejero/Applications/Unity_5.4/Unity_5.4.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.App">
  <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
@@ -202,8 +221,8 @@
  <Reference Include="Firebase.Database">
  <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
  </Reference>
- <Reference Include="Firebase.Database.Unity">
- <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Database.Unity.dll</HintPath>
+ <Reference Include="Firebase.Invites">
+ <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Invites.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Messaging">
  <HintPath>/Users/lucastejero/Downloads/MyTeam/SoccerApp/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>

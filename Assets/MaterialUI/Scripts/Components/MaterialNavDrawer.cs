@@ -280,7 +280,7 @@ namespace MaterialUI
 
         private void RefreshBackgroundSize()
         {
-            m_BackgroundRectTransform.sizeDelta = new Vector2((Screen.width / scaler.scaleFactor) + 1f, m_BackgroundRectTransform.sizeDelta.y);
+            m_BackgroundRectTransform.sizeDelta = new Vector2(Screen.width *2f, m_BackgroundRectTransform.sizeDelta.y);
         }
 
         /// <summary>

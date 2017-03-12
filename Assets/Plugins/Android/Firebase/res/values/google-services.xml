@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="firebase_database_url" translatable="false">https://soccerapp-5d7ac.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">847196330898</string>
+  <string name="google_storage_bucket" translatable="false">soccerapp-5d7ac.appspot.com</string>
+  <string name="google_api_key" translatable="false">AIzaSyD98ZCzCPQnGY9dJR-hfG3Pn1nUGDNMngM</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD98ZCzCPQnGY9dJR-hfG3Pn1nUGDNMngM</string>
+  <string name="google_app_id" translatable="false">1:847196330898:android:52e3e8f0cb5aec5e</string>
+  <string name="default_web_client_id" translatable="false">847196330898-uasu771f8ob3lf7klu0f4453v4p18nn3.apps.googleusercontent.com</string>
+</resources>

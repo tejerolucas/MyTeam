@@ -1,6 +1,9 @@
 fileFormatVersion: 2
-guid: aa3aa17f99b64010a06a716c63dc7185
+guid: 348452dd7eb448ec90f9b1e146449a7d
 time_created: 1480838400
+labels:
+- gvh
+- gvh_v3.0.0
 PluginImporter:
   serializedVersion: 1
   iconMap: {}

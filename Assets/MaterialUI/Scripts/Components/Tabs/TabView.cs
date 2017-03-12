@@ -356,7 +356,8 @@ namespace MaterialUI
             m_TabItemTemplate.GetComponent<LayoutElement>().preferredWidth = m_TabWidth;
             m_Indicator.anchorMin = new Vector2(0, 0);
             m_Indicator.anchorMax = new Vector2(0, 0);
-            m_Indicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, m_TabWidth);
+           	m_Indicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, m_TabWidth);
+			m_Indicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 15);
 
             m_Tabs = new TabItem[m_Pages.Length];
 
@@ -396,6 +397,9 @@ namespace MaterialUI
                     if (m_Pages[i].tabIcon != null)
                     {
                         tab.itemIcon.SetImage(m_Pages[i].tabIcon);
+												tab.gameObject.GetComponent<Image>().color=m_Pages[i].GetComponent<Image>().color;
+						tab.gameObject.name = tab.gameObject.name + "ASDAW";
+												tab.itemIcon.gameObject.SetActive (true);
                     }
                     else
                     {
@@ -417,7 +421,7 @@ namespace MaterialUI
             {
                 overscrollConfig.Setup();
             }
-
+						m_Indicator.gameObject.transform.SetAsLastSibling();
             m_AlreadyInitialized = true;
         }
 

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEditor;
 
 /// <summary>
@@ -32,6 +33,14 @@ public class FirebaseMessagingDeps : AssetPostprocessor
         if (playServicesSupport == null) {
             return;
         }
+
+        Google.VersionHandler.InvokeStaticMethod(
+          Google.VersionHandler.FindClass(
+            "Google.JarResolver",
+            "GooglePlayServices.PlayServicesResolver"),
+          "AddAutoResolutionFilePatterns",
+          new object[] { new HashSet<Regex> { new Regex(".*Deps\\.cs$") } });
+
         object svcSupport = Google.VersionHandler.InvokeStaticMethod(
             playServicesSupport, "CreateInstance",
             new object[] {
@@ -40,15 +49,15 @@ public class FirebaseMessagingDeps : AssetPostprocessor
                 "ProjectSettings"
             });
 
-        Google.VersionHandler.InvokeInstanceMethod(svcSupport, "DependOn", new object[] { "com.google.firebase", "firebase-messaging", "10+" }, namedArgs: new Dictionary<string, object>() { { "packageIds", new string[] { "extra-google-m2repository", "extra-android-m2repository" } }, { "repositories", null } });
-        Google.VersionHandler.InvokeInstanceMethod(svcSupport, "DependOn", new object[] { "com.google.firebase", "firebase-messaging-unity", "1.1.0" }, namedArgs: new Dictionary<string, object>() { { "packageIds", null }, { "repositories", new string[] { "Assets/Firebase/m2repository" } } });
+        Google.VersionHandler.InvokeInstanceMethod(svcSupport, "DependOn", new object[] { "com.google.firebase", "firebase-messaging", "10.2.0" }, namedArgs: new Dictionary<string, object>() { { "packageIds", new string[] { "extra-google-m2repository", "extra-android-m2repository" } }, { "repositories", null } });
+        Google.VersionHandler.InvokeInstanceMethod(svcSupport, "DependOn", new object[] { "com.google.firebase", "firebase-messaging-unity", "3.0.0" }, namedArgs: new Dictionary<string, object>() { { "packageIds", null }, { "repositories", new string[] { "Assets/Firebase/m2repository" } } });
 #elif UNITY_IOS
         Type iosResolver = Google.VersionHandler.FindClass(
             "Google.IOSResolver", "Google.IOSResolver");
         if (iosResolver == null) {
             return;
         }
-        Google.VersionHandler.InvokeStaticMethod(iosResolver, "AddPod", new object[] { "Firebase/Messaging" }, new Dictionary<string, object>() { { "version", "3.10+" }, { "minTargetSdk", "7.0" } });
+        Google.VersionHandler.InvokeStaticMethod(iosResolver, "AddPod", new object[] { "Firebase/Messaging" }, new Dictionary<string, object>() { { "version", "3.14.0" }, { "minTargetSdk", "7.0" } });
 #endif
     }
 
