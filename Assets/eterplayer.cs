@@ -12,6 +12,7 @@ public class eterplayer : MonoBehaviour {
 		private string url;
 		public GameObject puntuador;
 		public RectTransform recttransform;
+	public DataSnapshot data;
 
 		public void SetData(DataSnapshot child){
 				_name.text=child.Child("nombre").Value.ToString();
@@ -20,13 +21,14 @@ public class eterplayer : MonoBehaviour {
 
 				nombre=child.Child("nombre").Value.ToString().ToLower();
 				posicion=child.Child("puesto").Value.ToString().ToLower();
-				StartCoroutine(GetPicture(url));
+		data = child;
+			//StartCoroutine(GetPicture(url));
 		}
 
 		IEnumerator GetPicture(string url2) {
 				// Start a download of the given URL
 				WWW www = new WWW(url2);
-
+				
 				// Wait for download to complete
 				yield return www;
 
@@ -42,7 +44,7 @@ public class eterplayer : MonoBehaviour {
 				
 				puntajemanager puntaje=puntuador.GetComponent<puntajemanager>();
 				puntaje.Reset();
-				puntaje.SetImage(_image.sprite);
+				puntaje.SetImage(_image.sprite,url);
 				puntaje.SetName(_name.text);
 				puntaje.SetPosition(_posicion.text);
 				puntuador.SetActive(true);

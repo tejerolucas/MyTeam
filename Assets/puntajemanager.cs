@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Firebase.Database;
 
 public class puntajemanager : MonoBehaviour {
 		public GameObject button;
@@ -9,7 +10,7 @@ public class puntajemanager : MonoBehaviour {
 		public Text _position;
 		public togglelist estrellas;
 		public togglelist corazones;
-
+	public string url;
 
 	void Start () {
 		button.SetActive(false);
@@ -21,8 +22,9 @@ public class puntajemanager : MonoBehaviour {
 		}
 	}
 
-	public void SetImage(Sprite sprite){
+	public void SetImage(Sprite sprite,string ur){
 		_image.sprite=sprite;	
+		url = ur;
 	}
 	public void SetName(string nombre){
 		_name.text=nombre;
@@ -30,6 +32,8 @@ public class puntajemanager : MonoBehaviour {
 	public void SetPosition(string posicion){
 		_position.text=posicion;
 	}
+
+
 	
 	public void Reset(){
 				button.SetActive(false);

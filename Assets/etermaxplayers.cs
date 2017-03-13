@@ -15,7 +15,7 @@ public class etermaxplayers : MonoBehaviour {
 		public GameObject PuntajeGO;
 		public List<eterplayer> eterp=new List<eterplayer>();
 		private string projectid="https://soccerapp-5d7ac.firebaseio.com/";
-
+		
 
 		void Start() {
 				dependencyStatus = FirebaseApp.CheckDependencies();
@@ -43,7 +43,7 @@ public class etermaxplayers : MonoBehaviour {
 				}
 
 				players = new ArrayList();				FirebaseDatabase.DefaultInstance
-						.GetReference("Usuarios")
+						.GetReference("Jugadores")
 						.ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
 						if (e2.DatabaseError != null) {
 								Debug.LogError(e2.DatabaseError.Message);
@@ -84,4 +84,6 @@ public class etermaxplayers : MonoBehaviour {
 						etp.gameObject.transform.SetParent(deselect.transform);
 				}	
 		}
+
+		
 }
