@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System.Threading.Tasks;
 using System;
@@ -20,32 +21,30 @@ public class Signin : MonoBehaviour {
 								if (dependencyStatus == Firebase.DependencyStatus.Available) {
 										InitializeFirebase();
 								} else {
-										Debug.LogError(
-												"Could not resolve all Firebase dependencies: " + dependencyStatus);
+										Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
 								}
 						});
 				} else {
-						InitializeFirebase();
+					InitializeFirebase();
 				}
 	}
 
-		void InitializeFirebase() {
+		void InitializeFirebase(){
 				Debug.Log("Setting up Firebase Auth");
 				auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
 		}
 	
 	public void SignIn(){
 				
-		string newDisplayName = "displatname";
 		auth.CreateUserWithEmailAndPasswordAsync(email, password)
-						.ContinueWith((task) => HandleCreateResult(task, newDisplayName: newDisplayName));			
+						.ContinueWith((task) => HandleCreateResult(task));			
 	}
 
-		void HandleCreateResult(Task<Firebase.Auth.FirebaseUser> authTask,
-				string newDisplayName = null) {
+		void HandleCreateResult(Task<Firebase.Auth.FirebaseUser> authTask) {
 				if (LogTaskCompletion(authTask, "User Creation")) {
 						if (auth.CurrentUser != null) {
-								UpdateUserProfile(newDisplayName: newDisplayName);
+
+								//UpdateUserProfile();
 						}
 				}
 		}

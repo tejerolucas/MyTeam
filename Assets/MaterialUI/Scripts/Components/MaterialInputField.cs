@@ -181,7 +181,7 @@ namespace MaterialUI
         /// The size of the hint text when floating.
         /// </summary>
         [SerializeField]
-        private int m_FloatingHintFontSize = 12;
+        private int m_FloatingHintFontSize = 20;
         /// <summary>
         /// The size of the hint text when floating.
         /// </summary>

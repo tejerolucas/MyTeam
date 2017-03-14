@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using Firebase.Database;
+using System.IO;
 
 public class eterplayer : MonoBehaviour {
 		public Image _image;
@@ -12,30 +13,44 @@ public class eterplayer : MonoBehaviour {
 		private string url;
 		public GameObject puntuador;
 		public RectTransform recttransform;
+		private string filename;
 	public DataSnapshot data;
 
-		public void SetData(DataSnapshot child){
-				_name.text=child.Child("nombre").Value.ToString();
-				_posicion.text=child.Child("puesto").Value.ToString();
-				url=child.Child("foto").Value.ToString();
+		public void SetData (DataSnapshot child)
+	{
+		_name.text = child.Child ("nombre").Value.ToString ();
+		_posicion.text = child.Child ("puesto").Value.ToString ();
+		url = child.Child ("foto").Value.ToString ();
 
-				nombre=child.Child("nombre").Value.ToString().ToLower();
-				posicion=child.Child("puesto").Value.ToString().ToLower();
+		nombre = child.Child ("nombre").Value.ToString ().ToLower ();
+		posicion = child.Child ("puesto").Value.ToString ().ToLower ();
 		data = child;
-			//StartCoroutine(GetPicture(url));
+		filename = url.Replace ("http://images.etermax.com/rrhh/staff/", "");
+		filename = filename.Replace (".jpg", "");
+		if (Resources.Load ("Fotos/"+filename) == null) {
+			Debug.Log ("no existe foto "+filename);
+			StartCoroutine(GetPicture(url));
+		} else {
+			Debug.Log("Existe foto");
+			_image.sprite = Resources.Load<Sprite> ("Fotos/" + filename);
+		}
+			
 		}
 
-		IEnumerator GetPicture(string url2) {
-				// Start a download of the given URL
-				WWW www = new WWW(url2);
+		IEnumerator GetPicture (string url2)
+	{
+		// Start a download of the given URL
+		WWW www = new WWW (url2);
 				
-				// Wait for download to complete
-				yield return www;
+		// Wait for download to complete
+		yield return www;
 
-				// assign texture
-				if(www.error==null){
-				Texture2D tex2d= www.texture;
-				Sprite sp=Sprite.Create(www.texture,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(0.5f,0.5f));
+		// assign texture
+		if (www.error == null) {
+			Texture2D tex2d = www.texture;
+			Sprite sp = Sprite.Create (www.texture, new Rect (0, 0, tex2d.width, tex2d.height), new Vector2 (0.5f, 0.5f));
+				byte[] bytes = tex2d.EncodeToJPG();
+				File.WriteAllBytes(Application.dataPath + "/../Assets/Resources/Fotos/"+filename+".jpg", bytes);
 				_image.sprite=sp;
 				}
 		}

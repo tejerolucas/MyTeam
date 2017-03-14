@@ -14,16 +14,13 @@ public class Example07LengthValidation : MonoBehaviour, ITextValidator
 		m_MaterialInputField = materialInputField;
 	}
 
-	public bool IsTextValid()
-    {
-		if (m_MaterialInputField.inputField.text.Length <= 10)
-        {
-            return true;
-        }
-        else
-        {
-			m_MaterialInputField.validationText.text = "Must be at most 10 characters";
+	public bool IsTextValid ()
+	{
+		if (m_MaterialInputField.inputField.text.Contains ("@etermax.com")) {
+			return true;
+		} else {
+			m_MaterialInputField.validationText.text = "No es un email de Etermax valido";
             return false;
-        }
+		}
     }
 }
