@@ -54,3 +54,5 @@ Thumbs.db
 *.log
 .sonar/
 .project
+
+*.apk
