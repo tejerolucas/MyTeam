@@ -28,10 +28,8 @@ public class eterplayer : MonoBehaviour {
 		filename = url.Replace ("http://images.etermax.com/rrhh/staff/", "");
 		filename = filename.Replace (".jpg", "");
 		if (Resources.Load ("Fotos/"+filename) == null) {
-			Debug.Log ("no existe foto "+filename);
 			StartCoroutine(GetPicture(url));
 		} else {
-			Debug.Log("Existe foto");
 			_image.sprite = Resources.Load<Sprite> ("Fotos/" + filename);
 		}
 			

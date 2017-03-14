@@ -4,6 +4,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using Firebase.Database;
 
 public class Signin : MonoBehaviour {
 		Firebase.Auth.FirebaseAuth auth;
@@ -35,46 +36,38 @@ public class Signin : MonoBehaviour {
 		}
 	
 	public void SignIn(){
-				
+		Debug.LogWarning ("SignIn");	
 		auth.CreateUserWithEmailAndPasswordAsync(email, password)
 						.ContinueWith((task) => HandleCreateResult(task));			
 	}
 
 		void HandleCreateResult(Task<Firebase.Auth.FirebaseUser> authTask) {
+		Debug.LogWarning ("HandleCreateResult");
 				if (LogTaskCompletion(authTask, "User Creation")) {
 						if (auth.CurrentUser != null) {
 
-								//UpdateUserProfile();
+								UpdateUserProfile();
 						}
 				}
 		}
 		public void UpdateUserProfile(string newDisplayName = null) {
+				Debug.LogWarning ("UpdateUserProfile");
 				if (user == null) {
 						return;
 				}
 				displayName = newDisplayName ?? displayName;
+				DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
+				reference = reference.Push ();
+				reference.Child ("test").SetValueAsync("DisplayUSerInfo");
+				reference.Child ("UID").SetValueAsync(user.UserId);
 				user.UpdateUserProfileAsync(new Firebase.Auth.UserProfile {
 						DisplayName = displayName,
 						PhotoUrl = user.PhotoUrl,
-				}).ContinueWith(HandleUpdateUserProfile);
+				});
+				this.gameObject.SetActive (false);
+				Debug.LogWarning ("UpdateUserProfile2");
 		}
-
-		void HandleUpdateUserProfile(Task authTask) {
-				if (LogTaskCompletion(authTask, "User profile")) {
-						DisplayUserInfo(user, 1);
-				}
-		}
-
-		void DisplayUserInfo(Firebase.Auth.IUserInfo userInfo, int indentLevel) {
-				string indent = new String(' ', indentLevel * 2);
-				var userProperties = new Dictionary<string, string> {
-						{"Display Name", userInfo.DisplayName},
-						{"Email", userInfo.Email},
-						{"Photo URL", userInfo.PhotoUrl != null ? userInfo.PhotoUrl.ToString() : null},
-						{"Provider ID", userInfo.ProviderId},
-						{"User ID", userInfo.UserId}
-				};
-		}
+		
 
 		bool LogTaskCompletion(Task task, string operation) {
 				bool complete = false;

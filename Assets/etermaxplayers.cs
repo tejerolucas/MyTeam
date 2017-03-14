@@ -67,7 +67,6 @@ public class etermaxplayers : MonoBehaviour
 						Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
 						break;
 					} else {
-						Debug.Log ("Creando " + childSnapshot.Child ("nombre").Value.ToString ());
 						GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
 						eterplayer etp = etpgo.GetComponent<eterplayer> ();
 						etp.puntuador = PuntajeGO;
