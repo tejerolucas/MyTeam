@@ -62,6 +62,7 @@ public class etermaxplayers : MonoBehaviour
 					Destroy(go);
 				}
 				foreach (var childSnapshot in e2.Snapshot.Children) {
+				Debug.Log(childSnapshot.Child("nombre").Value.ToString());
 					if (childSnapshot.Child ("nombre") == null
 					    || childSnapshot.Child ("nombre").Value == null) {
 						Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");

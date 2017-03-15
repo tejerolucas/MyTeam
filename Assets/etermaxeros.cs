@@ -35,7 +35,6 @@ public class etermaxeros : MonoBehaviour {
 	}
 
 	void InitializeFirebase() {
-		Debug.Log("INITI");
 		FirebaseApp app = FirebaseApp.DefaultInstance;
 		app.SetEditorDatabaseUrl(projectid);
 		if (app.Options.DatabaseUrl != null){
@@ -85,12 +84,5 @@ public class etermaxeros : MonoBehaviour {
 		}	
 	}
 
-	public void UpdatePlayer(){
-		Debug.Log ("Update player");
-		DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
-		reference = reference.Push ();
-		reference.Child ("nombre").SetValueAsync(PuntajeGO.GetComponent<puntajemanager>()._name.text);
-		reference.Child ("puesto").SetValueAsync(PuntajeGO.GetComponent<puntajemanager>()._position.text);
-		reference.Child ("foto").SetValueAsync(PuntajeGO.GetComponent<puntajemanager>().url);
-	}
+
 }

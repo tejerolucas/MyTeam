@@ -92,6 +92,7 @@ public class UIHandler : MonoBehaviour {
 
 		// Display user information.
 		void DisplayUserInfo(Firebase.Auth.IUserInfo userInfo, int indentLevel) {
+			DebugLog("DisplayUserInfo");
 				string indent = new String(' ', indentLevel * 2);
 				var userProperties = new Dictionary<string, string> {
 						{"Display Name", userInfo.DisplayName},
@@ -109,6 +110,7 @@ public class UIHandler : MonoBehaviour {
 
 		// Track state changes of the auth object.
 		void AuthStateChanged(object sender, System.EventArgs eventArgs) {
+		DebugLog("AuthStateChanged");
 				if (auth.CurrentUser != user) {
 						bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
 						if (!signedIn && user != null) {
@@ -188,6 +190,7 @@ public class UIHandler : MonoBehaviour {
 		}
 
 		void HandleUpdateUserProfile(Task authTask) {
+		DebugLog("HandleUpdateUserProfile");
 				EnableUI();
 				if (LogTaskCompletion(authTask, "User profile")) {
 						DisplayUserInfo(user, 1);

@@ -54,12 +54,8 @@ public class eterplayer : MonoBehaviour {
 		}
 
 		public void AbrirPuntuador(){
-				
-				puntajemanager puntaje=puntuador.GetComponent<puntajemanager>();
-				puntaje.Reset();
-				puntaje.SetImage(_image.sprite,url);
-				puntaje.SetName(_name.text);
-				puntaje.SetPosition(_posicion.text);
+				SeleccionUser seleccionador=puntuador.GetComponent<SeleccionUser>();
+				seleccionador.UpdateData (_name.text, _posicion.text, filename,url);
 				puntuador.SetActive(true);
 		}
 }
