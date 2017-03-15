@@ -13,7 +13,7 @@ public class etermaxeros : MonoBehaviour {
 	public GameObject jugadores;
 	public GameObject deselect;
 	public GameObject PuntajeGO;
-	public List<eterplayer> eterp=new List<eterplayer>();
+	public List<eterempleado> eterp=new List<eterempleado>();
 	private string projectid="https://soccerapp-5d7ac.firebaseio.com/";
 
 
@@ -57,7 +57,7 @@ public class etermaxeros : MonoBehaviour {
 						break;
 					} else {
 						GameObject etpgo= (GameObject)Instantiate(playerprefab,jugadores.transform) ;
-						eterplayer etp=etpgo.GetComponent<eterplayer>();
+						eterempleado etp=etpgo.GetComponent<eterempleado>();
 						etp.puntuador=PuntajeGO;
 						etp.SetData(childSnapshot);
 						eterp.Add(etp);
@@ -71,7 +71,7 @@ public class etermaxeros : MonoBehaviour {
 
 	public void Buscar(string searchtext){
 		searchtext=searchtext.ToLower();
-		foreach(eterplayer etp in eterp){
+		foreach(eterempleado etp in eterp){
 			if(etp.nombre.Contains(searchtext)){
 				etp.gameObject.transform.SetParent(jugadores.transform);
 				continue;

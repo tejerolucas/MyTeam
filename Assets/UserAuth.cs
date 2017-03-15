@@ -22,7 +22,7 @@ public class UserAuth : MonoBehaviour {
 		#if !UNITY_EDITOR
 		SigninGo.SetActive (true);
 		#else
-		screenmanager.Transition ("Home");
+		//screenmanager.Transition ("Home");
 		#endif
 			if(instance==null){
 				instance = this;

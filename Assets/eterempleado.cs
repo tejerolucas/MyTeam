@@ -4,19 +4,19 @@ using UnityEngine.UI;
 using Firebase.Database;
 using System.IO;
 
-public class eterplayer : MonoBehaviour {
-		public Image _image;
-		public Text _name;
-		public Text _posicion;
-		public string nombre;
-		public string posicion;
-		private string url;
-		public GameObject puntuador;
-		public RectTransform recttransform;
-		private string filename;
+public class eterempleado : MonoBehaviour {
+	public Image _image;
+	public Text _name;
+	public Text _posicion;
+	public string nombre;
+	public string posicion;
+	private string url;
+	public GameObject puntuador;
+	public RectTransform recttransform;
+	private string filename;
 	public DataSnapshot data;
 
-		public void SetData (DataSnapshot child)
+	public void SetData (DataSnapshot child)
 	{
 		_name.text = child.Child ("nombre").Value.ToString ();
 		_posicion.text = child.Child ("puesto").Value.ToString ();
@@ -32,14 +32,14 @@ public class eterplayer : MonoBehaviour {
 		} else {
 			_image.sprite = Resources.Load<Sprite> ("Fotos/" + filename);
 		}
-			
-		}
 
-		IEnumerator GetPicture (string url2)
+	}
+
+	IEnumerator GetPicture (string url2)
 	{
 		// Start a download of the given URL
 		WWW www = new WWW (url2);
-				
+
 		// Wait for download to complete
 		yield return www;
 
@@ -47,18 +47,15 @@ public class eterplayer : MonoBehaviour {
 		if (www.error == null) {
 			Texture2D tex2d = www.texture;
 			Sprite sp = Sprite.Create (www.texture, new Rect (0, 0, tex2d.width, tex2d.height), new Vector2 (0.5f, 0.5f));
-				byte[] bytes = tex2d.EncodeToJPG();
-				File.WriteAllBytes(Application.dataPath + "/../Assets/Resources/Fotos/"+filename+".jpg", bytes);
-				_image.sprite=sp;
-				}
+			byte[] bytes = tex2d.EncodeToJPG();
+			File.WriteAllBytes(Application.dataPath + "/../Assets/Resources/Fotos/"+filename+".jpg", bytes);
+			_image.sprite=sp;
 		}
+	}
 
-		public void AbrirPuntuador(){
-		puntajemanager puntaje=puntuador.GetComponent<puntajemanager>();
-		puntaje.Reset();
-		puntaje.SetImage(_image.sprite,url);
-		puntaje.SetName(_name.text);
-		puntaje.SetPosition(_posicion.text);
+	public void AbrirPuntuador(){
+		SeleccionUser seleccionador=puntuador.GetComponent<SeleccionUser>();
+		seleccionador.UpdateData (_name.text, _posicion.text, filename,url);
 		puntuador.SetActive(true);
-		}
+	}
 }
