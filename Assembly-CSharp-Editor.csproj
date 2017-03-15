@@ -115,6 +115,7 @@
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-invites-unity\maven-metadata.xml" />
      <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\proguard.txt" />
+     <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
@@ -126,7 +127,9 @@
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
      <None Include="Assets\MaterialUI\CHANGELOG.txt" />
+     <None Include="Assets\PlayServicesResolver\proguard-messaging-workaround.txt" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\proguard.txt" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseDatabase.txt" />
      <None Include="Assets\Firebase\Plugins\Http\link.xml" />
      <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
@@ -200,6 +203,15 @@
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.JarResolver">
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.IOSResolver">
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.VersionHandler">
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

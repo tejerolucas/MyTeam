@@ -192,6 +192,7 @@
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-invites-unity\maven-metadata.xml" />
      <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\proguard.txt" />
+     <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
@@ -203,7 +204,9 @@
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
      <None Include="Assets\MaterialUI\CHANGELOG.txt" />
+     <None Include="Assets\PlayServicesResolver\proguard-messaging-workaround.txt" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\proguard.txt" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseDatabase.txt" />
      <None Include="Assets\Firebase\Plugins\Http\link.xml" />
      <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
