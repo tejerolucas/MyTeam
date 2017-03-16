@@ -1,0 +1,7 @@
+Jugadores no te veas a vos mismo
+Marcar usuarios como usados para que no aparezcan mas
+Generar lista con los puntajes dados
+Cambiar los permisos de cada user?
+push cuando pasa algo
+Crear evento
+crear prefabs para home diferentes(evento,comentario,cambio de estado)

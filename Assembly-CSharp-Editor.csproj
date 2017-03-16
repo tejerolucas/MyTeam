@@ -118,6 +118,7 @@
      <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
+     <None Include="Assets\TODO.txt" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
      <None Include="Assets\MaterialUI\Materials\SignedDistanceFieldUI.shader" />
      <None Include="Assets\MaterialUI\Fonts\Resources\Material Design Icons\LICENSE.txt" />
@@ -213,10 +214,6 @@
  <Reference Include="Google.VersionHandler">
  <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{38832751-6D2A-3772-E0BD-E12B173BFCE5}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

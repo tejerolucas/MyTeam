@@ -28,13 +28,14 @@ public class SeleccionUser : MonoBehaviour {
 		if (UserAuth.instance.user !=null) {
 			UserAuth.instance.UpdateUserProfile (_nameString);
 			Debug.Log ("Update player");
-		DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
-		reference=reference.Child (UserAuth.instance.user.UserId);
-		reference.Child ("nombre").SetValueAsync(_nameString);
-		reference.Child ("puesto").SetValueAsync(_position.text);
-		reference.Child ("amonestaciones").SetValueAsync(0);
+			DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
+			reference=reference.Child (UserAuth.instance.user.UserId);
+			reference.Child ("nombre").SetValueAsync(_nameString);
+			reference.Child ("puesto").SetValueAsync(_position.text);
+			reference.Child ("amonestaciones").SetValueAsync(0);
 			reference.Child ("foto").SetValueAsync(_url);
 			reference.Child ("filename").SetValueAsync(_filename);
+			reference.Child ("userid").SetValueAsync(UserAuth.instance.user.UserId);
 		}
 		UserAuth.instance._username = _nameString;
 		UserAuth.instance._userposition = _position.text;

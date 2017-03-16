@@ -41,8 +41,10 @@ public class etermaxeros : MonoBehaviour {
 			app.SetEditorDatabaseUrl(app.Options.DatabaseUrl);
 		}
 
-		players = new ArrayList();				FirebaseDatabase.DefaultInstance
-			.GetReference("Usuarios")
+		players = new ArrayList();	
+					
+			FirebaseDatabase.DefaultInstance
+			.GetReference("Usuarios").OrderByChild("nombre")
 			.ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
 			if (e2.DatabaseError != null) {
 				Debug.LogError(e2.DatabaseError.Message);
@@ -56,11 +58,14 @@ public class etermaxeros : MonoBehaviour {
 						Debug.LogError("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
 						break;
 					} else {
-						GameObject etpgo= (GameObject)Instantiate(playerprefab,jugadores.transform) ;
-						eterempleado etp=etpgo.GetComponent<eterempleado>();
-						etp.puntuador=PuntajeGO;
-						etp.SetData(childSnapshot);
-						eterp.Add(etp);
+						if(!childSnapshot.HasChild("Usado")){
+							GameObject etpgo= (GameObject)Instantiate(playerprefab,jugadores.transform) ;
+							eterempleado etp=etpgo.GetComponent<eterempleado>();
+							etp.puntuador=PuntajeGO;
+							etp.SetData(childSnapshot,childSnapshot.Reference);
+							eterp.Add(etp);
+						}
+
 					}
 				}
 			}

@@ -48,7 +48,7 @@ public class etermaxplayers : MonoBehaviour
 
 		players = new ArrayList ();
 		FirebaseDatabase.DefaultInstance
-						.GetReference ("Jugadores")
+						.GetReference ("Jugadores").OrderByChild("nombre")
 						.ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
 			if (e2.DatabaseError != null) {
 				Debug.LogError (e2.DatabaseError.Message);
@@ -56,24 +56,25 @@ public class etermaxplayers : MonoBehaviour
 			}
 			players.Clear ();
 			if (e2.Snapshot != null && e2.Snapshot.ChildrenCount > 0) {
-				Debug.Log("HIJOS "+e2.Snapshot.ChildrenCount.ToString());
 				foreach(GameObject go in lista){
 					eterp.Remove(go.GetComponent<eterplayer> ());
 					Destroy(go);
 				}
 				foreach (var childSnapshot in e2.Snapshot.Children) {
-				Debug.Log(childSnapshot.Child("nombre").Value.ToString());
 					if (childSnapshot.Child ("nombre") == null
 					    || childSnapshot.Child ("nombre").Value == null) {
 						Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
 						break;
 					} else {
-						GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
-						eterplayer etp = etpgo.GetComponent<eterplayer> ();
-						etp.puntuador = PuntajeGO;
-						etp.SetData (childSnapshot);
-						eterp.Add (etp);
-						lista.Add(etpgo);
+						Debug.Log("user player id: "+childSnapshot.Child("userid").Value.ToString());
+						if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
+							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
+							eterplayer etp = etpgo.GetComponent<eterplayer> ();
+							etp.puntuador = PuntajeGO;
+							etp.SetData (childSnapshot);
+							eterp.Add (etp);
+							lista.Add(etpgo);
+						}
 					}
 				}
 			}

@@ -14,17 +14,16 @@ public class eterempleado : MonoBehaviour {
 	public GameObject puntuador;
 	public RectTransform recttransform;
 	private string filename;
-	public DataSnapshot data;
+	private DatabaseReference reff;
 
-	public void SetData (DataSnapshot child)
+	public void SetData (DataSnapshot child,DatabaseReference reference)
 	{
 		_name.text = child.Child ("nombre").Value.ToString ();
 		_posicion.text = child.Child ("puesto").Value.ToString ();
 		url = child.Child ("foto").Value.ToString ();
-
+		reff = reference;
 		nombre = child.Child ("nombre").Value.ToString ().ToLower ();
 		posicion = child.Child ("puesto").Value.ToString ().ToLower ();
-		data = child;
 		filename = url.Replace ("http://images.etermax.com/rrhh/staff/", "");
 		filename = filename.Replace (".jpg", "");
 		if (Resources.Load ("Fotos/"+filename) == null) {
@@ -37,13 +36,8 @@ public class eterempleado : MonoBehaviour {
 
 	IEnumerator GetPicture (string url2)
 	{
-		// Start a download of the given URL
 		WWW www = new WWW (url2);
-
-		// Wait for download to complete
 		yield return www;
-
-		// assign texture
 		if (www.error == null) {
 			Texture2D tex2d = www.texture;
 			Sprite sp = Sprite.Create (www.texture, new Rect (0, 0, tex2d.width, tex2d.height), new Vector2 (0.5f, 0.5f));
@@ -56,6 +50,7 @@ public class eterempleado : MonoBehaviour {
 	public void AbrirPuntuador(){
 		SeleccionUser seleccionador=puntuador.GetComponent<SeleccionUser>();
 		seleccionador.UpdateData (_name.text, _posicion.text, filename,url);
+		reff.Child ("Usado").SetValueAsync ("true");
 		puntuador.SetActive(true);
 	}
 }

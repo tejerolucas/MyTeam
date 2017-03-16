@@ -195,6 +195,7 @@
      <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
+     <None Include="Assets\TODO.txt" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
      <None Include="Assets\MaterialUI\Materials\SignedDistanceFieldUI.shader" />
      <None Include="Assets\MaterialUI\Fonts\Resources\Material Design Icons\LICENSE.txt" />

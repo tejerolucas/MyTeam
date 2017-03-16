@@ -16,13 +16,14 @@ public class UserAuth : MonoBehaviour {
 		public string _userposition;
 		public string _userfilename;
 		public GameObject SigninGo;
+		public GameObject LoginGo;
 		public ScreenView screenmanager;
 
 		void Start() {
 		#if !UNITY_EDITOR
-		SigninGo.SetActive (true);
+		LoginGo.SetActive (true);
 		#else
-		//screenmanager.Transition ("Home");
+			//screenmanager.Transition ("Home");
 		#endif
 			if(instance==null){
 				instance = this;
@@ -114,6 +115,7 @@ public class UserAuth : MonoBehaviour {
 
 		void HandleUpdateUserProfile(Task authTask) {
 			SigninGo.SetActive (false);
+			LoginGo.SetActive (false);
 		}
 
 		public void Signin(string email,string password) {
@@ -124,7 +126,12 @@ public class UserAuth : MonoBehaviour {
 
 		void HandleSigninResult(Task<Firebase.Auth.FirebaseUser> authTask) {
 				
-				LogTaskCompletion(authTask, "Sign-in");
+				if(LogTaskCompletion(authTask, "Sign-in")){
+					LoginGo.SetActive (false);
+					SigninGo.SetActive (false);
+			screenmanager.Transition ("Home");
+
+				}
 		}
 
 		public void ReloadUser() {
@@ -134,8 +141,9 @@ public class UserAuth : MonoBehaviour {
 				}
 				Debug.Log("Reload User Data");
 				user.ReloadAsync();
+			LoginGo.SetActive (false);
 			SigninGo.SetActive (false);
-		screenmanager.Transition ("Home");
+			screenmanager.Transition ("Home");
 		}
 
 

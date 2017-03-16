@@ -1,10 +1,4 @@
-﻿
-using UnityEngine;
-using System.Collections;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using Firebase.Database;
+﻿using UnityEngine;
 
 public class Signin : MonoBehaviour {
 	public string email;

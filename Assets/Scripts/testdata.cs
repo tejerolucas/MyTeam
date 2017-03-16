@@ -15,8 +15,8 @@ public class testdata : MonoBehaviour {
 		app.SetEditorDatabaseUrl (app.Options.DatabaseUrl);
 		}
 
-			FirebaseDatabase.DefaultInstance.GetReference("Jugadores/ShWNahpi3bMdotWdtWRgTHRnFt12/amonestaciones").ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
-	      Debug.Log(e2.Snapshot.Value);
+			FirebaseDatabase.DefaultInstance.GetReference("Usuarios/12/nombre").ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
+	      Debug.Log(e2.Snapshot.Value.ToString());
 	    };
 
 	}
