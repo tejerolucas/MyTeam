@@ -14,6 +14,7 @@ public class eterplayer : MonoBehaviour {
 		public GameObject puntuador;
 		public RectTransform recttransform;
 		private string filename;
+		private string userid;
 	public DataSnapshot data;
 
 		public void SetData (DataSnapshot child)
@@ -27,6 +28,7 @@ public class eterplayer : MonoBehaviour {
 		data = child;
 		filename = url.Replace ("http://images.etermax.com/rrhh/staff/", "");
 		filename = filename.Replace (".jpg", "");
+		userid=child.Child ("userid").Value.ToString ();
 		if (Resources.Load ("Fotos/"+filename) == null) {
 			StartCoroutine(GetPicture(url));
 		} else {
@@ -56,9 +58,7 @@ public class eterplayer : MonoBehaviour {
 		public void AbrirPuntuador(){
 		puntajemanager puntaje=puntuador.GetComponent<puntajemanager>();
 		puntaje.Reset();
-		puntaje.SetImage(_image.sprite,url);
-		puntaje.SetName(_name.text);
-		puntaje.SetPosition(_posicion.text);
+		puntaje.SetData (_name.text, _posicion.text, _image.sprite,userid);
 		puntuador.SetActive(true);
 		}
 }

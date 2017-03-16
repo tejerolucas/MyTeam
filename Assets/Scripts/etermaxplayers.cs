@@ -66,7 +66,8 @@ public class etermaxplayers : MonoBehaviour
 						Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
 						break;
 					} else {
-						Debug.Log("user player id: "+childSnapshot.Child("userid").Value.ToString());
+						Debug.Log("user player2 id: "+childSnapshot.Child("userid").Value.ToString());
+						Debug.Log("user player id: "+UserAuth.instance.user.UserId);
 						if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
 							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
 							eterplayer etp = etpgo.GetComponent<eterplayer> ();
