@@ -180,11 +180,13 @@
      <Compile Include="Assets\Scripts\eterplayer.cs" />
      <Compile Include="Assets\Scripts\firebasetest.cs" />
      <Compile Include="Assets\Scripts\loginManager.cs" />
+     <Compile Include="Assets\Scripts\messagingtest.cs" />
      <Compile Include="Assets\Scripts\puntajemanager.cs" />
      <Compile Include="Assets\Scripts\testdata.cs" />
      <Compile Include="Assets\Scripts\toggleicon.cs" />
      <Compile Include="Assets\Scripts\togglelist.cs" />
-     <Compile Include="Assets\messagingtest.cs" />
+     <Compile Include="Assets\backgroundtest.cs" />
+     <Compile Include="Assets\pixeltester.cs" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
      <None Include="Assets\MaterialUI\README.txt" />

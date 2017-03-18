@@ -354,10 +354,9 @@ namespace MaterialUI
             m_TabWidth = Mathf.Max(m_TabWidth, m_TabItemTemplate.GetComponent<LayoutElement>().minWidth);
 
             m_TabItemTemplate.GetComponent<LayoutElement>().preferredWidth = m_TabWidth;
-            m_Indicator.anchorMin = new Vector2(0, 0);
-            m_Indicator.anchorMax = new Vector2(0, 0);
+           // m_Indicator.anchorMin = new Vector2(0, 0);
+            //m_Indicator.anchorMax = new Vector2(0, 0);
            	m_Indicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, m_TabWidth);
-			m_Indicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 15);
 
             m_Tabs = new TabItem[m_Pages.Length];
 

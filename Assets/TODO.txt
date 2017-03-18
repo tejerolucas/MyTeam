@@ -1,13 +1,15 @@
 Loadings
 Carga de datos importantes
 Agregar email al jugador para ver que es el
-Generar lista con los puntajes dados
+Cargar puntajes ya dados
 Cambiar los permisos de cada user?
 push cuando pasa algo
 Crear evento
 crear prefabs para home diferentes(evento,comentario,cambio de estado)
-agregar a jugador el push token
 Splash
 Icono
 Icono de la push
 push te lleva a donde dice
+
+ESCALAR TODO
+agregar a jugador el push token

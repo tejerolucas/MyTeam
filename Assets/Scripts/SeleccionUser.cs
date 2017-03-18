@@ -36,11 +36,11 @@ public class SeleccionUser : MonoBehaviour {
 			reference.Child ("foto").SetValueAsync(_url);
 			reference.Child ("filename").SetValueAsync(_filename);
 			reference.Child ("userid").SetValueAsync(UserAuth.instance.user.UserId);
+			reference.Child ("token").SetValueAsync(UserAuth.instance._usertoken);
 		}
 		UserAuth.instance._username = _nameString;
 		UserAuth.instance._userposition = _position.text;
 		UserAuth.instance._userfilename = _filename;
-
 	}
 
 }

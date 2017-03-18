@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using MaterialUI;
+using Firebase.Database;
 
 public class UserAuth : MonoBehaviour {
 		Firebase.Auth.FirebaseAuth auth;
@@ -15,6 +16,7 @@ public class UserAuth : MonoBehaviour {
 		public string _username;
 		public string _userposition;
 		public string _userfilename;
+		public string _usertoken;
 		public GameObject SigninGo;
 		public GameObject LoginGo;
 		public ScreenView screenmanager;
@@ -129,7 +131,7 @@ public class UserAuth : MonoBehaviour {
 				if(LogTaskCompletion(authTask, "Sign-in")){
 					LoginGo.SetActive (false);
 					SigninGo.SetActive (false);
-			screenmanager.Transition ("Home");
+					screenmanager.Transition ("Home");
 
 				}
 		}
@@ -140,11 +142,22 @@ public class UserAuth : MonoBehaviour {
 						return;
 				}
 				Debug.Log("Reload User Data");
-				user.ReloadAsync();
+				user.ReloadAsync().ContinueWith(HandleReloadUser);
 			LoginGo.SetActive (false);
 			SigninGo.SetActive (false);
 			screenmanager.Transition ("Home");
 		}
+
+	void HandleReloadUser (Task authTask)
+	{
+		if(LogTaskCompletion(authTask, "Reload User")){
+			DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
+			reference=reference.Child (UserAuth.instance.user.UserId);
+			UserAuth.instance._username = reference.Child ("nombre").GetValueAsync ().ToString();
+			UserAuth.instance._userposition = reference.Child ("puesto").GetValueAsync ().ToString();
+			UserAuth.instance._userfilename = reference.Child ("filename").GetValueAsync ().ToString();
+		}
+	}
 
 
 		public void GetUserToken() {

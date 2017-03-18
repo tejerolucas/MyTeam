@@ -18,6 +18,12 @@ public class Perfil : MonoBehaviour {
 		if (app.Options.DatabaseUrl != null) {
 		app.SetEditorDatabaseUrl (app.Options.DatabaseUrl);
 		}
+
+		nombre.text=UserAuth.instance._username;
+		puesto.text=UserAuth.instance._userposition;
+		if (Resources.Load ("Fotos/"+UserAuth.instance._userfilename) != null) {
+			foto.sprite = Resources.Load<Sprite> ("Fotos/" + UserAuth.instance._userfilename);
+		}
 	}
 
 	void OnEnable ()
