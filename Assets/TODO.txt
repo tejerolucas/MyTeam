@@ -1,7 +1,13 @@
-Jugadores no te veas a vos mismo
-Marcar usuarios como usados para que no aparezcan mas
+Loadings
+Carga de datos importantes
+Agregar email al jugador para ver que es el
 Generar lista con los puntajes dados
 Cambiar los permisos de cada user?
 push cuando pasa algo
 Crear evento
 crear prefabs para home diferentes(evento,comentario,cambio de estado)
+agregar a jugador el push token
+Splash
+Icono
+Icono de la push
+push te lleva a donde dice
