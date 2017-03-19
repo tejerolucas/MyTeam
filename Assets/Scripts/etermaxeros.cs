@@ -60,6 +60,7 @@ public class etermaxeros : MonoBehaviour {
 					} else {
 						if(!childSnapshot.HasChild("Usado")){
 							GameObject etpgo= (GameObject)Instantiate(playerprefab,jugadores.transform) ;
+							etpgo.transform.localScale=Vector3.one;
 							eterempleado etp=etpgo.GetComponent<eterempleado>();
 							etp.puntuador=PuntajeGO;
 							etp.SetData(childSnapshot,childSnapshot.Reference);

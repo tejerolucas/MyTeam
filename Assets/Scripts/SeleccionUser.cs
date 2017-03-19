@@ -37,6 +37,7 @@ public class SeleccionUser : MonoBehaviour {
 			reference.Child ("filename").SetValueAsync(_filename);
 			reference.Child ("userid").SetValueAsync(UserAuth.instance.user.UserId);
 			reference.Child ("token").SetValueAsync(UserAuth.instance._usertoken);
+			reference.Child ("email").SetValueAsync(UserAuth.instance.user.Email);
 		}
 		UserAuth.instance._username = _nameString;
 		UserAuth.instance._userposition = _position.text;

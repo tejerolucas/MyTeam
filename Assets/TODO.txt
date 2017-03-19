@@ -1,15 +1,9 @@
-Loadings
-Carga de datos importantes
-Agregar email al jugador para ver que es el
-Cargar puntajes ya dados
+Loadings cuando tarda en cargar
+Precarga de datos importantes que no cambian(perfil)
+playerprefs de puntajes ya dados
 Cambiar los permisos de cada user?
 push cuando pasa algo
 Crear evento
 crear prefabs para home diferentes(evento,comentario,cambio de estado)
-Splash
-Icono
 Icono de la push
 push te lleva a donde dice
-
-ESCALAR TODO
-agregar a jugador el push token
