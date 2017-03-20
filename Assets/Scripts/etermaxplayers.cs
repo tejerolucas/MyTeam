@@ -13,7 +13,7 @@ public class etermaxplayers : MonoBehaviour
 	public GameObject playerprefab;
 	public GameObject jugadores;
 	public GameObject deselect;
-	public GameObject PuntajeGO;
+	public GameObject Popup;
 	public List<eterplayer> eterp = new List<eterplayer> ();
 	public List<GameObject> lista = new List<GameObject> ();
 	private string projectid = "https://soccerapp-5d7ac.firebaseio.com/";
@@ -35,6 +35,11 @@ public class etermaxplayers : MonoBehaviour
 		} else {
 			InitializeFirebase ();
 		}
+	}
+
+	public void SetPopUp (GameObject go)
+	{
+		Popup = go;
 	}
 
 	void InitializeFirebase ()
@@ -71,7 +76,8 @@ public class etermaxplayers : MonoBehaviour
 						if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
 							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
 							eterplayer etp = etpgo.GetComponent<eterplayer> ();
-							etp.puntuador = PuntajeGO;
+							etpgo.transform.localScale=Vector3.one;
+							etp.puntuador = Popup;
 							etp.SetData (childSnapshot);
 							eterp.Add (etp);
 							lista.Add(etpgo);

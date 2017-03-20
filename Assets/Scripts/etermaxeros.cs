@@ -63,7 +63,7 @@ public class etermaxeros : MonoBehaviour {
 							etpgo.transform.localScale=Vector3.one;
 							eterempleado etp=etpgo.GetComponent<eterempleado>();
 							etp.puntuador=PuntajeGO;
-							etp.SetData(childSnapshot,childSnapshot.Reference);
+							etp.SetData(childSnapshot,childSnapshot.Reference,childSnapshot.GetValue(true));
 							eterp.Add(etp);
 						}
 

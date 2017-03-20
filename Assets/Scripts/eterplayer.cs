@@ -55,10 +55,9 @@ public class eterplayer : MonoBehaviour {
 				}
 		}
 
-		public void AbrirPuntuador(){
-		puntajemanager puntaje=puntuador.GetComponent<puntajemanager>();
-		puntaje.Reset();
-		puntaje.SetData (_name.text, _posicion.text, _image.sprite,userid);
-		puntuador.SetActive(true);
+		public void AbrirPopUp(){
+			GenericPopUp puntaje=puntuador.GetComponent<GenericPopUp>();
+			puntaje.SetData (_name.text, _posicion.text,filename,url,userid);
+			puntuador.SetActive(true);
 		}
 }

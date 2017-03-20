@@ -7,3 +7,7 @@ Crear evento
 crear prefabs para home diferentes(evento,comentario,cambio de estado)
 Icono de la push
 push te lleva a donde dice
+
+BUGS CONOCIDOS
+En la seleccion de empleado permite salir sin elegir
+Seccion Jugadores no cambia el Popup 

@@ -15,9 +15,11 @@ public class eterempleado : MonoBehaviour {
 	public RectTransform recttransform;
 	private string filename;
 	private DatabaseReference reff;
+	private string valor;
 
-	public void SetData (DataSnapshot child,DatabaseReference reference)
+	public void SetData (DataSnapshot child,DatabaseReference reference,object value)
 	{
+		valor = value.ToString();
 		_name.text = child.Child ("nombre").Value.ToString ();
 		_posicion.text = child.Child ("puesto").Value.ToString ();
 		url = child.Child ("foto").Value.ToString ();
@@ -47,10 +49,10 @@ public class eterempleado : MonoBehaviour {
 		}
 	}
 
-	public void AbrirPuntuador(){
-		SeleccionUser seleccionador=puntuador.GetComponent<SeleccionUser>();
-		seleccionador.UpdateData (_name.text, _posicion.text, filename,url);
-		reff.Child ("Usado").SetValueAsync ("true");
+	public void AbrirPopUp(){
+		GenericPopUp seleccionador=puntuador.GetComponent<GenericPopUp>();
+		seleccionador.SetData (_name.text, _posicion.text, filename,url);
+		seleccionador.SetReference (reff);
 		puntuador.SetActive(true);
 	}
 }
