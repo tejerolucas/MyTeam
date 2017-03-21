@@ -40,6 +40,9 @@ public class etermaxplayers : MonoBehaviour
 	public void SetPopUp (GameObject go)
 	{
 		Popup = go;
+		foreach (eterplayer etp in eterp) {
+			etp.Popup = go;
+		}
 	}
 
 	void InitializeFirebase ()
@@ -71,13 +74,15 @@ public class etermaxplayers : MonoBehaviour
 						Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
 						break;
 					} else {
-						Debug.Log("user player2 id: "+childSnapshot.Child("userid").Value.ToString());
-						Debug.Log("user player id: "+UserAuth.instance.user.UserId);
+						#if !UNITY_EDITOR
 						if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
+						#else
+						if(true){
+						#endif
 							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
 							eterplayer etp = etpgo.GetComponent<eterplayer> ();
 							etpgo.transform.localScale=Vector3.one;
-							etp.puntuador = Popup;
+							etp.Popup = Popup;
 							etp.SetData (childSnapshot);
 							eterp.Add (etp);
 							lista.Add(etpgo);

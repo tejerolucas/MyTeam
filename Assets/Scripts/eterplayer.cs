@@ -11,7 +11,7 @@ public class eterplayer : MonoBehaviour {
 		public string nombre;
 		public string posicion;
 		private string url;
-		public GameObject puntuador;
+		public GameObject Popup;
 		public RectTransform recttransform;
 		private string filename;
 		private string userid;
@@ -56,8 +56,8 @@ public class eterplayer : MonoBehaviour {
 		}
 
 		public void AbrirPopUp(){
-			GenericPopUp puntaje=puntuador.GetComponent<GenericPopUp>();
+			GenericPopUp puntaje=Popup.GetComponent<GenericPopUp>();
 			puntaje.SetData (_name.text, _posicion.text,filename,url,userid);
-			puntuador.SetActive(true);
+			Popup.SetActive(true);
 		}
 }

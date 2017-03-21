@@ -1,6 +1,10 @@
+<<<<<<< Updated upstream
 Loadings cuando tarda en cargar
 Precarga de datos importantes que no cambian(perfil)
 playerprefs de puntajes ya dados
+=======
+Generar lista con los puntajes dados
+>>>>>>> Stashed changes
 Cambiar los permisos de cada user?
 push cuando pasa algo
 Crear evento
