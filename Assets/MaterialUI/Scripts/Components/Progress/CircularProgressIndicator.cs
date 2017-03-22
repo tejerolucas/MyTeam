@@ -225,7 +225,7 @@ namespace MaterialUI
 
             gameObject.SetActive(true);
             m_AnimSizeCurrentSize = scaledRectTransform.localScale.x;
-            m_AnimSizeTargetSize = 5f;
+            m_AnimSizeTargetSize = 1f;
             m_AnimSizeStartTime = Time.realtimeSinceStartup;
             m_AnimSize = true;
 

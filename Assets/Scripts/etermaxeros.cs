@@ -5,7 +5,6 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using MaterialUI;
 
 public class etermaxeros : MonoBehaviour {
 	DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
@@ -16,10 +15,9 @@ public class etermaxeros : MonoBehaviour {
 	public GameObject PuntajeGO;
 	public List<eterempleado> eterp=new List<eterempleado>();
 	private string projectid="https://soccerapp-5d7ac.firebaseio.com/";
-	public CircularProgressIndicator progress;
+
 
 	void Start() {
-		progress.Show();
 		dependencyStatus = FirebaseApp.CheckDependencies();
 		if (dependencyStatus != DependencyStatus.Available) {
 			FirebaseApp.FixDependenciesAsync().ContinueWith(task => {
@@ -53,7 +51,6 @@ public class etermaxeros : MonoBehaviour {
 				return;
 			}
 			players.Clear();
-			progress.Hide();
 			if (e2.Snapshot != null && e2.Snapshot.ChildrenCount > 0) {
 				foreach (var childSnapshot in e2.Snapshot.Children) {
 					if (childSnapshot.Child("nombre") == null
