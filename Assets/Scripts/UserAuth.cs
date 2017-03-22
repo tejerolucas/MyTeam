@@ -111,8 +111,6 @@ public class UserAuth : MonoBehaviour
 			if (auth.CurrentUser != null) {
 				Debug.Log (String.Format ("User Info: {0}  {1}", auth.CurrentUser.Email,
 				auth.CurrentUser.ProviderId));
-				Firebase.Messaging.FirebaseMessaging.Subscribe ("Etermax");
-				NotificationManager.instance.Init ();
 				UpdateUserProfile (newDisplayName: newDisplayName);
 			}
 		}
@@ -152,7 +150,6 @@ public class UserAuth : MonoBehaviour
 		if (LogTaskCompletion (authTask, "Sign-in")) {
 			LoginGo.SetActive (false);
 			SigninGo.SetActive (false);
-			NotificationManager.instance.Init ();
 			screenmanager.Transition ("Home");
 		}
 	}
@@ -167,7 +164,6 @@ public class UserAuth : MonoBehaviour
 		user.ReloadAsync ().ContinueWith (HandleReloadUser);
 		LoginGo.SetActive (false);
 		SigninGo.SetActive (false);
-		NotificationManager.instance.Init ();
 		screenmanager.Transition ("Home");
 	}
 

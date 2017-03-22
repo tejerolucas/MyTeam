@@ -663,6 +663,8 @@ namespace MaterialUI
 
         public void Transition(string screenName)
         {
+        Debug.Log (screenName);
+
             Transition(screenName, transitionType);
         }
 

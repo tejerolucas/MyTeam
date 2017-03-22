@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Splash : MonoBehaviour {
 	void Start () {
-		Invoke ("LoadApp", 4);
+		Invoke ("LoadApp", 2);
 	}
 	
 	public void LoadApp () {

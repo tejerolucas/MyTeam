@@ -5,9 +5,16 @@ using System.Collections.Generic;
 public class NotificationManager : MonoBehaviour {
 	public static NotificationManager instance;
 	public string topic="Etermax";
+	private bool init;
+
+	void Awake ()
+	{
+		init = false;
+	}
 
 	public void Init ()
 	{
+		init = true;
 		if (instance == null) {
 			instance = this;
 		}
@@ -30,6 +37,9 @@ public class NotificationManager : MonoBehaviour {
 
 
 	public void SubscribeTopic (bool state){
+		if(!init){
+			Init ();
+		}
 		if (state) {
 			Firebase.Messaging.FirebaseMessaging.Subscribe (topic);
 			PlayerPrefs.SetInt ("Notifications", 1);
