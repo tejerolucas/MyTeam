@@ -98,21 +98,21 @@ namespace MaterialUI
 
         public virtual void Initialize()
         {
-            float canvasWidth = DialogManager.rectTransform.rect.width;
-
-            if (canvasWidth < 448)
-            {
-                rectTransform.sizeDelta = new Vector2(canvasWidth - 48f, rectTransform.sizeDelta.y);
-            }
-            else if (canvasWidth < 648f)
-            {
-                rectTransform.sizeDelta = new Vector2(400, rectTransform.sizeDelta.y);
-            }
-            else
-            {
-                rectTransform.sizeDelta = new Vector2(600, rectTransform.sizeDelta.y);
-            }
-
+//            float canvasWidth = DialogManager.rectTransform.rect.width;
+//
+//            if (canvasWidth < 448)
+//            {
+//                rectTransform.sizeDelta = new Vector2(canvasWidth - 48f, rectTransform.sizeDelta.y);
+//            }
+//            else if (canvasWidth < 648f)
+//            {
+//                rectTransform.sizeDelta = new Vector2(400, rectTransform.sizeDelta.y);
+//            }
+//            else
+//            {
+//                rectTransform.sizeDelta = new Vector2(600, rectTransform.sizeDelta.y);
+//            }
+			rectTransform.sizeDelta = new Vector2 (-180, rectTransform.sizeDelta.y);
             gameObject.SetActive(false);
         }
 

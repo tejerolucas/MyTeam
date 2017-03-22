@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Firebase.Database;
 using Firebase;
 using Firebase.Unity.Editor;
+using MaterialUI;
 
 public class Perfil : MonoBehaviour {
 	public Text nombre;
@@ -11,18 +12,25 @@ public class Perfil : MonoBehaviour {
 	public Text amonestaciones;
 	public Text token;
 	public Image foto;
+	public MaterialSwitch notiswitch;
 	// Use this for initialization
-	void Start(){
+	void Start ()
+	{
 		FirebaseApp app = FirebaseApp.DefaultInstance;
 		app.SetEditorDatabaseUrl ("https://soccerapp-5d7ac.firebaseio.com/");
 		if (app.Options.DatabaseUrl != null) {
-		app.SetEditorDatabaseUrl (app.Options.DatabaseUrl);
+			app.SetEditorDatabaseUrl (app.Options.DatabaseUrl);
 		}
 
-		nombre.text=UserAuth.instance._username;
-		puesto.text=UserAuth.instance._userposition;
-		if (Resources.Load ("Fotos/"+UserAuth.instance._userfilename) != null) {
+		nombre.text = UserAuth.instance._username;
+		puesto.text = UserAuth.instance._userposition;
+		if (Resources.Load ("Fotos/" + UserAuth.instance._userfilename) != null) {
 			foto.sprite = Resources.Load<Sprite> ("Fotos/" + UserAuth.instance._userfilename);
+		}
+		if (PlayerPrefs.GetInt ("Notifications") == 1) {
+			notiswitch.TurnOn ();
+		} else {
+			notiswitch.TurnOff();
 		}
 	}
 

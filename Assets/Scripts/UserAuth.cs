@@ -20,7 +20,6 @@ public class UserAuth : MonoBehaviour
 	public string _usertoken;
 	public GameObject SigninGo;
 	public GameObject LoginGo;
-	public GameObject Empleados;
 	public ScreenView screenmanager;
 
 
@@ -29,7 +28,6 @@ public class UserAuth : MonoBehaviour
 		#if !UNITY_EDITOR
 		LoginGo.SetActive (true);
 		Debug.Log("START USER AUTH");
-		Empleados.SetActive(true);
 		#else
 		//screenmanager.Transition ("Home");
 		#endif
@@ -83,12 +81,18 @@ public class UserAuth : MonoBehaviour
 			Debug.Log (operation + " canceled.");
 		} else if (task.IsFaulted) {
 			Debug.Log (operation + " encounted an error.");
+			DialogManager.ShowAlert(task.Exception.ToString(), "Error!", MaterialIconHelper.GetIcon("error_outline"));
 			Debug.Log (task.Exception.ToString ());
 		} else if (task.IsCompleted) {
 			Debug.Log (operation + " completed");
 			complete = true;
 		}
 		return complete;
+	}
+
+	public void AlertTest ()
+	{
+		DialogManager.ShowAlert ("ALERT TEasdygsdfjhasgdfjhasgdfjhkasgdfkjhgasdjfkhgasjkdhfgaskjhdfgasjkhdgfjakshdgfajshdgfjkashgdfjkahsgdfjkahsgdfjkhasgdfkjhasgdfjhkagsdfkjhagsdfjkhasgdfkjhasgdfkjasdhgfjkhST!", "Error!", MaterialIconHelper.GetIcon ("error_outline"));
 	}
 
 	public void CreateUserWithEmail (string email, string password, string displayName)
@@ -107,6 +111,8 @@ public class UserAuth : MonoBehaviour
 			if (auth.CurrentUser != null) {
 				Debug.Log (String.Format ("User Info: {0}  {1}", auth.CurrentUser.Email,
 				auth.CurrentUser.ProviderId));
+				Firebase.Messaging.FirebaseMessaging.Subscribe ("Etermax");
+				NotificationManager.instance.Init ();
 				UpdateUserProfile (newDisplayName: newDisplayName);
 			}
 		}
@@ -133,21 +139,21 @@ public class UserAuth : MonoBehaviour
 		LoginGo.SetActive (false);
 	}
 
-	public void Signin (string email, string password)
+	public void LogIn (string email, string password)
 	{
 		Debug.Log (String.Format ("Attempting to sign in as {0}...", email));
 		auth.SignInWithEmailAndPasswordAsync (email, password)
-						.ContinueWith (HandleSigninResult);
+						.ContinueWith (HandleLoginResult);
 	}
 
-	void HandleSigninResult (Task<Firebase.Auth.FirebaseUser> authTask)
+	void HandleLoginResult (Task<Firebase.Auth.FirebaseUser> authTask)
 	{
 				
 		if (LogTaskCompletion (authTask, "Sign-in")) {
 			LoginGo.SetActive (false);
 			SigninGo.SetActive (false);
+			NotificationManager.instance.Init ();
 			screenmanager.Transition ("Home");
-
 		}
 	}
 
@@ -161,6 +167,7 @@ public class UserAuth : MonoBehaviour
 		user.ReloadAsync ().ContinueWith (HandleReloadUser);
 		LoginGo.SetActive (false);
 		SigninGo.SetActive (false);
+		NotificationManager.instance.Init ();
 		screenmanager.Transition ("Home");
 	}
 

@@ -22,13 +22,10 @@ public class amonestar : GenericPopUp {
 					Debug.Log(snapshot.Child(_userid).Child("amonestaciones").Value.ToString());
 					if (int.TryParse(snapshot.Child(_userid).Child("amonestaciones").Value.ToString(), out pre))
 					{	
-						pre+=2;
+						pre+=cant;
 						reference.Child ("amonestaciones").SetValueAsync (pre);
 					}
 				}
 			});
-		
-
-
 	}
 }
