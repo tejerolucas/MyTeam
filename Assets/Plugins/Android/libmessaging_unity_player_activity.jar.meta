@@ -1,6 +1,24 @@
 fileFormatVersion: 2
 guid: 1e9c2450cb8240689ac33f22845af4df
-time_created: 1480838400
 labels:
 - gvh
 - gvh_v3.0.0
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Android:
+      enabled: 1
+      settings: {}
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

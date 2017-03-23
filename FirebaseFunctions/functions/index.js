@@ -11,12 +11,12 @@ exports.newPlayer = functions.database.ref("Jugadores/{newplayer}/nombre").onWri
       }
       // Exit when the data is deleted.
       if (!event.data.exists()) {
-        return;
+                return;
       }
 	const request =event.data.val();
-	var payload={
+	var     payload={
 		notification: {
-    		title: "Nuevo Jugador Creado",
+    		   title: "Nuevo Jugador Creado",
     		body: event.data.val()+" creo su usuario"
   		}
 	};
