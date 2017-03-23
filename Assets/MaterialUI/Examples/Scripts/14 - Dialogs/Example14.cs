@@ -75,6 +75,11 @@ public class Example14 : MonoBehaviour
 		DialogManager.ShowAlert("Hello world", "Alert!", MaterialIconHelper.GetRandomIcon());
 	}
 
+	public void OnPuntuar()
+	{
+		DialogManager.ShowPuntuar ("carlos", "unity", "lucas.tejero.jpg", "http://images.etermax.com/rrhh/staff/lucas.tejero.jpg");
+	}
+
 	public void OnAlertOneCallbackButtonClicked()
 	{
 		DialogManager.ShowAlert("Example with just one button", () => { ToastManager.Show("You clicked the affirmative button"); }, "OK", "One callback", MaterialIconHelper.GetRandomIcon());

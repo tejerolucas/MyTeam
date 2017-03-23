@@ -67,6 +67,8 @@ namespace MaterialUI
             /// </summary>
             public const string dialogPrompt = "Dialogs/DialogPrompt";
 
+			public const string dialogPuntuar = "Dialogs/DialogPuntuar";
+
             /// <summary>
             /// Path to the disabled panel prefab.
             /// </summary>

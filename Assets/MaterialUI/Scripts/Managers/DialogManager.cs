@@ -182,6 +182,19 @@ namespace MaterialUI
             return dialog;
         }
 
+		public static puntajemanager ShowPuntuar (string nombre,string puesto,string filename,string url,string userid="")
+		{
+			puntajemanager genericPopUp =CreatePuntuar();
+			genericPopUp.SetData(nombre,puesto,filename,url,userid);
+			return genericPopUp;
+		}
+
+		public static puntajemanager CreatePuntuar()
+        {
+			puntajemanager dialog = PrefabManager.InstantiateGameObject(PrefabManager.ResourcePrefabs.dialogPuntuar, instance.transform).GetComponent<puntajemanager>();
+            return dialog;
+        }
+
         /// <summary>
         /// Shows a linear progress dialog with an optional body text, and a required progress indicator.
         /// <para></para>

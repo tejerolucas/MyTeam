@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 using Firebase.Database;
 using System.IO;
+using MaterialUI;
 
-public class GenericPopUp : MonoBehaviour {
+public class GenericPopUp : MaterialDialog {
 	public Text _name;
 	public Text _position;
 	public Image _picture;
