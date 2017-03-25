@@ -21,6 +21,7 @@ public class UserAuth : MonoBehaviour
 	public GameObject SigninGo;
 	public GameObject LoginGo;
 	public ScreenView screenmanager;
+	public GameObject appbar;
 
 
 	void Start ()
@@ -114,6 +115,8 @@ public class UserAuth : MonoBehaviour
 				UpdateUserProfile (newDisplayName: newDisplayName);
 			}
 		}
+		appbar.SetActive (false);
+		screenmanager.Transition("Empleados");
 	}
 
 	// Update the user's display name with the currently selected display name.

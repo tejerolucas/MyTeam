@@ -492,7 +492,9 @@ namespace MaterialUI
         public Color backgroundColor
         {
             get { return m_BackgroundImage.color; }
-            set { m_BackgroundImage.color = value; }
+
+            set { 
+            m_BackgroundImage.color = value; }
         }
 
         #endregion

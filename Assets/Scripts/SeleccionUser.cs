@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using MaterialUI;
 
 public class SeleccionUser : GenericPopUp {
+	public GameObject appbar;
 
 	public void CreateDB_Player ()
 	{
@@ -26,6 +27,7 @@ public class SeleccionUser : GenericPopUp {
 		UserAuth.instance._username = _name.text;
 		UserAuth.instance._userposition = _position.text;
 		UserAuth.instance._userfilename = _filename;
+		appbar.SetActive (true);
 		this.gameObject.SetActive (false);
 	}
 

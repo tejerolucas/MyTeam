@@ -10,7 +10,6 @@ public class Perfil : MonoBehaviour {
 	public Text nombre;
 	public Text puesto;
 	public Text amonestaciones;
-	public Text token;
 	public Image foto;
 	public MaterialSwitch notiswitch;
 	// Use this for initialization
