@@ -62,6 +62,7 @@ public class Partido : MonoBehaviour {
 				return;
 			}
 			if(!(bool)e2.Snapshot.Child("Habilitado").Value){
+				anim.Play("HideMatch");
 				return;
 			}
 			if(e2.Snapshot.HasChild("Jugadores")){
@@ -91,8 +92,7 @@ public class Partido : MonoBehaviour {
 
 
 			if(canvasgroup.alpha<1){
-				anim.Play();
-
+				anim.Play("ShowMatch");
 			}
 		};
 

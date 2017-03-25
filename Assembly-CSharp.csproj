@@ -173,7 +173,6 @@
      <Compile Include="Assets\Scripts\Admin.cs" />
      <Compile Include="Assets\Scripts\FirebaseMessaging.cs" />
      <Compile Include="Assets\Scripts\GenericPopUp.cs" />
-     <Compile Include="Assets\Scripts\NotificationManager.cs" />
      <Compile Include="Assets\Scripts\Perfil.cs" />
      <Compile Include="Assets\Scripts\SeleccionUser.cs" />
      <Compile Include="Assets\Scripts\Signin.cs" />

@@ -22,6 +22,7 @@ public class UserAuth : MonoBehaviour
 	public GameObject LoginGo;
 	public ScreenView screenmanager;
 	public GameObject appbar;
+	private string topic="Etermax";
 
 
 	void Start ()
@@ -58,7 +59,31 @@ public class UserAuth : MonoBehaviour
 		auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
 		auth.StateChanged += AuthStateChanged;
 		AuthStateChanged (this, null);
+		Firebase.Messaging.FirebaseMessaging.TokenReceived += OnTokenReceived;
+  		Firebase.Messaging.FirebaseMessaging.MessageReceived += OnMessageReceived;
 		ReloadUser ();
+	}
+
+	public void OnTokenReceived(object sender, Firebase.Messaging.TokenReceivedEventArgs token) {
+		UserAuth.instance._usertoken = token.Token;
+	}
+
+	public void OnMessageReceived (object sender, Firebase.Messaging.MessageReceivedEventArgs e)
+	{
+		foreach (KeyValuePair<string,string> st in e.Message.Data) {
+			Debug.Log ("Dato: Key: " + st.Key + "-Value: " + st.Value);
+		}
+	  UnityEngine.Debug.Log("Received a new message from: " + e.Message.From);
+	}
+
+	public void SubscribeTopic (bool state){
+		if (state) {
+			Firebase.Messaging.FirebaseMessaging.Subscribe (topic);
+			PlayerPrefs.SetInt ("Notifications", 1);
+		} else {
+			Firebase.Messaging.FirebaseMessaging.Unsubscribe (topic);
+			PlayerPrefs.SetInt ("Notifications", 0);
+		}
 	}
 
 	void AuthStateChanged (object sender, System.EventArgs eventArgs)
@@ -115,6 +140,7 @@ public class UserAuth : MonoBehaviour
 				UpdateUserProfile (newDisplayName: newDisplayName);
 			}
 		}
+		SubscribeTopic (true);
 		appbar.SetActive (false);
 		screenmanager.Transition("Empleados");
 	}
