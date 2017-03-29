@@ -35,10 +35,11 @@ exports.ChangeEventState = functions.https.onRequest((req, res) => {
   const original = req.query.estado;
   if(original=="true"){
     admin.database().ref("/Evento/Habilitado").set(true);
+    admin.database().ref('/Evento/Timer').set(firebase.database.ServerValue.TIMESTAMP);
     res.send("Evento Activo");
   }else{
     admin.database().ref("/Evento/Habilitado").set(false);
     res.send("Evento Inactivo");
   }
-  
+
 });

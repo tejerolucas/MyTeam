@@ -5,6 +5,7 @@ using Firebase.Database;
 using Firebase;
 using Firebase.Unity.Editor;
 using MaterialUI;
+using System;
 
 public class Partido : MonoBehaviour {
 	//datos
@@ -30,8 +31,11 @@ public class Partido : MonoBehaviour {
 	public Text fechatext;
 	public Text vacantestext;
 	public Text jugadorestext;
+	public Text timer;
 	public Image circulo;
 	public bool registrado;
+	public DateTime CloseDate;
+	public DateTime EventDate;
 
 	private bool _isDataLoaded;
 	public DatabaseReference reference;
@@ -40,7 +44,7 @@ public class Partido : MonoBehaviour {
 
 	void Start(){
 		#if UNITY_EDITOR
-		userid="asdqweasdqwe"+Random.Range(0,100).ToString();
+		userid="asdqweasdqwe"+UnityEngine.Random.Range(0,100).ToString();
 		#else
 		userid=UserAuth.instance.user.UserId;
 		#endif
@@ -74,11 +78,14 @@ public class Partido : MonoBehaviour {
 			}
 			int.TryParse(e2.Snapshot.Child("Vacantes").Value.ToString(),out vacantes);
 			vacantestext.text=vacantes.ToString()+" Vacantes";
-			fechatext.text= e2.Snapshot.Child("Fecha").Value.ToString();
+
 
 			horatext.text=e2.Snapshot.Child("Hora").Value.ToString();
 			nombrecanchatext.text=e2.Snapshot.Child("Cancha").Child("nombre").Value.ToString();
 			direccioncanchatext.text=e2.Snapshot.Child("Cancha").Child("direccion").Value.ToString();
+			EventDate=DateTime.Parse( e2.Snapshot.Child("Fecha").Value.ToString());
+			CloseDate=EventDate.Subtract(new TimeSpan(2,0,0,0));
+			fechatext.text= EventDate.ToString("dd MMMM, yyyy");
 			iTween.ValueTo(this.gameObject,iTween.Hash(
 			"from",prejugadores,
 			"to",jugadores*1.0f,
@@ -97,6 +104,15 @@ public class Partido : MonoBehaviour {
 		};
 
 	}
+
+	void Update(){
+		TimeSpan TimeRemain = CloseDate.Subtract (System.DateTime.Now);
+		string horas = TimeRemain.Hours > 9 ? TimeRemain.Hours.ToString () : "0" + TimeRemain.Hours.ToString ();
+		string minutos = TimeRemain.Minutes > 9 ? TimeRemain.Minutes.ToString () : "0" + TimeRemain.Minutes.ToString ();
+		string segundos = TimeRemain.Seconds > 9 ? TimeRemain.Seconds.ToString () : "0" + TimeRemain.Seconds.ToString ();
+		timer.text ="Cierra en:\n<size=70>"+ horas + " : " + minutos + " : " + segundos+"</size>";
+	}
+
 	public void CompleteCircle ()
 	{
 		prejugadores = jugadores*1.0f;
