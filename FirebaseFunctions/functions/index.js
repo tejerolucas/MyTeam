@@ -22,6 +22,21 @@ exports.newPlayer = functions.database.ref("Jugadores/{newplayer}/nombre").onWri
 	admin.messaging().sendToDevice(registrationToken,payload)
 });
 
+exports.newPlayerSlack = functions.database.ref("Jugadores/{newplayer}").onWrite(event =>{
+   if (event.data.previous.exists()|| !event.data.exists()) {
+        return Promise.resolve();
+      }
+// Grab the current value of what was written to the Realtime Database.
+const original = event.data.val();
+const userRef = event.data.adminRef.root.child('Jugadores').child(event.params.newplayer);
+original.isAdmin=true;
+console.log(original.foto);
+console.log(userRef.child('foto').val())
+ return userRef.update(original).then(() => {
+      return Promise.resolve();
+    });
+});
+
 //HTTP Request Agrega 10 jugadores
 exports.AddPlayersEvent = functions.https.onRequest((req, res) => {
   for (var i = 10 - 1; i >= 0; i--) {

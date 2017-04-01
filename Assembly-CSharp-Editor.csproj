@@ -135,18 +135,6 @@
      <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
      <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\R.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseInvites.txt" />
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -156,50 +144,62 @@
  <Reference Include="UnityEditor.EditorTestsRunner">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/EditorTestsRunner/Editor/UnityEditor.EditorTestsRunner.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Editor">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.App">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Auth">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Database">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Invites">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Invites.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Invites.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Messaging">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
  </Reference>
  <Reference Include="Google.MiniJson">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
  </Reference>
  <Reference Include="Google.Sharpen">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Compat">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Unity.Compat.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Unity.Compat.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Tasks">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
  </Reference>
  <Reference Include="Ionic.Zip">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/MaterialUI/Utils/Editor/UnityZip/Ionic.Zip.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/MaterialUI/Utils/Editor/UnityZip/Ionic.Zip.dll</HintPath>
  </Reference>
  <Reference Include="Google.IOSResolver">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
  </Reference>
  <Reference Include="Google.JarResolver">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandler">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -209,6 +209,9 @@
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+ <HintPath>/Applications/Unity/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>

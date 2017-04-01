@@ -6,8 +6,10 @@ using Firebase;
 using Firebase.Unity.Editor;
 using MaterialUI;
 using System;
+using System.Globalization;
 
 public class Partido : MonoBehaviour {
+	private string[] m_SmallStringList = new string[] { "Hombres", "Unisex" };
 	//datos
 	[Header("Boton")]
 	public MaterialButton boton;
@@ -32,19 +34,20 @@ public class Partido : MonoBehaviour {
 	public Text vacantestext;
 	public Text jugadorestext;
 	public Text timer;
+	public Image header;
 	public Image circulo;
 	public bool registrado;
 	public DateTime CloseDate;
 	public DateTime EventDate;
-
 	private bool _isDataLoaded;
 	public DatabaseReference reference;
+	public LinearProgressIndicator linearprogress;
 	private string userid;
 	private float prejugadores;
 
 	void Start(){
 		#if UNITY_EDITOR
-		userid="asdqweasdqwe"+UnityEngine.Random.Range(0,100).ToString();
+		userid="editor";
 		#else
 		userid=UserAuth.instance.user.UserId;
 		#endif
@@ -54,6 +57,8 @@ public class Partido : MonoBehaviour {
 		canvasgroup.alpha = 0;
 		canvasgroup.blocksRaycasts = false;
 		canvasgroup.interactable = false;
+		fechatext.text="Buscando Partido";
+		linearprogress.Show (true);
 		FirebaseApp app = FirebaseApp.DefaultInstance;
 		app.SetEditorDatabaseUrl ("https://soccerapp-5d7ac.firebaseio.com/");
 				if (app.Options.DatabaseUrl != null){
@@ -66,8 +71,18 @@ public class Partido : MonoBehaviour {
 				return;
 			}
 			if(!(bool)e2.Snapshot.Child("Habilitado").Value){
-				anim.Play("HideMatch");
+				if(canvasgroup.alpha>0.5f){
+					anim.Play("HideMatch");
+				}
+				Debug.Log("partido deshabilitado");
+				fechatext.text="EVENTO NO DISPONIBLE";
+				TweenManager.TweenColor(color => header.color = color, header.color, colorabandonar, 2f);
+				linearprogress.Hide();
 				return;
+			}else{
+			Debug.Log("Partido habilitado");
+				TweenManager.TweenColor(color => header.color = color, header.color, colorabandonar, 2f);
+			linearprogress.Hide();
 			}
 			if(e2.Snapshot.HasChild("Jugadores")){
 				int.TryParse(e2.Snapshot.Child("Jugadores").ChildrenCount.ToString(),out jugadores);
@@ -83,9 +98,13 @@ public class Partido : MonoBehaviour {
 			horatext.text=e2.Snapshot.Child("Hora").Value.ToString();
 			nombrecanchatext.text=e2.Snapshot.Child("Cancha").Child("nombre").Value.ToString();
 			direccioncanchatext.text=e2.Snapshot.Child("Cancha").Child("direccion").Value.ToString();
+			//FirebaseDatabase.DefaultInstance.GetReference("Evento/Fecha").SetValueAsync(System.DateTime.Now.ToString());
 			EventDate=DateTime.Parse( e2.Snapshot.Child("Fecha").Value.ToString());
 			CloseDate=EventDate.Subtract(new TimeSpan(2,0,0,0));
-			fechatext.text= EventDate.ToString("dd MMMM, yyyy");
+			string dia=EventDate.ToString("dddd",CultureInfo.CreateSpecificCulture("es-AR")).ToUpperInvariant();
+			string num=EventDate.ToString("dd",CultureInfo.CreateSpecificCulture("es-AR"));
+			string mes=EventDate.ToString("MMMM",CultureInfo.CreateSpecificCulture("es-AR")).ToUpper();
+			fechatext.text= dia+" <size=90> "+num+" </size> "+mes;
 			iTween.ValueTo(this.gameObject,iTween.Hash(
 			"from",prejugadores,
 			"to",jugadores*1.0f,
@@ -124,10 +143,16 @@ public class Partido : MonoBehaviour {
 		jugadorestext.text = ((int)value).ToString ();
 	}
 
+	public void ChooseMatch ()
+	{
+		DialogManager.ShowRadioList(m_SmallStringList, (int selectedIndex) => {
+			ToastManager.Show("Item #" + selectedIndex + " selected: " + m_SmallStringList[selectedIndex]);
+		}, "OK", "Big Radio List", MaterialIconHelper.GetRandomIcon(), () => { ToastManager.Show("You clicked the cancel button"); }, "CANCEL");
+	}
+
 	public void ChangeState ()
 	{	
-		
-
+		ChooseMatch ();
 		if (registrado) {
 			boton.text.text = textaceptar;
 			boton.SetButtonBackgroundColor (coloraceptar, true);

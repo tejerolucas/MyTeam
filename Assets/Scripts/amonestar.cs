@@ -23,7 +23,7 @@ public class amonestar : GenericPopUp {
 					if (int.TryParse(snapshot.Child(_userid).Child("amonestaciones").Value.ToString(), out pre))
 					{	
 						pre+=cant;
-						reference.Child ("amonestaciones").SetValueAsync (pre);
+						reference.Child ("amonestaciones").SetValueAsync (Mathf.Max(2,pre));
 					}
 				}
 			});
