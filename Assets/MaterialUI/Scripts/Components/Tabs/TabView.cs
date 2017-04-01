@@ -665,7 +665,7 @@ namespace MaterialUI
 
                 float normalizedPagesContainerPosition = -m_PagesContainer.anchoredPosition.x / (m_PageSize.x * m_Pages.Length);
 
-                m_Indicator.anchoredPosition = new Vector2((m_TabWidth * m_Tabs.Length) * normalizedPagesContainerPosition, 100);
+                m_Indicator.anchoredPosition = new Vector2((m_TabWidth * m_Tabs.Length) * normalizedPagesContainerPosition, 0);
             }
         }
     }

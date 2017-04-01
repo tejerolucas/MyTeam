@@ -5,6 +5,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using MaterialUI;
 
 public class etermaxeros : MonoBehaviour {
 	DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
@@ -15,9 +16,16 @@ public class etermaxeros : MonoBehaviour {
 	public GameObject PuntajeGO;
 	public List<eterempleado> eterp=new List<eterempleado>();
 	private string projectid="https://soccerapp-5d7ac.firebaseio.com/";
+	public CircularProgressIndicator progressindicator;
+	public Animation anim;
+	public CanvasGroup canvasgroup;
 
 
 	void Start() {
+		if(canvasgroup.alpha>0.5f){
+			anim.Play("HideMatch");
+		}
+		progressindicator.Show(true);
 		dependencyStatus = FirebaseApp.CheckDependencies();
 		if (dependencyStatus != DependencyStatus.Available) {
 			FirebaseApp.FixDependenciesAsync().ContinueWith(task => {
@@ -59,6 +67,10 @@ public class etermaxeros : MonoBehaviour {
 						break;
 					} else {
 						if(!childSnapshot.HasChild("Usado")){
+							if(canvasgroup.alpha<1){
+								anim.Play("ShowMatch");
+							}
+							progressindicator.Hide();
 							GameObject etpgo= (GameObject)Instantiate(playerprefab,jugadores.transform) ;
 							etpgo.transform.localScale=Vector3.one;
 							eterempleado etp=etpgo.GetComponent<eterempleado>();

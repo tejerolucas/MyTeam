@@ -5,6 +5,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using MaterialUI;
 
 public class etermaxplayers : MonoBehaviour
 {
@@ -17,10 +18,16 @@ public class etermaxplayers : MonoBehaviour
 	public List<eterplayer> eterp = new List<eterplayer> ();
 	public List<GameObject> lista = new List<GameObject> ();
 	private string projectid = "https://soccerapp-5d7ac.firebaseio.com/";
+	public CircularProgressIndicator progressindicator;
+	public Animation anim;
+	public CanvasGroup canvasgroup;
 
 
 	void Start ()
 	{
+		if(canvasgroup.alpha>0.5f){
+			anim.Play("HideMatch");
+		}
 		dependencyStatus = FirebaseApp.CheckDependencies ();
 		if (dependencyStatus != DependencyStatus.Available) {
 			FirebaseApp.FixDependenciesAsync ().ContinueWith (task => {
@@ -35,6 +42,7 @@ public class etermaxplayers : MonoBehaviour
 		} else {
 			InitializeFirebase ();
 		}
+
 	}
 
 	public void SetPopUp (GameObject go)
@@ -63,6 +71,7 @@ public class etermaxplayers : MonoBehaviour
 				return;
 			}
 			players.Clear ();
+			progressindicator.Show(true);
 			if (e2.Snapshot != null && e2.Snapshot.ChildrenCount > 0) {
 				foreach(GameObject go in lista){
 					eterp.Remove(go.GetComponent<eterplayer> ());
@@ -79,6 +88,10 @@ public class etermaxplayers : MonoBehaviour
 						#else
 						if(true){
 						#endif
+							if(canvasgroup.alpha<1){
+								anim.Play("ShowMatch");
+							}
+							progressindicator.Hide();
 							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
 							eterplayer etp = etpgo.GetComponent<eterplayer> ();
 							etpgo.transform.localScale=Vector3.one;
