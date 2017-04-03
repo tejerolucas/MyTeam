@@ -45,6 +45,22 @@ exports.AddPlayersEvent = functions.https.onRequest((req, res) => {
   res.send("Agregue 10 Jugadores al Evento!");
 });
 
+exports.SendMessage = functions.https.onRequest((req, res) => {
+  const userid = req.query.userid;
+  const message = req.query.message;
+  const token = admin.database().ref('/Jugadores/userid/token').val();
+  const nombre = admin.database().ref('/Jugadores/userid/nombre').val();
+  var     payload={
+    notification: {
+           title: "Nuevo Mensage",
+        body: message
+      }
+  };
+  admin.messaging().sendToDevice(token,payload);
+  
+   res.send("Mensage enviado a "+nombre);
+   });
+
 
 exports.ChangeEventState = functions.https.onRequest((req, res) => {
   const original = req.query.estado;
@@ -56,5 +72,7 @@ exports.ChangeEventState = functions.https.onRequest((req, res) => {
     admin.database().ref("/Evento/Habilitado").set(false);
     res.send("Evento Inactivo");
   }
+
+  
 
 });
