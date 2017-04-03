@@ -81,7 +81,7 @@ public class Partido : MonoBehaviour {
 				return;
 			}else{
 			Debug.Log("Partido habilitado");
-				TweenManager.TweenColor(color => header.color = color, header.color, colorabandonar, 2f);
+				TweenManager.TweenColor(color => header.color = color, header.color, coloraceptar, 2f);
 			linearprogress.Hide();
 			}
 			if(e2.Snapshot.HasChild("Jugadores")){
@@ -152,7 +152,8 @@ public class Partido : MonoBehaviour {
 
 	public void ChangeState ()
 	{	
-		ChooseMatch ();
+		Debug.Log ("BOTON");
+		//ChooseMatch ();
 		if (registrado) {
 			boton.text.text = textaceptar;
 			boton.SetButtonBackgroundColor (coloraceptar, true);
