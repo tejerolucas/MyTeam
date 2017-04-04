@@ -47,13 +47,12 @@ exports.AddPlayersEvent = functions.https.onRequest((req, res) => {
 
 exports.SendMessage = functions.https.onRequest((req, res) => {
   const userid = req.query.userid;
-  const message = req.query.message;
   const token = admin.database().ref('/Jugadores/userid/token').val();
   const nombre = admin.database().ref('/Jugadores/userid/nombre').val();
   var     payload={
     notification: {
-           title: "Nuevo Mensage",
-        body: message
+           title: "Nuevo Mensaje",
+        body: "Mensaje"
       }
   };
   admin.messaging().sendToDevice(token,payload);
