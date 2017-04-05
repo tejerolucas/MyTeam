@@ -21,6 +21,7 @@ public class etermaxplayers : MonoBehaviour
 	public CircularProgressIndicator progressindicator;
 	public Animation anim;
 	public CanvasGroup canvasgroup;
+	public Color playerbackground;
 
 
 	void Start ()
@@ -93,6 +94,7 @@ public class etermaxplayers : MonoBehaviour
 							}
 							progressindicator.Hide();
 							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
+							etpgo.GetComponent<Image>().color=playerbackground;
 							eterplayer etp = etpgo.GetComponent<eterplayer> ();
 							etpgo.transform.localScale=Vector3.one;
 							etp.Popup = Popup;

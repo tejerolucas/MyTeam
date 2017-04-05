@@ -420,7 +420,7 @@ namespace MaterialUI
             {
                 overscrollConfig.Setup();
             }
-						m_Indicator.gameObject.transform.SetAsLastSibling();
+			m_Indicator.gameObject.transform.SetAsLastSibling();
             m_AlreadyInitialized = true;
         }
 
@@ -596,7 +596,7 @@ namespace MaterialUI
             }
             else
             {
-                m_Indicator.anchoredPosition = new Vector2(targetPosition, 0);
+                m_Indicator.anchoredPosition = new Vector2(targetPosition, 4000);
             }
         }
 

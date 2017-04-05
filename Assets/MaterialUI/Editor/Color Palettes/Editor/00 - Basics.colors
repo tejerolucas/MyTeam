@@ -18,6 +18,8 @@ MonoBehaviour:
     m_Color: {r: 0.9137255, g: 0.11764706, b: 0.3882353, a: 1}
   - m_Name: Purple 500
     m_Color: {r: 0.6117647, g: 0.15294118, b: 0.6901961, a: 1}
+  - m_Name: Grey 200
+    m_Color: {r: 0.93333334, g: 0.93333334, b: 0.93333334, a: 1}
   - m_Name: Deep Purple 500
     m_Color: {r: 0.40392157, g: 0.22745098, b: 0.7176471, a: 1}
   - m_Name: Indigo 500
@@ -50,8 +52,6 @@ MonoBehaviour:
     m_Color: {r: 0.61960787, g: 0.61960787, b: 0.61960787, a: 1}
   - m_Name: Blue Grey 500
     m_Color: {r: 0.3764706, g: 0.49019608, b: 0.54509807, a: 1}
-  - m_Name: Grey 200
-    m_Color: {r: 0.93333334, g: 0.93333334, b: 0.93333334, a: 1}
   - m_Name: Grey 800
     m_Color: {r: 0.25882354, g: 0.25882354, b: 0.25882354, a: 1}
   - m_Name: 
