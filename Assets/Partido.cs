@@ -96,8 +96,8 @@ public class Partido : MonoBehaviour {
 
 
 			horatext.text=e2.Snapshot.Child("Hora").Value.ToString();
-			nombrecanchatext.text=e2.Snapshot.Child("Cancha").Child("nombre").Value.ToString();
-			direccioncanchatext.text=e2.Snapshot.Child("Cancha").Child("direccion").Value.ToString();
+			nombrecanchatext.text=e2.Snapshot.Child("Lugar").Child("nombre").Value.ToString();
+			direccioncanchatext.text=e2.Snapshot.Child("Lugar").Child("direccion").Value.ToString();
 			//FirebaseDatabase.DefaultInstance.GetReference("Evento/Fecha").SetValueAsync(System.DateTime.Now.ToString());
 			EventDate=DateTime.Parse( e2.Snapshot.Child("Fecha").Value.ToString());
 			CloseDate=EventDate.Subtract(new TimeSpan(2,0,0,0));

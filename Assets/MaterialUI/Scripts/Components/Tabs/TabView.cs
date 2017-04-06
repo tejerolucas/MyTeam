@@ -596,7 +596,7 @@ namespace MaterialUI
             }
             else
             {
-                m_Indicator.anchoredPosition = new Vector2(targetPosition, 4000);
+                m_Indicator.anchoredPosition = new Vector2(targetPosition, 0);
             }
         }
 
