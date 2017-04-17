@@ -3,6 +3,7 @@ const functions = require('firebase-functions');
 const admin =require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
 
+<<<<<<< Updated upstream
 //Nuevo Jugador
 exports.newPlayer = functions.database.ref("Jugadores/{newplayer}/nombre").onWrite(event =>{
 	if (event.data.previous.exists()) {
@@ -73,5 +74,11 @@ exports.ChangeEventState = functions.https.onRequest((req, res) => {
   }
 
   
+=======
+exports.SendMessages = functions.https.onRequest((req, res) => {
+   const userid = req.query.userid;
+   const mensaje= req.query.mensaje;
+>>>>>>> Stashed changes
 
+   res.send("Mensage enviado a "+snapshot); });
 });

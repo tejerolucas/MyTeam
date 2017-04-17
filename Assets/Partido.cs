@@ -9,6 +9,7 @@ using System;
 using System.Globalization;
 
 public class Partido : MonoBehaviour {
+	public static Partido instance;
 	private string[] m_SmallStringList = new string[] { "Hombres", "Unisex" };
 	//datos
 	[Header("Boton")]
@@ -42,10 +43,16 @@ public class Partido : MonoBehaviour {
 	private bool _isDataLoaded;
 	public DatabaseReference reference;
 	public LinearProgressIndicator linearprogress;
-	private string userid;
+	public string tipo;
+	public string userid;
 	private float prejugadores;
+	public GameObject popup;
 
-	void Start(){
+	void Start ()
+	{
+		if (instance == null) {
+			instance = this;
+		}
 		#if UNITY_EDITOR
 		userid="editor";
 		#else
@@ -85,11 +92,19 @@ public class Partido : MonoBehaviour {
 			linearprogress.Hide();
 			}
 			if(e2.Snapshot.HasChild("Jugadores")){
-				int.TryParse(e2.Snapshot.Child("Jugadores").ChildrenCount.ToString(),out jugadores);
-				registrado=(bool)e2.Snapshot.Child("Jugadores").HasChild(userid);
+				int.TryParse(e2.Snapshot.Child("Jugadores").Child("cant").Value.ToString(),out jugadores);
+				bool registradoh=(bool)e2.Snapshot.Child("Jugadores").Child("Hombres").HasChild(userid);
+				bool registradou=(bool)e2.Snapshot.Child("Jugadores").Child("Unisex").HasChild(userid);
+
+				registrado=registradoh||registradou;
+				if(registrado){
+				tipo=registradoh?"Hombres":"Unisex";
+				}
+				SetState(registrado);
 			}else{
 				jugadores=0;
 				registrado=false;
+				SetState(registrado);
 			}
 			int.TryParse(e2.Snapshot.Child("Vacantes").Value.ToString(),out vacantes);
 			vacantestext.text=vacantes.ToString()+" Vacantes";
@@ -158,13 +173,37 @@ public class Partido : MonoBehaviour {
 			boton.text.text = textaceptar;
 			boton.SetButtonBackgroundColor (coloraceptar, true);
 			boton.iconVectorImageData = iconaceptar;
-			reference.Child ("Jugadores").Child (userid).RemoveValueAsync ();
+			reference.Child ("Jugadores").Child(tipo).Child (userid).RemoveValueAsync ();
+
+			reference.Child("Jugadores").Child("cant").GetValueAsync().ContinueWith(task => {
+				if (task.IsCompleted) {
+					DataSnapshot snapshot = task.Result;
+					int pre=0;
+					if (int.TryParse(snapshot.Value.ToString(), out pre))
+					{	
+						pre--;
+						snapshot.Reference.SetValueAsync(pre);
+					}
+				}
+			});
+		} else {
+			popup.SetActive (true);
+		}
+		registrado = !registrado;
+	}
+
+	public void SetState (bool state)
+	{	
+		Debug.Log ("ESTADO: " + state.ToString ());
+		if (!state) {
+			boton.text.text = textaceptar;
+			boton.SetButtonBackgroundColor (coloraceptar, true);
+			boton.iconVectorImageData = iconaceptar;
 		} else {
 			boton.text.text = textabandonar;
 			boton.SetButtonBackgroundColor (colorabandonar, true);
 			boton.iconVectorImageData = iconabandonar;
-			reference.Child ("Jugadores").Child (userid).SetValueAsync (jugadores);
 		}
-		registrado = !registrado;
 	}
+
 }

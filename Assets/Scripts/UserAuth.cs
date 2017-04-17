@@ -245,7 +245,6 @@ public class UserAuth : MonoBehaviour
 
 	void HandleDeleteResult (Task authTask)
 	{
-				
 		LogTaskCompletion (authTask, "Delete user");
 	}
 
