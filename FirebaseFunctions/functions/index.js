@@ -45,19 +45,18 @@ admin.initializeApp(functions.config().firebase);
 //   res.send("Agregue 10 Jugadores al Evento!");
 // });
 
-exports.SendMessage = functions.https.onRequest((req, res) => {
-  const mensaje = req.query.mensaje;
-  var     payload={
-    notification: {
-           title: "Nuevo Mensaje",
-        body: mensaje
-      }
-  };
-  var registrationToken="c-vzAe43jXw:APA91bH0-3JAEXBrzfLA0Dx6KAHecdcex15iX2lKzKXCePuNgWns5bQhL5oN16MQfWvclS2oEeVu1-ZB41amfx2TxSKD1wkGSnLvvyd54w-Sc49-BWpCSYdbsSwJkAxtOv9cDpMQJKj0";
-  admin.messaging().sendToDevice(registrationToken,payload)
-  
-   res.send("Mensage:"+mensaje);
+exports.Test = functions.https.onRequest((req, res) => {
+  const id = req.query.id;
+  const ref= admin.database().ref('Jugadores/'+id);
+
+ref.once("value").then(function(snapshot) {
+    var data = snapshot.val();
+    res.send(data.nombre);
+  });
+   
    });
+
+
 
 
 
