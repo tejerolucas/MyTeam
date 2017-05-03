@@ -56,6 +56,27 @@ ref.once("value").then(function(snapshot) {
    
    });
 
+exports.SendMessage = functions.https.onRequest((req, res) => {
+  const id = req.query.id;
+  const mensaje=req.query.mensaje;
+  const ref= admin.database().ref('Jugadores/'+id);
+
+ref.once("value").then(function(snapshot) {
+    var data = snapshot.val();
+    var payload={
+          notification: {
+          title: "Mensaje",
+          body: mensaje,
+          sound: "default"
+     }
+ };
+ var registrationToken=data.token;
+  admin.messaging().sendToDevice(registrationToken,payload)
+    res.send("Mensaje enviado a "+data.nombre);
+  });
+   
+   });
+
 
 
 
