@@ -61,21 +61,24 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
   const mensaje=req.query.mensaje;
   const ref= admin.database().ref('Jugadores/'+id);
 
-ref.once("value").then(function(snapshot) {
+  ref.once("value").then(function(snapshot) {
     var data = snapshot.val();
-    var payload={
-          notification: {
+    if(data==null){
+      res.send("No se encuentra jugador");
+    }else{
+      var payload={
+        notification: {
           title: "Mensaje",
           body: mensaje,
           sound: "default"
-     }
- };
- var registrationToken=data.token;
-  admin.messaging().sendToDevice(registrationToken,payload)
-    res.send("Mensaje enviado a "+data.nombre);
+        }
+      };
+      var registrationToken=data.token;
+      admin.messaging().sendToDevice(registrationToken,payload)
+      res.send("Mensaje enviado a "+data.nombre);
+    }
   });
-   
-   });
+});
 
 
 
