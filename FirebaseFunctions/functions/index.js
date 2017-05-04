@@ -80,6 +80,25 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
   });
 });
 
+exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
+var num=0;
+var lista="Done";
+var query = admin.database().ref("Usuarios").orderByKey();
+query.once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      if(childSnapshot.child("Usado").val()!=null) {
+        childSnapshot.child("Usado").ref.remove().then(function() {
+            console.log("Remove succeeded.")
+        }).catch(function(error) {
+            console.log("Remove failed: " + error.message)
+        });
+      }
+  });
+});
+  res.send(lista);
+});
+
 
 
 
