@@ -96,8 +96,15 @@ query.once("value")
       }
   });
 });
+  const refjugadores= admin.database().ref('Jugadores');
+  refjugadores.remove().then(function() {
+            console.log("Remove Players succeeded.")
+        }).catch(function(error) {
+            console.log("Remove Players failed: " + error.message)
+        });
   res.send(lista);
 });
+
 
 
 
