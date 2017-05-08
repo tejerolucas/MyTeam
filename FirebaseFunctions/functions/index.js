@@ -3,40 +3,6 @@ const functions = require('firebase-functions');
 const admin =require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
 
-//Nuevo Jugador
-// exports.newPlayer = functions.database.ref("Jugadores/{newplayer}/nombre").onWrite(event =>{
-// 	if (event.data.previous.exists()) {
-//         return;
-//       }
-//       if (!event.data.exists()) {
-//                 return;
-//       }
-// 	const request =event.data.val();
-// 	var     payload={
-// 		notification: {
-//     		   title: "Nuevo Jugador Creado",
-//     		body: event.data.val()+" creo su usuario"
-//   		}
-// 	};
-// 	var registrationToken="fMBwu_nJF7o:APA91bFmYW6fTPzvDFBP0_h-o1BBN0inIsKdQFtZ7cB0KVn5PvPFTlTaJjtnS_fWtOFdzV-cRog4tzHw-bf6MM4YU2auZ9gLW_rcu0_QgtQ6iBZugkBVev9kMfUyqmLk_BazeuBR0n9Z";
-// 	admin.messaging().sendToDevice(registrationToken,payload)
-// });
-
-// exports.newPlayerSlack = functions.database.ref("Jugadores/{newplayer}").onWrite(event =>{
-//    if (event.data.previous.exists()|| !event.data.exists()) {
-//         return Promise.resolve();
-//       }
-// // Grab the current value of what was written to the Realtime Database.
-// const original = event.data.val();
-// const userRef = event.data.adminRef.root.child('Jugadores').child(event.params.newplayer);
-// original.isAdmin=true;
-// console.log(original.foto);
-// console.log(userRef.child('foto').val())
-//  return userRef.update(original).then(() => {
-//       return Promise.resolve();
-//     });
-// });
-
 // //HTTP Request Agrega 10 jugadores
 // exports.AddPlayersEvent = functions.https.onRequest((req, res) => {
 //   for (var i = 10 - 1; i >= 0; i--) {
@@ -45,17 +11,7 @@ admin.initializeApp(functions.config().firebase);
 //   res.send("Agregue 10 Jugadores al Evento!");
 // });
 
-exports.Test = functions.https.onRequest((req, res) => {
-  const id = req.query.id;
-  const ref= admin.database().ref('Jugadores/'+id);
-
-ref.once("value").then(function(snapshot) {
-    var data = snapshot.val();
-    res.send(data.nombre);
-  });
-   
-   });
-
+//Envia push notification a un usuario especifico (id,mensaje)
 exports.SendMessage = functions.https.onRequest((req, res) => {
   const id = req.query.id;
   const mensaje=req.query.mensaje;
@@ -80,6 +36,20 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
   });
 });
 
+//devuelve un nombre random
+exports.GetRandomUser=functions.https.onRequest((req,res)=>{
+	const ref= admin.database().ref('Usuarios/');
+	ref.once("value").then(function(snapshot) {
+		var num=Math.random() * (snapshot.numChildren() - 0) + 0;
+		if(snapshot.hasChild(num.toString())){
+   			res.send("tiene hijo");
+   		}else{
+   			res.send("NO tiene hijo");
+   		}
+	});
+});
+
+//borra todos los jugadores y saca el estado "Usado" de los usuarios ()
 exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
 var num=0;
 var lista="Done";
@@ -105,6 +75,40 @@ query.once("value")
   res.send(lista);
 });
 
+//crea un usuario (email,password)
+exports.CreateNewUser=functions.https.onRequest((req,res)=>{
+var lista="Done";
+const email=req.query.email;
+const password=req.query.password;
+admin.auth().createUser({
+    email: email,
+    emailVerified: false,
+    password: password
+  })
+  res.send(lista);
+});
+
+
+//borra un usuario especifico (email)
+exports.DeleteUser=functions.https.onRequest((req,res)=>{
+const email=req.query.email;
+admin.auth().getUserByEmail(email)
+  .then(function(userRecord) {
+  	admin.auth().deleteUser(userRecord.uid)
+  .then(function() {
+    console.log("Successfully deleted user");
+    res.send("Successfully deleted user");
+  })
+  .catch(function(error) {
+    console.log("Error deleting user:", error);
+    res.send(error.toString());
+  });
+  })
+  .catch(function(error) {
+  	res.send("ERROR FETCHING");
+    console.log("Error fetching user data:", error);
+  }); 
+});
 
 
 
