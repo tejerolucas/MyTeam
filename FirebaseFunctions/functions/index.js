@@ -40,13 +40,41 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
 exports.GetRandomUser=functions.https.onRequest((req,res)=>{
 	const ref= admin.database().ref('Usuarios/');
 	ref.once("value").then(function(snapshot) {
-		var num=Math.random() * (snapshot.numChildren() - 0) + 0;
-		if(snapshot.hasChild(num.toString())){
-   			res.send("tiene hijo");
+		var num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
+    var numstring=num.toString();
+		if(snapshot.hasChild(numstring)){
+   			res.send(snapshot.child(numstring).child("nombre").val());
    		}else{
    			res.send("NO tiene hijo");
    		}
 	});
+});
+
+//Crea Jugadores Random(cantidad)
+exports.CreatePlayers=functions.https.onRequest((req,res)=>{
+  const cantidad=req.query.cantidad;
+  var lista="";
+  
+  for (var i = cantidad - 1; i >= 0; i--) {
+    const ref= admin.database().ref('Usuarios/');
+
+    ref.once("value").then(function(snapshot) {
+      var num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
+      var numstring=num.toString();
+
+      if(snapshot.hasChild(numstring)){
+        console.log(snapshot.child(numstring).child("nombre").val());
+        lista=lista+snapshot.child(numstring).child("nombre").val()+"\n";
+        snapshot.child(numstring).child("Usado").ref.set("true");
+      }else{
+        res.send("Error");
+      }
+    });
+  }
+  
+  console.log("penis");
+  console.log(lista);
+  res.send(lista);
 });
 
 //borra todos los jugadores y saca el estado "Usado" de los usuarios ()
@@ -72,6 +100,7 @@ query.once("value")
         }).catch(function(error) {
             console.log("Remove Players failed: " + error.message)
         });
+
   res.send(lista);
 });
 
