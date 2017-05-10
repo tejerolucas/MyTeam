@@ -54,36 +54,52 @@ exports.GetRandomUser=functions.https.onRequest((req,res)=>{
 exports.CreatePlayers=functions.https.onRequest((req,res)=>{
   const cantidad=req.query.cantidad;
   var lista="";
-  
-  for (var i = cantidad - 1; i >= 0; i--) {
-    const ref= admin.database().ref('Usuarios/');
+  const refUsuarios= admin.database().ref('Usuarios/');
+  const refJugadores= admin.database().ref();
+    refUsuarios.once("value").then(function(snapshot) {
+      var cantidadlibres=0;
+      snapshot.forEach(function(childSnapshot) {
+            if(!childSnapshot.hasChild("Usado")){
+              cantidadlibres++;
+            }
+          });
+      if(cantidadlibres>=cantidad){
+        for (var i = cantidad - 1; i >= 0; i--) {
+          var num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
+          var numstring=num.toString();
 
-    ref.once("value").then(function(snapshot) {
-      var num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
-      var numstring=num.toString();
-
-      if(snapshot.hasChild(numstring)){
-        console.log(snapshot.child(numstring).child("nombre").val());
-        lista=lista+snapshot.child(numstring).child("nombre").val()+"\n";
-        snapshot.child(numstring).child("Usado").ref.set("true");
-      }else{
-        res.send("Error");
+          while(snapshot.child(num.toString()).hasChild("Usado")){
+              num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
+          }
+          lista+=snapshot.child(num.toString()).child("nombre").val();
+          lista+="\n";
+          snapshot.child(num.toString()).child("Usado").ref.set("true");
+          var newPlayer=refJugadores.child("Jugadores").push();
+          var filename=snapshot.child(num.toString()).child("foto").val().replace("http://images.etermax.com/rrhh/staff/","").replace(".jpg","");
+          var email=snapshot.child(num.toString()).child("nombre").val().replace(" ",".").toLowerCase();
+          newPlayer.set({
+            "nombre":snapshot.child(num.toString()).child("nombre").val(),
+            "puesto":snapshot.child(num.toString()).child("puesto").val(),
+            "amonestaciones":0,
+            "foto":snapshot.child(num.toString()).child("foto").val(),
+            "filename":filename,
+            "userid":newPlayer.ref.key,
+            "token":"fakeuser",
+            "email":email+"@etermax.com"
+          });
       }
+    }else{
+      res.send("No hay cantidad libres de usuarios: "+cantidadlibres.toString());
+    }
+      res.send(lista);
     });
-  }
-  
-  console.log("penis");
-  console.log(lista);
-  res.send(lista);
 });
 
 //borra todos los jugadores y saca el estado "Usado" de los usuarios ()
 exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
 var num=0;
-var lista="Done";
 var query = admin.database().ref("Usuarios").orderByKey();
-query.once("value")
-  .then(function(snapshot) {
+query.once("value").then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       if(childSnapshot.child("Usado").val()!=null) {
         childSnapshot.child("Usado").ref.remove().then(function() {
@@ -101,7 +117,7 @@ query.once("value")
             console.log("Remove Players failed: " + error.message)
         });
 
-  res.send(lista);
+  res.send("Done");
 });
 
 //crea un usuario (email,password)
