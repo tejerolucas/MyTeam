@@ -22,12 +22,12 @@ public class etermaxplayers : MonoBehaviour
 	public Animation anim;
 	public CanvasGroup canvasgroup;
 	public Color playerbackground;
-
+	public DatabaseReference refJugadores;
 
 	void Start ()
 	{
-		if(canvasgroup.alpha>0.5f){
-			anim.Play("HideMatch");
+		if (canvasgroup.alpha > 0.5f) {
+			anim.Play ("HideMatch");
 		}
 		dependencyStatus = FirebaseApp.CheckDependencies ();
 		if (dependencyStatus != DependencyStatus.Available) {
@@ -54,6 +54,39 @@ public class etermaxplayers : MonoBehaviour
 		}
 	}
 
+	void JugadorCreado (object sender, ChildChangedEventArgs e)
+	{
+		#if !UNITY_EDITOR
+		if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
+		#else
+		if (true) {
+			#endif
+			GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
+			etpgo.GetComponent<Image> ().color = playerbackground;
+			eterplayer etp = etpgo.GetComponent<eterplayer> ();
+			etpgo.transform.localScale = Vector3.one;
+			etp.Popup = Popup;
+			etp.SetData (e.Snapshot);
+			eterp.Add (etp);
+			lista.Add (etpgo);
+		}
+	}
+
+	void JugadorBorrado (object sender, ChildChangedEventArgs e)
+	{
+		#if !UNITY_EDITOR
+		if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
+		#else
+		if (true) {
+			#endif
+			foreach (var item in lista) {
+				if (item.GetComponent<eterplayer> ().nombre == e.Snapshot.Child ("nombre").Value.ToString ()) {
+					lista.Remove (item);
+				}
+			}
+		}
+	}
+
 	void InitializeFirebase ()
 	{
 		Debug.Log ("Inicio Jugadores");
@@ -63,50 +96,59 @@ public class etermaxplayers : MonoBehaviour
 			app.SetEditorDatabaseUrl (app.Options.DatabaseUrl);
 		}
 
+		//ref.ChildAdded += HandleChildAdded;
+
 		players = new ArrayList ();
-		FirebaseDatabase.DefaultInstance
-						.GetReference ("Jugadores").OrderByChild("nombre")
-						.ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
-			if (e2.DatabaseError != null) {
-				Debug.LogError (e2.DatabaseError.Message);
-				return;
-			}
-			players.Clear ();
-			progressindicator.Show(true);
-			if (e2.Snapshot != null && e2.Snapshot.ChildrenCount > 0) {
-				foreach(GameObject go in lista){
-					eterp.Remove(go.GetComponent<eterplayer> ());
-					Destroy(go);
-				}
-				foreach (var childSnapshot in e2.Snapshot.Children) {
-					if (childSnapshot.Child ("nombre") == null
-					    || childSnapshot.Child ("nombre").Value == null) {
-						Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
-						break;
-					} else {
-						#if !UNITY_EDITOR
-						if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
-						#else
-						if(true){
-						#endif
-							if(canvasgroup.alpha<1){
-								anim.Play("ShowMatch");
+		refJugadores = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
+		refJugadores.ChildAdded += JugadorCreado;
+		refJugadores.ChildRemoved += JugadorBorrado;
+
+		refJugadores.GetValueAsync ().ContinueWith (task => {
+			if (task.IsFaulted) {
+				Debug.LogError ("ERROR");
+			} else if (task.IsCompleted) {
+				DataSnapshot snapshot = task.Result;
+
+				players.Clear ();
+				progressindicator.Show (true);
+				if (snapshot != null && snapshot.ChildrenCount > 0) {
+					foreach (GameObject go in lista) {
+						eterp.Remove (go.GetComponent<eterplayer> ());
+						Destroy (go);
+					}
+					foreach (var childSnapshot in snapshot.Children) {
+						if (childSnapshot.Child ("nombre") == null
+						    || childSnapshot.Child ("nombre").Value == null) {
+							Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
+							break;
+						} else {
+							#if !UNITY_EDITOR
+							if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
+							#else
+							if (true) {
+								#endif
+								if (canvasgroup.alpha < 1) {
+									anim.Play ("ShowMatch");
+								}
+								progressindicator.Hide ();
+								GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
+								etpgo.GetComponent<Image> ().color = playerbackground;
+								eterplayer etp = etpgo.GetComponent<eterplayer> ();
+								etpgo.transform.localScale = Vector3.one;
+								etp.Popup = Popup;
+								etp.SetData (childSnapshot);
+								eterp.Add (etp);
+								lista.Add (etpgo);
 							}
-							progressindicator.Hide();
-							GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
-							etpgo.GetComponent<Image>().color=playerbackground;
-							eterplayer etp = etpgo.GetComponent<eterplayer> ();
-							etpgo.transform.localScale=Vector3.one;
-							etp.Popup = Popup;
-							etp.SetData (childSnapshot);
-							eterp.Add (etp);
-							lista.Add(etpgo);
 						}
 					}
 				}
 			}
-		};
+		});
+
+
 	}
+
 
 
 
