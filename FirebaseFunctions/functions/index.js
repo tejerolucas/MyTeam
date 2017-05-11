@@ -111,11 +111,19 @@ query.once("value").then(function(snapshot) {
   });
 });
   const refjugadores= admin.database().ref('Jugadores');
-  refjugadores.remove().then(function() {
-            console.log("Remove Players succeeded.")
-        }).catch(function(error) {
-            console.log("Remove Players failed: " + error.message)
-        });
+
+  refjugadores.once("value").then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       if(childSnapshot.child("token").val()=="fakeuser") {
+           childSnapshot.ref.remove().then(function() {
+              console.log("Remove succeeded.")
+            }).catch(function(error) {
+              console.log("Remove failed: " + error.message)
+            });
+        
+      }
+    });
+  });
 
   res.send("Done");
 });
