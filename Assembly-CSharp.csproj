@@ -45,9 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Canchas.cs" />
-     <Compile Include="Assets\Colorring.cs" />
-     <Compile Include="Assets\Home.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LengthValidation.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LetterValidation.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\08 - Sliders\Example08.cs" />
@@ -171,25 +168,23 @@
      <Compile Include="Assets\MaterialUI\Utils\LitJson\ParserToken.cs" />
      <Compile Include="Assets\MaterialUI\Utils\PropertyDrawers\ObserveAttribute\ObserveAttribute.cs" />
      <Compile Include="Assets\MaterialUI\Utils\PropertyDrawers\PopupAttribute\PopupAttribute.cs" />
-     <Compile Include="Assets\NavDrawerManager.cs" />
-     <Compile Include="Assets\Opencoding\Console\Demo\CommandSecurity\CommandSecurityPopup.cs" />
-     <Compile Include="Assets\Opencoding\Console\Demo\CommandSecurity\ConsoleCommandSecurity.cs" />
-     <Compile Include="Assets\Opencoding\Console\Demo\CommandSecurity\ExampleCommands.cs" />
-     <Compile Include="Assets\Opencoding\Console\Demo\CommandSecurity\SecureCommandHandlerAttribute.cs" />
-     <Compile Include="Assets\Opencoding\Console\Demo\ConsoleOutputTest.cs" />
-     <Compile Include="Assets\Opencoding\Console\Demo\DemoController.cs" />
-     <Compile Include="Assets\Opencoding\Console\NativeMethods.cs" />
-     <Compile Include="Assets\Partido.cs" />
      <Compile Include="Assets\Scripts\Admin.cs" />
+     <Compile Include="Assets\Scripts\Canchas.cs" />
+     <Compile Include="Assets\Scripts\Colorring.cs" />
      <Compile Include="Assets\Scripts\FirebaseMessaging.cs" />
      <Compile Include="Assets\Scripts\GenericPopUp.cs" />
+     <Compile Include="Assets\Scripts\Home.cs" />
+     <Compile Include="Assets\Scripts\NavDrawerManager.cs" />
+     <Compile Include="Assets\Scripts\Partido.cs" />
      <Compile Include="Assets\Scripts\Perfil.cs" />
      <Compile Include="Assets\Scripts\SeleccionUser.cs" />
+     <Compile Include="Assets\Scripts\ShowPlayers.cs" />
      <Compile Include="Assets\Scripts\Signin.cs" />
      <Compile Include="Assets\Scripts\Splash.cs" />
      <Compile Include="Assets\Scripts\UIHandler.cs" />
      <Compile Include="Assets\Scripts\UserAuth.cs" />
      <Compile Include="Assets\Scripts\amonestar.cs" />
+     <Compile Include="Assets\Scripts\cancha.cs" />
      <Compile Include="Assets\Scripts\eterempleado.cs" />
      <Compile Include="Assets\Scripts\etermaxeros.cs" />
      <Compile Include="Assets\Scripts\etermaxplayers.cs" />
@@ -199,22 +194,18 @@
      <Compile Include="Assets\Scripts\loginManager.cs" />
      <Compile Include="Assets\Scripts\puntajemanager.cs" />
      <Compile Include="Assets\Scripts\testdata.cs" />
+     <Compile Include="Assets\Scripts\tipopartido.cs" />
      <Compile Include="Assets\Scripts\toggleicon.cs" />
      <Compile Include="Assets\Scripts\togglelist.cs" />
-     <Compile Include="Assets\ShowPlayers.cs" />
-     <Compile Include="Assets\cancha.cs" />
-     <Compile Include="Assets\tipopartido.cs" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
      <None Include="Assets\MaterialUI\README.txt" />
      <None Include="Assets\Firebase\Plugins\link.xml" />
-     <None Include="Assets\Opencoding\Console\EmailTemplates\LogEmailHeader.txt" />
      <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-invites-unity\maven-metadata.xml" />
      <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\proguard.txt" />
      <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
-     <None Include="Assets\link.xml" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
@@ -230,10 +221,8 @@
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\proguard.txt" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseDatabase.txt" />
-     <None Include="Assets\Opencoding\Console\EmailTemplates\LogEmailFooter.txt" />
      <None Include="Assets\Firebase\Plugins\Http\link.xml" />
      <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
-     <None Include="Assets\Opencoding\Console\readme.txt" />
      <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\R.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseInvites.txt" />
  <Reference Include="UnityEngine.UI">
@@ -268,18 +257,6 @@
  </Reference>
  <Reference Include="Unity.Tasks">
  <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.Console">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.Console.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.LogHistory">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.LogHistory.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.CommandHandlers">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.CommandHandlers.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.Shared">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.Shared.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

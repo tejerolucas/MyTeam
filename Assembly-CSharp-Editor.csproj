@@ -108,36 +108,15 @@
      <Compile Include="Assets\MaterialUI\Editor\Tools\Vector Image Manager\VectorImageManagerWindow.cs" />
      <Compile Include="Assets\MaterialUI\Editor\Tools\Vector Image Manager\VectorImagePickerWindow.cs" />
      <Compile Include="Assets\MaterialUI\Utils\Editor\UnityZip\Zip.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXBuildFile.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXBuildPhase.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXDictionary.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXFileReference.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXGroup.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXList.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXObject.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXParser.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\PBXProject.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCBuildConfiguration.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCConfigurationList.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCFileOperationQueue.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCMod.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCProject.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCSourceFile.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XCTarget.cs" />
-     <Compile Include="Assets\Opencoding\3rdParty\XCodeEditor-for-Unity\Editor\XMiniJSON.cs" />
-     <Compile Include="Assets\Opencoding\Console\Editor\BuildPostProcessor.cs" />
-     <Compile Include="Assets\Opencoding\Console\Editor\DetectUpgrade.cs" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
      <None Include="Assets\MaterialUI\README.txt" />
      <None Include="Assets\Firebase\Plugins\link.xml" />
-     <None Include="Assets\Opencoding\Console\EmailTemplates\LogEmailHeader.txt" />
      <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\AndroidManifest.xml" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-invites-unity\maven-metadata.xml" />
      <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\firebase-iid-10.2.0\proguard.txt" />
      <None Include="Assets\PlayServicesResolver\proguard-unity.txt" />
-     <None Include="Assets\link.xml" />
      <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\AndroidManifest.xml" />
      <None Include="Assets\MaterialUI\Fonts\Roboto\NOTICE.txt" />
@@ -153,10 +132,8 @@
      <None Include="Assets\Plugins\Android\firebase-common-10.2.0\proguard.txt" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseDatabase.txt" />
-     <None Include="Assets\Opencoding\Console\EmailTemplates\LogEmailFooter.txt" />
      <None Include="Assets\Firebase\Plugins\Http\link.xml" />
      <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
-     <None Include="Assets\Opencoding\Console\readme.txt" />
      <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\R.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseInvites.txt" />
  <Reference Include="UnityEditor.Advertisements">
@@ -239,18 +216,6 @@
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.Console">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.Console.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.LogHistory">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.LogHistory.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.CommandHandlers">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.CommandHandlers.dll</HintPath>
- </Reference>
- <Reference Include="Opencoding.Shared">
- <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Opencoding/DLLs/Opencoding.Shared.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
