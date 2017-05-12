@@ -74,14 +74,9 @@ public class etermaxplayers : MonoBehaviour
 
 	void JugadorBorrado (object sender, ChildChangedEventArgs e)
 	{
-		GameObject borrar = null;;
-			foreach (var item in lista) {
-				if (item.GetComponent<eterplayer> ().nombre == e.Snapshot.Child ("nombre").Value.ToString ().ToLower()) {
-					borrar=item;
-				}
-			}
+		Debug.Log ("Borrando a " + e.Snapshot.Child ("nombre").Value.ToString ().ToLower ());
+		GameObject borrar = GetPlayer(e.Snapshot.Child ("nombre").Value.ToString ().ToLower());
 		if(borrar!=null){
-			lista.Remove(borrar);
 			Destroy(borrar);
 		}
 		if(lista.Count<=0){
@@ -90,6 +85,18 @@ public class etermaxplayers : MonoBehaviour
 	}
 
 
+	public GameObject GetPlayer (string nombre)
+	{
+		foreach (var item in lista) {
+			if (item != null) {
+				if (item.GetComponent<eterplayer> ().nombre == nombre) {
+					lista.Remove (item);
+					return item;
+				}
+			}
+		}
+		return null;
+	}
 
 	void InitializeFirebase ()
 	{
@@ -118,7 +125,12 @@ public class etermaxplayers : MonoBehaviour
 
 				if (snapshot != null) {
 					Debug.Log ("CHILDRENS: " + snapshot.ChildrenCount.ToString ());
+					#if !UNITY_EDITOR
+					if (snapshot.ChildrenCount > 1) {
+								#else
 					if (snapshot.ChildrenCount > 0) {
+								#endif
+					
 						Debug.Log ("CHILDRENS: " + snapshot.ChildrenCount.ToString ());
 						foreach (GameObject go in lista) {
 							eterp.Remove (go.GetComponent<eterplayer> ());
