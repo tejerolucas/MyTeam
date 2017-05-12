@@ -3,7 +3,15 @@ const functions = require('firebase-functions');
 const admin =require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
 
-//Envia push notification a un usuario especifico (string id,string mensaje)
+// //HTTP Request Agrega 10 jugadores
+// exports.AddPlayersEvent = functions.https.onRequest((req, res) => {
+//   for (var i = 10 - 1; i >= 0; i--) {
+//     admin.database().ref('/Evento/Jugadores').push({i: "original"});
+//   }
+//   res.send("Agregue 10 Jugadores al Evento!");
+// });
+
+//Envia push notification a un usuario especifico (id,mensaje)
 exports.SendMessage = functions.https.onRequest((req, res) => {
   const id = req.query.id;
   const mensaje=req.query.mensaje;
@@ -28,13 +36,21 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
   });
 });
 
-
-//Agrega jugadores al evento (int cantidad)
-exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
-
+//devuelve un nombre random
+exports.GetRandomUser=functions.https.onRequest((req,res)=>{
+	const ref= admin.database().ref('Usuarios/');
+	ref.once("value").then(function(snapshot) {
+		var num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
+    var numstring=num.toString();
+		if(snapshot.hasChild(numstring)){
+   			res.send(snapshot.child(numstring).child("nombre").val());
+   		}else{
+   			res.send("NO tiene hijo");
+   		}
+	});
 });
 
-//Crea Jugadores Random(int cantidad)
+//Crea Jugadores Random(cantidad)
 exports.CreatePlayers=functions.https.onRequest((req,res)=>{
   const cantidad=req.query.cantidad;
   var lista="";
@@ -81,7 +97,19 @@ exports.CreatePlayers=functions.https.onRequest((req,res)=>{
 
 //borra todos los jugadores y saca el estado "Usado" de los usuarios ()
 exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
-
+var num=0;
+var query = admin.database().ref("Usuarios").orderByKey();
+query.once("value").then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      if(childSnapshot.child("Usado").val()!=null) {
+        childSnapshot.child("Usado").ref.remove().then(function() {
+            console.log("Remove succeeded.")
+        }).catch(function(error) {
+            console.log("Remove failed: " + error.message)
+        });
+      }
+  });
+});
   const refjugadores= admin.database().ref('Jugadores');
 
   refjugadores.once("value").then(function(snapshot) {
@@ -97,24 +125,10 @@ exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
     });
   });
 
-  var num=0;
-var query = admin.database().ref("Usuarios").orderByKey();
-query.once("value").then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      if(childSnapshot.child("Usado").val()!=null) {
-        childSnapshot.child("Usado").ref.remove().then(function() {
-            console.log("Remove succeeded.")
-        }).catch(function(error) {
-            console.log("Remove failed: " + error.message)
-        });
-      }
-  });
-});
-
   res.send("Done");
 });
 
-//crea un usuario (string email,string password)
+//crea un usuario (email,password)
 exports.CreateNewUser=functions.https.onRequest((req,res)=>{
 var lista="Done";
 const email=req.query.email;
@@ -128,9 +142,7 @@ admin.auth().createUser({
 });
 
 
-
-
-//borra un usuario especifico (string email)
+//borra un usuario especifico (email)
 exports.DeleteUser=functions.https.onRequest((req,res)=>{
 const email=req.query.email;
 admin.auth().getUserByEmail(email)
@@ -150,3 +162,8 @@ admin.auth().getUserByEmail(email)
     console.log("Error fetching user data:", error);
   }); 
 });
+
+
+
+
+
