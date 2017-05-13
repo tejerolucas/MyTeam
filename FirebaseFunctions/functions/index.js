@@ -31,7 +31,34 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
 
 //Agrega jugadores al evento (int cantidad)
 exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
+    var cantidad=req.query.cantidad;
+    const cantidadconst=cantidad;
+    const refEventoJugadores= admin.database().ref('Evento/Jugadores');
+    const refJugadores= admin.database().ref('Jugadores');
+    var cantidadusados=0;
 
+    refJugadores.once("value").then(function(snapshot){
+        snapshot.forEach(function(childSnapshot) {
+          if(childSnapshot.hasChild("Evento")){
+            cantidadusados++;
+          }
+        });
+
+        if(cantidad<=(snapshot.numChildren()-cantidadusados)){
+            snapshot.forEach(function(childSnapshot) {
+              if(!childSnapshot.hasChild("Evento")){
+                if(cantidad>0){
+                  cantidad--;
+                  childSnapshot.child("Evento").ref.set(true);
+                  refEventoJugadores.child("Hombres").child(childSnapshot.key).set("");
+                }
+              }
+            });          
+          res.send(cantidadconst.toString()+" jugadores agregados al evento");
+        }else{
+          res.send("Cantidad superior a cantidad de jugadores");
+        }
+    });
 });
 
 //Crea Jugadores Random(int cantidad)
@@ -50,7 +77,6 @@ exports.CreatePlayers=functions.https.onRequest((req,res)=>{
       if(cantidadlibres>=cantidad){
         for (var i = cantidad - 1; i >= 0; i--) {
           var num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
-          var numstring=num.toString();
 
           while(snapshot.child(num.toString()).hasChild("Usado")){
               num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
