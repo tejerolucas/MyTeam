@@ -194,7 +194,6 @@ public class Partido : MonoBehaviour {
 
 	public void SetState (bool state)
 	{	
-		Debug.Log ("ESTADO: " + state.ToString ());
 		if (!state) {
 			boton.text.text = textaceptar;
 			boton.SetButtonBackgroundColor (coloraceptar, true);
