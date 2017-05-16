@@ -70,7 +70,6 @@ public class PlayersList : MonoBehaviour
 					etp.SetData (snap);
 				}
 			});
-			etp.SetData (e.Snapshot);
 			eterp.Add (etp);
 			lista.Add (etpgo);
 
@@ -82,14 +81,20 @@ public class PlayersList : MonoBehaviour
 
 	void JugadorBorrado (object sender, ChildChangedEventArgs e)
 	{
-		Debug.Log ("Borrando a " + e.Snapshot.Child ("nombre").Value.ToString ().ToLower ());
-		GameObject borrar = GetPlayer(e.Snapshot.Child ("nombre").Value.ToString ().ToLower());
-		if(borrar!=null){
-			Destroy(borrar);
-		}
-		if(lista.Count<=0){
-			canvasgroup.alpha=0;
-		}
+		FirebaseDatabase.DefaultInstance.GetReference ("Jugadores/"+e.Snapshot.Key).GetValueAsync ().ContinueWith (task => {
+			if (task.IsCompleted) {
+				DataSnapshot snap = task.Result;
+
+				GameObject borrar = GetPlayer(snap.Child ("nombre").Value.ToString ().ToLower());
+				if(borrar!=null){
+					Destroy(borrar);
+				}
+				if(lista.Count<=0){
+					canvasgroup.alpha=0;
+				}
+			}
+		});
+
 	}
 
 
@@ -140,11 +145,6 @@ public class PlayersList : MonoBehaviour
 
 
 						foreach (var childSnapshot in snapshot.Children) {
-							if (childSnapshot.Child ("nombre") == null
-							   || childSnapshot.Child ("nombre").Value == null) {
-								Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
-								break;
-							} else {
 								if (canvasgroup.alpha < 1) {
 									anim.Play ("ShowMatch");
 								}
@@ -163,7 +163,6 @@ public class PlayersList : MonoBehaviour
 
 								eterp.Add (etp);
 								lista.Add (etpgo);
-							}
 						}
 					}else{
 						progressindicator.Hide ();

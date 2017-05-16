@@ -18,6 +18,10 @@ public class puntajemanager : GenericPopUp {
 		}
 	}
 
+	void OnEnable(){
+		Reset ();
+	}
+
 	public void SendValoration(){
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
 		reference=reference.Child (UserAuth.instance.user.UserId);

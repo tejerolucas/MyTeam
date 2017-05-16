@@ -396,9 +396,8 @@ namespace MaterialUI
                     if (m_Pages[i].tabIcon != null)
                     {
                         tab.itemIcon.SetImage(m_Pages[i].tabIcon);
-												tab.gameObject.GetComponent<Image>().color=m_Pages[i].GetComponent<Image>().color;
-						tab.gameObject.name = tab.gameObject.name + "ASDAW";
-												tab.itemIcon.gameObject.SetActive (true);
+						tab.gameObject.GetComponent<Image>().color=m_Pages[i].GetComponent<Image>().color;
+						tab.itemIcon.gameObject.SetActive (true);
                     }
                     else
                     {
