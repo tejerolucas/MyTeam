@@ -3,6 +3,41 @@ const functions = require('firebase-functions');
 const admin =require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
 
+/*/  ONWRITE   /*/
+
+//Actualiza la cantidad de jugadores en el evento automaticamente cuando hay un cambio
+exports.UpdatePlayersinEvent = functions.database.ref('/Evento/Jugadores/{tipoPartido}/{idPlayer}').onWrite(event => {
+    if (event.data.exists()) {
+          console.log("Cree "+event.params.idPlayer);
+          admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").set(true);
+    }else{
+          console.log("Borre "+event.params.idPlayer);
+    }
+
+    var cantidad=0;
+    const refUsuarios= admin.database().ref('/Evento/Jugadores/');
+    refUsuarios.once("value").then(function(snapshot){
+      cantidad=parseInt(snapshot.child("Hombres").numChildren())+parseInt(snapshot.child("Unisex").numChildren());
+      return admin.database().ref('/Evento/CantidadJugadores/').set(cantidad);
+    });
+});
+
+exports.UpdateUsedPlayers = functions.database.ref('Jugadores/{playerid}').onWrite(event => {
+     if (event.data.exists()) {
+        admin.database().ref('Usuarios/').child(event.data.child("etermaxid").val()).child("Usado").set(true);
+      }else{
+        admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove().then(function() {
+              console.log("Remove succeeded.")
+            }).catch(function(error) {
+              console.log("Remove failed: " + error.message)
+            });
+      }
+    return true;
+});
+
+
+/*/   HTTP REQUEST    /*/
+
 //Envia push notification a un usuario especifico (string id,string mensaje)
 exports.SendMessage = functions.https.onRequest((req, res) => {
   const id = req.query.id;
@@ -32,7 +67,7 @@ exports.SendMessage = functions.https.onRequest((req, res) => {
 //Agrega jugadores al evento (int cantidad)
 exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
     var cantidad=req.query.cantidad;
-    const cantidadconst=cantidad;
+    const cantidadconst=parseInt(cantidad);
     const refEventoJugadores= admin.database().ref('Evento/Jugadores');
     const refJugadores= admin.database().ref('Jugadores');
     var cantidadusados=0;
@@ -49,11 +84,17 @@ exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
               if(!childSnapshot.hasChild("Evento")){
                 if(cantidad>0){
                   cantidad--;
-                  childSnapshot.child("Evento").ref.set(true);
-                  refEventoJugadores.child("Hombres").child(childSnapshot.key).set("");
+                  var tipo=Math.random();
+                  console.log(tipo);
+                  if(tipo>0.5){
+                    refEventoJugadores.child("Hombres").child(childSnapshot.key).set("");
+                  }else{
+                    refEventoJugadores.child("Unisex").child(childSnapshot.key).set("");
+                  }
+                  
                 }
               }
-            });          
+            });   
           res.send(cantidadconst.toString()+" jugadores agregados al evento");
         }else{
           res.send("Cantidad superior a cantidad de jugadores");
@@ -61,8 +102,13 @@ exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
     });
 });
 
+
+
+
+
+
 //Crea Jugadores Random(int cantidad)
-exports.CreatePlayers=functions.https.onRequest((req,res)=>{
+exports.CreateTesterPlayers=functions.https.onRequest((req,res)=>{
   const cantidad=req.query.cantidad;
   var lista="";
   const refUsuarios= admin.database().ref('Usuarios/');
@@ -81,8 +127,8 @@ exports.CreatePlayers=functions.https.onRequest((req,res)=>{
           while(snapshot.child(num.toString()).hasChild("Usado")){
               num=Math.floor(Math.random() * (snapshot.numChildren() - 0) + 0);
           }
-          lista+=snapshot.child(num.toString()).child("nombre").val();
-          lista+="\n";
+          lista+="-"+snapshot.child(num.toString()).child("nombre").val();
+          lista+=" <br/>";
           snapshot.child(num.toString()).child("Usado").ref.set("true");
           var newPlayer=refJugadores.child("Jugadores").push();
           var filename=snapshot.child(num.toString()).child("foto").val().replace("http://images.etermax.com/rrhh/staff/","").replace(".jpg","");
@@ -95,7 +141,8 @@ exports.CreatePlayers=functions.https.onRequest((req,res)=>{
             "filename":filename,
             "userid":newPlayer.ref.key,
             "token":"fakeuser",
-            "email":email+"@etermax.com"
+            "email":email+"@etermax.com",
+            "etermaxid":num
           });
       }
     }else{
@@ -106,7 +153,7 @@ exports.CreatePlayers=functions.https.onRequest((req,res)=>{
 });
 
 //borra todos los jugadores y saca el estado "Usado" de los usuarios ()
-exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
+exports.ClearTesterUsers=functions.https.onRequest((req,res)=>{
 
   const refjugadores= admin.database().ref('Jugadores');
 
@@ -122,20 +169,6 @@ exports.ClearUsedUsers=functions.https.onRequest((req,res)=>{
       }
     });
   });
-
-  var num=0;
-var query = admin.database().ref("Usuarios").orderByKey();
-query.once("value").then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      if(childSnapshot.child("Usado").val()!=null) {
-        childSnapshot.child("Usado").ref.remove().then(function() {
-            console.log("Remove succeeded.")
-        }).catch(function(error) {
-            console.log("Remove failed: " + error.message)
-        });
-      }
-  });
-});
 
   res.send("Done");
 });
