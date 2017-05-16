@@ -92,7 +92,7 @@ public class Partido : MonoBehaviour {
 			linearprogress.Hide();
 			}
 			if(e2.Snapshot.HasChild("Jugadores")){
-				int.TryParse(e2.Snapshot.Child("Jugadores").Child("cant").Value.ToString(),out jugadores);
+				int.TryParse(e2.Snapshot.Child("CantidadJugadores").Value.ToString(),out jugadores);
 				bool registradoh=(bool)e2.Snapshot.Child("Jugadores").Child("Hombres").HasChild(userid);
 				bool registradou=(bool)e2.Snapshot.Child("Jugadores").Child("Unisex").HasChild(userid);
 
