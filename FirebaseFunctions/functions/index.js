@@ -12,6 +12,11 @@ exports.UpdatePlayersinEvent = functions.database.ref('/Evento/Jugadores/{tipoPa
           admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").set(true);
     }else{
           console.log("Borre "+event.params.idPlayer);
+          admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").ref.remove().then(function() {
+              console.log("Remove succeeded.")
+            }).catch(function(error) {
+              console.log("Remove failed: " + error.message)
+            });
     }
 
     var cantidad=0;
