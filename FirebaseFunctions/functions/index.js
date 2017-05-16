@@ -173,9 +173,22 @@ exports.ClearTesterUsers=functions.https.onRequest((req,res)=>{
         
       }
     });
+    res.send("Done");
   });
+});
 
-  res.send("Done");
+//Cambia el estado del evento(string estado)
+exports.ChangeEventState=functions.https.onRequest((req,res)=>{
+  const estado=req.query.estado;
+  const refEvento= admin.database().ref('Evento/Estado');
+
+  refEvento.set(estado).then(function() {
+              console.log("Remove succeeded.")
+              res.send("Done");
+            }).catch(function(error) {
+              console.log("Remove failed: " + error.message)
+              res.send(error.message);
+            });
 });
 
 //crea un usuario (string email,string password)
