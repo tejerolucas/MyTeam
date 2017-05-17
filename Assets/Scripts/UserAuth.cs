@@ -18,6 +18,7 @@ public class UserAuth : MonoBehaviour
 	public string _userposition;
 	public string _userfilename;
 	public string _usertoken;
+	public string tipo;
 	public GameObject SigninGo;
 	public GameObject LoginGo;
 	public ScreenView screenmanager;

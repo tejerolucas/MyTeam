@@ -25,9 +25,4 @@ public class EventoCerrado : MonoBehaviour {
 			}
 		});
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

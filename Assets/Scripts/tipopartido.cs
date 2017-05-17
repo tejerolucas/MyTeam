@@ -16,9 +16,7 @@ public class tipopartido : GenericPopUp {
 		#endif
 		//Agrego jugador a la lista que pertenece
 		string tipostring=tipo==1?"Hombres":"Unisex";
+		UserAuth.instance.tipo = tipostring;
 		FirebaseDatabase.DefaultInstance.GetReference ("Evento/Jugadores").Child (tipostring).Child(userid).SetValueAsync ("");
-		Partido.instance.registrado = true;
-		Partido.instance.tipo = tipostring;
-		Partido.instance.botonchange.SetState (true);
 	}
 }

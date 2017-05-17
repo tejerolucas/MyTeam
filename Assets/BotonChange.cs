@@ -4,6 +4,7 @@ using MaterialUI;
 using Firebase.Database;
 
 public class BotonChange : MonoBehaviour {
+	public CanvasGroup canvasgo;
 	[Header("Aceptar")]
 	public string textaceptar;
 	public Color coloraceptar;
@@ -17,9 +18,11 @@ public class BotonChange : MonoBehaviour {
 	private bool registrado;
 	private string userid;
 	public DatabaseReference reference;
+	public GameObject popup;
 
 	void Awake ()
 	{
+		canvasgo.alpha = 0;
 		boton = this.gameObject.GetComponent<MaterialButton> ();
 		#if UNITY_EDITOR
 		userid="editor";
@@ -37,9 +40,19 @@ public class BotonChange : MonoBehaviour {
 				if(registrado){
 				tipo=registradoh?"Hombres":"Unisex";
 				}
+				iTween.ValueTo(this.gameObject,iTween.Hash("from",0.0f,"to",1.0f,"time",1.0f,"onupdate","UpdateCanvas","onupdatetarget",this.gameObject));
 				SetState(registrado);
+
 			}
 		});
+	}
+
+	public void ToggleButton(){
+		registrado = !registrado;
+		if (registrado) {
+			popup.SetActive (true);
+		}
+		SetState (registrado);
 	}
 
 	public void SetState (bool state)
@@ -48,11 +61,16 @@ public class BotonChange : MonoBehaviour {
 			boton.text.text = textaceptar;
 			boton.SetButtonBackgroundColor (coloraceptar, true);
 			boton.iconVectorImageData = iconaceptar;
-			reference.Child ("Jugadores").Child(tipo).Child (userid).RemoveValueAsync ();
+			reference.Child ("Jugadores").Child(UserAuth.instance.tipo).Child (userid).RemoveValueAsync ();
 		} else {
 			boton.text.text = textabandonar;
 			boton.SetButtonBackgroundColor (colorabandonar, true);
 			boton.iconVectorImageData = iconabandonar;
+
 		}
+	}
+
+	public void UpdateCanvas(float value){
+		canvasgo.alpha = value;
 	}
 }
