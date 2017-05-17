@@ -15,6 +15,7 @@ namespace MaterialUI
         private SerializedProperty m_TabName;
         private SerializedProperty m_TabIcon;
         private SerializedProperty m_TabIconType;
+		private SerializedProperty m_TabColor;
 
         void OnEnable()
         {
@@ -24,6 +25,7 @@ namespace MaterialUI
             m_TabName = serializedObject.FindProperty("m_TabName");
             m_TabIcon = serializedObject.FindProperty("m_TabIcon");
             m_TabIconType = serializedObject.FindProperty("m_TabIcon.m_ImageDataType");
+			m_TabColor = serializedObject.FindProperty ("m_TabColor");
         }
 
         public override void OnInspectorGUI()
@@ -36,7 +38,7 @@ namespace MaterialUI
             EditorGUILayout.PropertyField(m_TabName);
             EditorGUILayout.PropertyField(m_TabIconType, new GUIContent("Tab Icon Type"));
             EditorGUILayout.PropertyField(m_TabIcon);
-
+			EditorGUILayout.PropertyField(m_TabColor);
             serializedObject.ApplyModifiedProperties();
         }
     }

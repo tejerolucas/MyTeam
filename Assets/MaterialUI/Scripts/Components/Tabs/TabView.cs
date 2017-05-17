@@ -322,9 +322,7 @@ namespace MaterialUI
             float barWidth = rectTransform.GetProperSize().x;
 
             m_TabWidth = GetMaxTabTextWidth() + (2 * m_TabPadding);
-
-            m_TabsContainer.GetComponent<LayoutElement>().minWidth = barWidth;
-            m_TabsContainer.GetComponent<ContentSizeFitter>().enabled = true;
+			
 
             float combinedWidth = m_TabWidth * m_Pages.Length;
 
@@ -396,7 +394,7 @@ namespace MaterialUI
                     if (m_Pages[i].tabIcon != null)
                     {
                         tab.itemIcon.SetImage(m_Pages[i].tabIcon);
-						tab.gameObject.GetComponent<Image>().color=m_Pages[i].GetComponent<Image>().color;
+						tab.gameObject.GetComponent<Image>().color=m_Pages[i].tabColor;
 						tab.itemIcon.gameObject.SetActive (true);
                     }
                     else
@@ -410,8 +408,8 @@ namespace MaterialUI
 
             m_TabItemTemplate.gameObject.SetActive(false);
 
-            m_TabsContainer.anchorMin = Vector2.zero;
-            m_TabsContainer.anchorMax = new Vector2(0, 1);
+           // m_TabsContainer.anchorMin = Vector2.zero;
+            //m_TabsContainer.anchorMax = new Vector2(0, 1);
 
             OverscrollConfig overscrollConfig = m_TabsContainer.parent.GetComponent<OverscrollConfig>();
 

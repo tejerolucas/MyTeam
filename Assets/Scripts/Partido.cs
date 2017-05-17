@@ -12,16 +12,7 @@ public class Partido : MonoBehaviour {
 	public static Partido instance;
 	private string[] m_SmallStringList = new string[] { "Hombres", "Unisex" };
 	//datos
-	[Header("Boton")]
-	public MaterialButton boton;
-	[Header("Aceptar")]
-	public string textaceptar;
-	public Color coloraceptar;
-	public VectorImageData iconaceptar;
-	[Header("Cancelar")]
-	public string textabandonar;
-	public Color colorabandonar;
-	public VectorImageData iconabandonar;
+	public BotonChange botonchange;
 	[Space(10)]
 	public int vacantes;
 	public int jugadores;
@@ -77,20 +68,7 @@ public class Partido : MonoBehaviour {
 				Debug.LogError (e2.DatabaseError.Message);
 				return;
 			}
-			if(!(bool)e2.Snapshot.Child("Habilitado").Value){
-				if(canvasgroup.alpha>0.5f){
-					anim.Play("HideMatch");
-				}
-				Debug.Log("partido deshabilitado");
-				fechatext.text="EVENTO NO DISPONIBLE";
-				TweenManager.TweenColor(color => header.color = color, header.color, colorabandonar, 2f);
-				linearprogress.Hide();
-				return;
-			}else{
-			Debug.Log("Partido habilitado");
-				TweenManager.TweenColor(color => header.color = color, header.color, coloraceptar, 2f);
 			linearprogress.Hide();
-			}
 			if(e2.Snapshot.HasChild("Jugadores")){
 				int.TryParse(e2.Snapshot.Child("CantidadJugadores").Value.ToString(),out jugadores);
 				bool registradoh=(bool)e2.Snapshot.Child("Jugadores").Child("Hombres").HasChild(userid);
@@ -100,11 +78,9 @@ public class Partido : MonoBehaviour {
 				if(registrado){
 				tipo=registradoh?"Hombres":"Unisex";
 				}
-				SetState(registrado);
 			}else{
 				jugadores=0;
 				registrado=false;
-				SetState(registrado);
 			}
 			int.TryParse(e2.Snapshot.Child("Vacantes").Value.ToString(),out vacantes);
 			vacantestext.text=vacantes.ToString()+" Vacantes";
@@ -158,51 +134,14 @@ public class Partido : MonoBehaviour {
 		jugadorestext.text = ((int)value).ToString ();
 	}
 
-	public void ChooseMatch ()
-	{
-		DialogManager.ShowRadioList(m_SmallStringList, (int selectedIndex) => {
-			ToastManager.Show("Item #" + selectedIndex + " selected: " + m_SmallStringList[selectedIndex]);
-		}, "OK", "Big Radio List", MaterialIconHelper.GetRandomIcon(), () => { ToastManager.Show("You clicked the cancel button"); }, "CANCEL");
-	}
-
 	public void ChangeState ()
 	{	
-		Debug.Log ("BOTON");
-		//ChooseMatch ();
 		if (registrado) {
-			boton.text.text = textaceptar;
-			boton.SetButtonBackgroundColor (coloraceptar, true);
-			boton.iconVectorImageData = iconaceptar;
-			reference.Child ("Jugadores").Child(tipo).Child (userid).RemoveValueAsync ();
-
-			reference.Child("Jugadores").Child("cant").GetValueAsync().ContinueWith(task => {
-				if (task.IsCompleted) {
-					DataSnapshot snapshot = task.Result;
-					int pre=0;
-					if (int.TryParse(snapshot.Value.ToString(), out pre))
-					{	
-						pre--;
-						snapshot.Reference.SetValueAsync(pre);
-					}
-				}
-			});
+			botonchange.SetState (false);
 		} else {
 			popup.SetActive (true);
 		}
 		registrado = !registrado;
-	}
-
-	public void SetState (bool state)
-	{	
-		if (!state) {
-			boton.text.text = textaceptar;
-			boton.SetButtonBackgroundColor (coloraceptar, true);
-			boton.iconVectorImageData = iconaceptar;
-		} else {
-			boton.text.text = textabandonar;
-			boton.SetButtonBackgroundColor (colorabandonar, true);
-			boton.iconVectorImageData = iconabandonar;
-		}
 	}
 
 }

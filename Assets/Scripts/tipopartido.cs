@@ -19,6 +19,6 @@ public class tipopartido : GenericPopUp {
 		FirebaseDatabase.DefaultInstance.GetReference ("Evento/Jugadores").Child (tipostring).Child(userid).SetValueAsync ("");
 		Partido.instance.registrado = true;
 		Partido.instance.tipo = tipostring;
-		Partido.instance.SetState (true);
+		Partido.instance.botonchange.SetState (true);
 	}
 }

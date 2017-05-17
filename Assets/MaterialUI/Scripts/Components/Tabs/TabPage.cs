@@ -50,6 +50,14 @@ namespace MaterialUI
 			set { m_TabIcon = value; }
 		}
 
+		[SerializeField]
+		private Color m_TabColor;
+		public Color tabColor
+		{
+			get { return m_TabColor; }
+			set { m_TabColor = value; }
+		}
+
 		private CanvasGroup m_CanvasGroup;
 		private CanvasGroup canvasGroup
 		{

@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BotonChange.cs" />
+     <Compile Include="Assets\EventoCerrado.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LengthValidation.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\07 - Inputs\Example07LetterValidation.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\08 - Sliders\Example08.cs" />
@@ -227,38 +229,38 @@
      <None Include="Assets\Firebase\Editor\FirebaseAuth.txt" />
      <None Include="Assets\Plugins\Android\firebase-messaging-unity-3.0.0\R.txt" />
      <None Include="Assets\Firebase\Editor\FirebaseInvites.txt" />
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
  <Reference Include="Firebase.App">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Auth">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Database">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Invites">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Invites.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Invites.dll</HintPath>
  </Reference>
  <Reference Include="Firebase.Messaging">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
  </Reference>
  <Reference Include="Google.MiniJson">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
  </Reference>
  <Reference Include="Google.Sharpen">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Compat">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Unity.Compat.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Unity.Compat.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Tasks">
- <HintPath>/Users/lucas/Documents/Myteam/MyTeam/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
+ <HintPath>/Users/lucastejero/Downloads/MyteamEtermax/MyTeam/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
