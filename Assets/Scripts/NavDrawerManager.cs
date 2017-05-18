@@ -9,7 +9,7 @@ public class NavDrawerManager : MonoBehaviour {
 	public GameObject admin;
 	private string userid;
 
-	void Awake (){
+	void Start (){
 		FirebaseApp app = FirebaseApp.DefaultInstance;
 		app.SetEditorDatabaseUrl ("https://soccerapp-5d7ac.firebaseio.com/");
 				if (app.Options.DatabaseUrl != null){
