@@ -9,7 +9,7 @@ admin.initializeApp(functions.config().firebase);
 exports.UpdatePlayersinEvent = functions.database.ref('/Evento/Jugadores/{tipoPartido}/{idPlayer}').onWrite(event => {
     if (event.data.exists()) {
           console.log("Cree "+event.params.idPlayer);
-          admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").set(true);
+          admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").set(event.params.tipoPartido);
     }else{
           console.log("Borre "+event.params.idPlayer);
           admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").ref.remove().then(function() {
@@ -32,17 +32,7 @@ exports.UpdateUsedPlayers = functions.database.ref('Jugadores/{playerid}').onWri
      if (event.data.exists()) {
         admin.database().ref('Usuarios/').child(event.data.child("etermaxid").val()).child("Usado").set(true);
       }else{
-        var jugadores=admin.database().ref('Evento/Jugadores');
-        jugadores.child('Hombres').once("value").then(function(snapshot){
-          if(snapshot.hasChild(event.data.previous.key)){
-            snapshot.child(event.data.previous.key).ref.remove();
-          }
-        });
-        jugadores.child('Unisex').once("value").then(function(snapshot){
-          if(snapshot.hasChild(event.data.previous.key)){
-            snapshot.child(event.data.previous.key).ref.remove();
-          }
-        });
+         admin.database().ref('Evento/Jugadores/'+event.data.previous.child("Evento").val()).child(event.params.playerid).ref.remove()
 
 
         admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove().then(function() {
