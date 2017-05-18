@@ -22,6 +22,7 @@ public class SeleccionUser : GenericPopUp {
 			reference.Child ("userid").SetValueAsync(UserAuth.instance.user.UserId);
 			reference.Child ("token").SetValueAsync(UserAuth.instance._usertoken);
 			reference.Child ("email").SetValueAsync(UserAuth.instance.user.Email);
+			reference.Child ("etermaxid").SetValueAsync(reff.Key);
 			reff.Child ("Usado").SetValueAsync ("true");
 		}
 		UserAuth.instance._username = _name.text;

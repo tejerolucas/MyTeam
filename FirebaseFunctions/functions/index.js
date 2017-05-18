@@ -5,43 +5,14 @@ admin.initializeApp(functions.config().firebase);
 
 /*/  ONWRITE   /*/
 
-//Actualiza la cantidad de jugadores en el evento automaticamente cuando hay un cambio
-exports.UpdatePlayersinEvent = functions.database.ref('/Evento/Jugadores/{tipoPartido}/{idPlayer}').onWrite(event => {
-    if (event.data.exists()) {
-          console.log("Cree "+event.params.idPlayer);
-          admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").set(event.params.tipoPartido);
-    }else{
-          console.log("Borre "+event.params.idPlayer);
-          admin.database().ref('/Jugadores/'+event.params.idPlayer).child("Evento").ref.remove().then(function() {
-              console.log("Remove succeeded.")
-            }).catch(function(error) {
-              console.log("Remove failed: " + error.message)
-            });
-    }
-
-    var cantidad=0;
-    const refUsuarios= admin.database().ref('/Evento/Jugadores/');
-    refUsuarios.once("value").then(function(snapshot){
-      cantidad=parseInt(snapshot.child("Hombres").numChildren())+parseInt(snapshot.child("Unisex").numChildren());
-      return admin.database().ref('/Evento/CantidadJugadores/').set(cantidad);
-    });
-});
-
 //ACtualiza el estado usado de los usuarios
 exports.UpdateUsedPlayers = functions.database.ref('Jugadores/{playerid}').onWrite(event => {
-     if (event.data.exists()) {
-        admin.database().ref('Usuarios/').child(event.data.child("etermaxid").val()).child("Usado").set(true);
-      }else{
-         admin.database().ref('Evento/Jugadores/'+event.data.previous.child("Evento").val()).child(event.params.playerid).ref.remove()
-
-
-        admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove().then(function() {
-              console.log("Remove succeeded.")
-            }).catch(function(error) {
-              console.log("Remove failed: " + error.message)
-            });
-      }
-    return true;
+  console.log("UPDATEUSEDPLAYERS");
+   if (!event.data.exists()) {
+      admin.database().ref('Evento/Jugadores/'+event.data.previous.child("Evento").val()).child(event.params.playerid).ref.remove()
+      admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove()
+    }
+  return true;
 });
 
 

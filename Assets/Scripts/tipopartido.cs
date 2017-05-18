@@ -18,5 +18,22 @@ public class tipopartido : GenericPopUp {
 		string tipostring=tipo==1?"Hombres":"Unisex";
 		UserAuth.instance.tipo = tipostring;
 		FirebaseDatabase.DefaultInstance.GetReference ("Evento/Jugadores").Child (tipostring).Child(userid).SetValueAsync ("");
+		FirebaseDatabase.DefaultInstance.GetReference ("Jugadores").Child(userid).Child("Evento") .SetValueAsync (tipostring);
+		FirebaseDatabase.DefaultInstance.GetReference("Evento/CantidadJugadores").GetValueAsync().ContinueWith(task => {
+			if (task.IsCompleted) {
+				DataSnapshot snapshot = task.Result;
+				if(snapshot.Value==""){
+					snapshot.Reference.SetValueAsync(1);
+				}else{
+					int pre=0;
+					if (int.TryParse(snapshot.Value.ToString(), out pre))
+					{	
+						pre++;
+						Debug.Log("AGREGANDO: "+pre.ToString());
+						snapshot.Reference.SetValueAsync(pre);
+					}
+				}
+			}
+		});
 	}
 }

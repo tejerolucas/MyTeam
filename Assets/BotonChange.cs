@@ -54,6 +54,9 @@ public class BotonChange : MonoBehaviour {
 			popup.SetActive (true);
 		}
 		SetState (registrado);
+		if (!registrado) {
+			BorrarJugador ();
+		}
 	}
 
 	public void SetState (bool state)
@@ -63,6 +66,9 @@ public class BotonChange : MonoBehaviour {
 			boton.SetButtonBackgroundColor (coloraceptar, true);
 			boton.iconVectorImageData = iconaceptar;
 			reference.Child ("Jugadores").Child(UserAuth.instance.tipo).Child (userid).RemoveValueAsync ();
+			FirebaseDatabase.DefaultInstance.GetReference ("Jugadores").Child(userid).Child("Evento").RemoveValueAsync ();
+
+
 		} else {
 			boton.SetButtonBackgroundColor (colorabandonar,false);
 			boton.text.text = textabandonar;
@@ -73,5 +79,24 @@ public class BotonChange : MonoBehaviour {
 
 	public void UpdateCanvas(float value){
 		canvasgo.alpha = value;
+	}
+
+	public void BorrarJugador(){
+		FirebaseDatabase.DefaultInstance.GetReference("Evento/CantidadJugadores").GetValueAsync().ContinueWith(task => {
+			if (task.IsCompleted) {
+				DataSnapshot snapshot = task.Result;
+				if(snapshot.Value==""){
+					snapshot.Reference.SetValueAsync(0);
+				}else{
+					int pre=0;
+					if (int.TryParse(snapshot.Value.ToString(), out pre))
+					{	
+						pre--;
+						Debug.Log("BORRANDO: "+pre.ToString());
+						snapshot.Reference.SetValueAsync(pre);
+					}
+				}
+			}
+		});
 	}
 }
