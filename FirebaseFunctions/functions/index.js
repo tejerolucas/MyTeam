@@ -27,10 +27,24 @@ exports.UpdatePlayersinEvent = functions.database.ref('/Evento/Jugadores/{tipoPa
     });
 });
 
+//ACtualiza el estado usado de los usuarios
 exports.UpdateUsedPlayers = functions.database.ref('Jugadores/{playerid}').onWrite(event => {
      if (event.data.exists()) {
         admin.database().ref('Usuarios/').child(event.data.child("etermaxid").val()).child("Usado").set(true);
       }else{
+        var jugadores=admin.database().ref('Evento/Jugadores');
+        jugadores.child('Hombres').once("value").then(function(snapshot){
+          if(snapshot.hasChild(event.data.previous.key)){
+            snapshot.child(event.data.previous.key).ref.remove();
+          }
+        });
+        jugadores.child('Unisex').once("value").then(function(snapshot){
+          if(snapshot.hasChild(event.data.previous.key)){
+            snapshot.child(event.data.previous.key).ref.remove();
+          }
+        });
+
+
         admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove().then(function() {
               console.log("Remove succeeded.")
             }).catch(function(error) {
@@ -164,6 +178,7 @@ exports.ClearTesterUsers=functions.https.onRequest((req,res)=>{
 
   refjugadores.once("value").then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
+
        if(childSnapshot.child("token").val()=="fakeuser") {
            childSnapshot.ref.remove().then(function() {
               console.log("Remove succeeded.")
