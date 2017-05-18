@@ -91,7 +91,7 @@ public class Partido : MonoBehaviour {
 			direccioncanchatext.text=e2.Snapshot.Child("Lugar").Child("direccion").Value.ToString();
 			//FirebaseDatabase.DefaultInstance.GetReference("Evento/Fecha").SetValueAsync(System.DateTime.Now.ToString());
 			EventDate=DateTime.Parse( e2.Snapshot.Child("Fecha").Value.ToString());
-			CloseDate=EventDate.Subtract(new TimeSpan(2,0,0,0));
+			CloseDate=EventDate.Subtract(new TimeSpan(0,0,0,0));
 			string dia=EventDate.ToString("dddd",CultureInfo.CreateSpecificCulture("es-AR")).ToUpperInvariant();
 			string num=EventDate.ToString("dd",CultureInfo.CreateSpecificCulture("es-AR"));
 			string mes=EventDate.ToString("MMMM",CultureInfo.CreateSpecificCulture("es-AR")).ToUpper();
@@ -115,12 +115,18 @@ public class Partido : MonoBehaviour {
 
 	}
 
-	void Update(){
+	void Update ()
+	{
 		TimeSpan TimeRemain = CloseDate.Subtract (System.DateTime.Now);
-		string horas = TimeRemain.Hours > 9 ? TimeRemain.Hours.ToString () : "0" + TimeRemain.Hours.ToString ();
-		string minutos = TimeRemain.Minutes > 9 ? TimeRemain.Minutes.ToString () : "0" + TimeRemain.Minutes.ToString ();
-		string segundos = TimeRemain.Seconds > 9 ? TimeRemain.Seconds.ToString () : "0" + TimeRemain.Seconds.ToString ();
-		timer.text ="Cierra en:\n<size=70>"+ horas + " : " + minutos + " : " + segundos+"</size>";
+		if (TimeRemain.Seconds > 0) {
+			int horasint = TimeRemain.Hours + (TimeRemain.Days * 24);
+			string horas = horasint > 9 ? horasint.ToString () : "0" + horasint.ToString ();
+			string minutos = TimeRemain.Minutes > 9 ? TimeRemain.Minutes.ToString () : "0" + TimeRemain.Minutes.ToString ();
+			string segundos = TimeRemain.Seconds > 9 ? TimeRemain.Seconds.ToString () : "0" + TimeRemain.Seconds.ToString ();
+			timer.text = "Cierra en:\n<size=70>" + horas + " : " + minutos + " : " + segundos + "</size>";
+		} else {
+			timer.text = "<size=70>CERRADO</size>";
+		}
 	}
 
 	public void CompleteCircle ()
