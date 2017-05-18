@@ -7,26 +7,35 @@ public class Admin : MonoBehaviour {
 	public string estado;
 
 	public void CrearJugadores(){
-		WWW www = new WWW ("https://us-central1-soccerapp-5d7ac.cloudfunctions.net/CreateTesterPlayers?cantidad=" + cantidad.ToString ());
+		string url = "https://us-central1-soccerapp-5d7ac.cloudfunctions.net/CreateTesterPlayers?cantidad=" + cantidad.ToString ();
+		Debug.Log (url);
+		WWW www = new WWW (url);
 	}
 
 	public void AgregarJugadores(){
-		WWW www = new WWW ("https://us-central1-soccerapp-5d7ac.cloudfunctions.net/AddPlayerstoEvent?cantidad=" + cantidad2.ToString ());
+		string url = "https://us-central1-soccerapp-5d7ac.cloudfunctions.net/AddPlayerstoEvent?cantidad=" + cantidad2.ToString ();
+		Debug.Log (url);
+		WWW www = new WWW (url);
 	}
 
 	public void BorrarJugadores ()
 	{
-		WWW www = new WWW ("https://us-central1-soccerapp-5d7ac.cloudfunctions.net/ClearTesterUsers");
+		string url = "https://us-central1-soccerapp-5d7ac.cloudfunctions.net/ClearTesterUsers";
+		Debug.Log (url);
+		WWW www = new WWW (url);
 	}
 
 	public void ChangeState ()
 	{
-		WWW www = new WWW ("https://us-central1-soccerapp-5d7ac.cloudfunctions.net/ChangeEventState?estado="+estado);
+		string url = "https://us-central1-soccerapp-5d7ac.cloudfunctions.net/ChangeEventState?estado=" + estado;
+		Debug.Log (url);
+		WWW www = new WWW (url);
 	}
 
 	public void updatecantidad(string num){
 		int numero = 0;
 		if(int.TryParse(num,out numero)){
+			Debug.Log (numero);
 			cantidad = numero;
 		}
 	}
@@ -34,6 +43,7 @@ public class Admin : MonoBehaviour {
 	public void updatecantidad2(string num){
 		int numero = 0;
 		if(int.TryParse(num,out numero)){
+			Debug.Log (numero);
 			cantidad2 = numero;
 		}
 	}
