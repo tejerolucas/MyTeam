@@ -38,6 +38,8 @@ public class Partido : MonoBehaviour {
 	public string userid;
 	private float prejugadores;
 	public GameObject popup;
+	public GameObject	fotosjugadores;
+	public GameObject fotojugador;
 
 	void Start ()
 	{
@@ -63,6 +65,7 @@ public class Partido : MonoBehaviour {
 						app.SetEditorDatabaseUrl(app.Options.DatabaseUrl);
 				}
 			reference = FirebaseDatabase.DefaultInstance.GetReference ("Evento");
+
 			reference.ValueChanged += (object sender2, ValueChangedEventArgs e2) => {
 			if (e2.DatabaseError != null) {
 				Debug.LogError (e2.DatabaseError.Message);
@@ -112,7 +115,56 @@ public class Partido : MonoBehaviour {
 				anim.Play("ShowMatch");
 			}
 		};
+		DatabaseReference referenceJugadores = FirebaseDatabase.DefaultInstance.GetReference ("Evento/Jugadores/Hombres");
 
+		referenceJugadores.ChildAdded += AgregarHombre;
+		referenceJugadores.ChildRemoved += BorrarHombre;
+
+		DatabaseReference refJugadoresUnisex = FirebaseDatabase.DefaultInstance.GetReference ("Evento/Jugadores/Unisex");
+		refJugadoresUnisex.ChildAdded += AgregarUnisex;
+		refJugadoresUnisex.ChildRemoved += BorrarUnisex;
+
+	}
+
+	public void AgregarUnisex (object sender, ChildChangedEventArgs e)
+	{
+		AgregarJugador (e.Snapshot.Key, MaterialColor.pink500);
+	}
+
+	public void AgregarHombre (object sender, ChildChangedEventArgs e)
+	{
+		AgregarJugador (e.Snapshot.Key, MaterialColor.indigo500);
+	}
+
+	public void BorrarUnisex (object sender, ChildChangedEventArgs e)
+	{
+		Debug.Log ("Borro Unisex");
+		BorrarJugador (e.Snapshot.Key);
+	}
+
+	public void BorrarHombre (object sender, ChildChangedEventArgs e)
+	{
+		Debug.Log ("Borro Hombre");
+		BorrarJugador (e.Snapshot.Key);
+	}
+
+	public void AgregarJugador (string key,Color anillo)
+	{
+		GameObject foto =Instantiate(fotojugador)as GameObject;
+		fotojugador fjugador=foto.GetComponent<fotojugador>();
+		fjugador.anillo.color=anillo;
+		fjugador.SetPicture(key);
+		foto.transform.SetParent(fotosjugadores.transform);
+		fotosjugadores.GetComponent<FotosJugadores> ().jugadores.Add (fjugador);
+	}
+
+	public void BorrarJugador (string key)
+	{
+		Debug.Log ("BORRANDO JUGADOR");
+
+		GameObject go=fotosjugadores.GetComponent<FotosJugadores> ().GetPictureByKey (key);
+		fotosjugadores.GetComponent<FotosJugadores> ().jugadores.Remove (go.GetComponent<fotojugador>());
+		Destroy (go);
 	}
 
 	void Update ()

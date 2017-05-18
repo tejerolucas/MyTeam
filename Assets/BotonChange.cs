@@ -20,7 +20,7 @@ public class BotonChange : MonoBehaviour {
 	public DatabaseReference reference;
 	public GameObject popup;
 
-	void Awake ()
+	void Start ()
 	{
 		canvasgo.alpha = 0;
 		boton = this.gameObject.GetComponent<MaterialButton> ();
@@ -38,7 +38,8 @@ public class BotonChange : MonoBehaviour {
 
 				registrado=registradoh||registradou;
 				if(registrado){
-				tipo=registradoh?"Hombres":"Unisex";
+					tipo=registradoh?"Hombres":"Unisex";
+					UserAuth.instance.tipo=tipo;
 				}
 				iTween.ValueTo(this.gameObject,iTween.Hash("from",0.0f,"to",1.0f,"time",1.0f,"onupdate","UpdateCanvas","onupdatetarget",this.gameObject));
 				SetState(registrado);
@@ -63,8 +64,8 @@ public class BotonChange : MonoBehaviour {
 			boton.iconVectorImageData = iconaceptar;
 			reference.Child ("Jugadores").Child(UserAuth.instance.tipo).Child (userid).RemoveValueAsync ();
 		} else {
+			boton.SetButtonBackgroundColor (colorabandonar,false);
 			boton.text.text = textabandonar;
-			boton.SetButtonBackgroundColor (colorabandonar, true);
 			boton.iconVectorImageData = iconabandonar;
 
 		}
