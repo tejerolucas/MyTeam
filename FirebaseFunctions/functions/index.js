@@ -78,7 +78,7 @@ exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
             });  
             admin.database().ref("Evento/CantidadJugadores").once("value").then(function(snap){
                       var cant=parseInt(snap.val());
-                      cant+=cantidad;
+                      cant+=cantidadconst;
                       admin.database().ref("Evento/CantidadJugadores").set(cant).then(function() {
               console.log("Jugadores: "+cant.toString());
             }).catch(function(error) {
@@ -108,7 +108,6 @@ exports.RemovePlayersfromEvent=functions.https.onRequest((req,res)=>{
           res.send("Cantidad superior a cantidad de jugadores");
         }else{
           snapshot.child("Hombres").forEach(function(childSnapshot) {
-            console.log("FE H");
               if(cantidadvar>0){
                   refJugadores.child(childSnapshot.key).child("Evento").remove();
                   refEventoJugadores.child("Hombres").child(childSnapshot.key).remove();
@@ -118,7 +117,6 @@ exports.RemovePlayersfromEvent=functions.https.onRequest((req,res)=>{
               }
           });
           snapshot.child("Unisex").forEach(function(childSnapshot) {
-            console.log("U");
               if(cantidadvar>0){
                   refJugadores.child(childSnapshot.key).child("Evento").remove();
                   refEventoJugadores.child("Unisex").child(childSnapshot.key).remove();
@@ -126,6 +124,15 @@ exports.RemovePlayersfromEvent=functions.https.onRequest((req,res)=>{
               }else{
                 return false;
               }
+          });
+          admin.database().ref("Evento/CantidadJugadores").once("value").then(function(snap){
+                      var cant=parseInt(snap.val());
+                      cant-=cantidadconst;
+                      admin.database().ref("Evento/CantidadJugadores").set(cant).then(function() {
+              console.log("Jugadores: "+cant.toString());
+            }).catch(function(error) {
+              console.log("Set failed: " + error.message)
+            });
           });
           res.send("Done");
         }
