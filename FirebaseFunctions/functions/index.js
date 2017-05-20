@@ -7,12 +7,10 @@ admin.initializeApp(functions.config().firebase);
 
 //ACtualiza el estado usado de los usuarios
 exports.UpdateUsedPlayers = functions.database.ref('Jugadores/{playerid}').onWrite(event => {
-  console.log("UPDATEUSEDPLAYERS");
    if (!event.data.exists()) {
       admin.database().ref('Evento/Jugadores/'+event.data.previous.child("Evento").val()).child(event.params.playerid).ref.remove()
-      admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove()
+      return admin.database().ref('Usuarios/').child(event.data.previous.child("etermaxid").val()).child("Usado").ref.remove()
     }
-  return true;
 });
 
 
@@ -65,16 +63,28 @@ exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
                 if(cantidad>0){
                   cantidad--;
                   var tipo=Math.random();
-                  console.log(tipo);
+                  
                   if(tipo>0.5){
                     refEventoJugadores.child("Hombres").child(childSnapshot.key).set("");
+                    refJugadores.child(childSnapshot.key).child("Evento").set("Hombres");
                   }else{
                     refEventoJugadores.child("Unisex").child(childSnapshot.key).set("");
+                    refJugadores.child(childSnapshot.key).child("Evento").set("Unisex");
                   }
-                  
+                }else{
+                  return false;
                 }
               }
-            });   
+            });  
+            admin.database().ref("Evento/CantidadJugadores").once("value").then(function(snap){
+                      var cant=parseInt(snap.val());
+                      cant+=cantidad;
+                      admin.database().ref("Evento/CantidadJugadores").set(cant).then(function() {
+              console.log("Jugadores: "+cant.toString());
+            }).catch(function(error) {
+              console.log("Set failed: " + error.message)
+            });
+                  }); 
           res.send(cantidadconst.toString()+" jugadores agregados al evento");
         }else{
           res.send("Cantidad superior a cantidad de jugadores");
@@ -83,7 +93,44 @@ exports.AddPlayerstoEvent=functions.https.onRequest((req,res)=>{
 });
 
 
+//Borra jugadores del evento (int cantidad)
+exports.RemovePlayersfromEvent=functions.https.onRequest((req,res)=>{
+    var cantidad=req.query.cantidad;
+    const cantidadconst=parseInt(cantidad);
+    var cantidadvar=parseInt(cantidad);
+    const refEventoJugadores= admin.database().ref('Evento/Jugadores');
+    const refJugadores= admin.database().ref('Jugadores');
+    var cantidadjugadores=0;
 
+    refEventoJugadores.once("value").then(function(snapshot){
+        cantidadjugadores+=snapshot.child("Hombres").numChildren()+snapshot.child("Unisex").numChildren()
+        if(cantidadconst>cantidadjugadores){
+          res.send("Cantidad superior a cantidad de jugadores");
+        }else{
+          snapshot.child("Hombres").forEach(function(childSnapshot) {
+            console.log("FE H");
+              if(cantidadvar>0){
+                  refJugadores.child(childSnapshot.key).child("Evento").remove();
+                  refEventoJugadores.child("Hombres").child(childSnapshot.key).remove();
+                  cantidadvar--;
+              }else{
+                return false;
+              }
+          });
+          snapshot.child("Unisex").forEach(function(childSnapshot) {
+            console.log("U");
+              if(cantidadvar>0){
+                  refJugadores.child(childSnapshot.key).child("Evento").remove();
+                  refEventoJugadores.child("Unisex").child(childSnapshot.key).remove();
+                  cantidadvar--;
+              }else{
+                return false;
+              }
+          });
+          res.send("Done");
+        }
+    });
+});
 
 
 
