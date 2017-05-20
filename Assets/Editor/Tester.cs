@@ -47,10 +47,19 @@ public class Tester : EditorWindow {
 
 		GUILayout.Label ("EVENTO");
 		GUILayout.Space (6);
-		GUILayout.BeginHorizontal ();
 		cantidad2 = EditorGUILayout.IntField (cantidad2);
+		GUILayout.BeginHorizontal ();
+
 		if (GUILayout.Button ("AGREGAR")) {
 			WWW www = new WWW ("https://us-central1-soccerapp-5d7ac.cloudfunctions.net/AddPlayerstoEvent?cantidad=" + cantidad2.ToString ());
+			ContinuationManager.Add(() => www.isDone, () =>
+				 {
+				     if (!string.IsNullOrEmpty(www.error)) Debug.Log("WWW failed: " + www.error);
+					EditorUtility.DisplayDialog("ADD PLAYERS TO EVENT",www.text,"OK");
+				 });
+		}
+		if (GUILayout.Button ("BORRAR")) {
+			WWW www = new WWW ("https://us-central1-soccerapp-5d7ac.cloudfunctions.net/RemovePlayersfromEvent?cantidad=" + cantidad2.ToString ());
 			ContinuationManager.Add(() => www.isDone, () =>
 				 {
 				     if (!string.IsNullOrEmpty(www.error)) Debug.Log("WWW failed: " + www.error);
