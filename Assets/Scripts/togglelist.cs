@@ -12,6 +12,19 @@ public class togglelist : MonoBehaviour {
 				cant=0;
 		}
 
+
+		public void SetInt (int num)
+	{
+		num--;
+		for (int i = 0; i < toggles.Count; i++) {
+				if(i<=num){
+					toggles[i].ToggleOn();	
+				}else{
+					toggles[i].ToggleOff();
+				}
+			}
+	}
+
 		public void TurnOn (toggleicon go) {
 			int num=toggles.IndexOf(go);
 			for (int i = 0; i < toggles.Count; i++) {
@@ -43,6 +56,7 @@ public class togglelist : MonoBehaviour {
 	}
 
 		public void Reset(){
+		Debug.Log("RESET");
 				cant=0;
 				ready=false;
 				for (int i = 0; i < toggles.Count; i++) {

@@ -24,7 +24,7 @@ public class puntajemanager : GenericPopUp {
 
 	public void SendValoration(){
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference ("Jugadores");
-		reference=reference.Child (UserAuth.instance.user.UserId);
+		reference=reference.Child (_ownuserid);
 		reference=reference.Child ("valoraciones");
 		reference=reference.Child (_userid);
 		reference.Child ("nombre").SetValueAsync(_name.text);
@@ -33,10 +33,15 @@ public class puntajemanager : GenericPopUp {
 		reference.Child ("corazones").SetValueAsync(corazones.cant);
 		this.gameObject.SetActive (false);
 	}
+
+	public void GetValoration(int corazonesint,int estrellasint){
+		corazones.SetInt (corazonesint);
+		estrellas.SetInt (estrellasint);
+	}
 	
 	public void Reset(){
 				button.SetActive(false);
-				corazones.Reset();
-				estrellas.Reset();
+				//corazones.Reset();
+				//estrellas.Reset();
 	}
 }

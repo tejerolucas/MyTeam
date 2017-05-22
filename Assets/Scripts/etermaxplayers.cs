@@ -23,9 +23,15 @@ public class etermaxplayers : MonoBehaviour
 	public CanvasGroup canvasgroup;
 	public Color playerbackground;
 	public DatabaseReference refJugadores;
+	public string userid;
 
 	void Start ()
 	{
+		#if UNITY_EDITOR
+			userid="editor";
+		#else
+			userid=UserAuth.instance.user.UserId;
+		#endif
 		if (canvasgroup.alpha > 0.5f) {
 			anim.Play ("HideMatch");
 		}
@@ -56,8 +62,8 @@ public class etermaxplayers : MonoBehaviour
 
 	void JugadorCreado (object sender, ChildChangedEventArgs e)
 	{
-
-		GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
+		if (e.Snapshot.Child ("nombre").Value != null) {
+			GameObject etpgo = (GameObject)Instantiate (playerprefab, jugadores.transform);
 			etpgo.GetComponent<Image> ().color = playerbackground;
 			eterplayer etp = etpgo.GetComponent<eterplayer> ();
 			etpgo.transform.localScale = Vector3.one;
@@ -66,10 +72,11 @@ public class etermaxplayers : MonoBehaviour
 			eterp.Add (etp);
 			lista.Add (etpgo);
 
-		if (canvasgroup.alpha < 1) {
-			anim.Play ("ShowMatch");
+			if (canvasgroup.alpha < 1) {
+				anim.Play ("ShowMatch");
+			}
+			progressindicator.Hide ();
 		}
-		progressindicator.Hide ();
 	}
 
 	void JugadorBorrado (object sender, ChildChangedEventArgs e)
@@ -141,8 +148,7 @@ public class etermaxplayers : MonoBehaviour
 						foreach (var childSnapshot in snapshot.Children) {
 							if (childSnapshot.Child ("nombre") == null
 							   || childSnapshot.Child ("nombre").Value == null) {
-								Debug.LogError ("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
-								break;
+								Debug.Log("Bad data in sample.  Did you forget to call SetEditorDatabaseUrl with your project id?");
 							} else {
 								#if !UNITY_EDITOR
 							if(childSnapshot.Child("userid").Value.ToString()!=UserAuth.instance.user.UserId){
