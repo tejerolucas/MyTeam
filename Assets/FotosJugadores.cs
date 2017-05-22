@@ -13,4 +13,14 @@ public class FotosJugadores : MonoBehaviour {
 		}
 		return null;
 	}
+
+	public bool ContieneJugador (string key)
+	{
+		foreach (var item in jugadores) {
+			if (item.key == key) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

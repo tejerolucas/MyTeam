@@ -149,17 +149,20 @@ public class Partido : MonoBehaviour {
 
 	public void AgregarJugador (string key,Color anillo)
 	{
-		GameObject foto =Instantiate(fotojugador)as GameObject;
-		fotojugador fjugador=foto.GetComponent<fotojugador>();
-		fjugador.anillo.color=anillo;
-		fjugador.SetPicture(key);
-		foto.transform.SetParent(fotosjugadores.transform);
-		fotosjugadores.GetComponent<FotosJugadores> ().jugadores.Add (fjugador);
+		FotosJugadores fjugadoreslista = fotosjugadores.GetComponent<FotosJugadores> ();
+		if(!fjugadoreslista.ContieneJugador(key)){
+			GameObject foto =Instantiate(fotojugador)as GameObject;
+			fotojugador fjugador=foto.GetComponent<fotojugador>();
+			fjugador.anillo.color=anillo;
+			fjugador.SetPicture(key);
+			foto.transform.SetParent(fotosjugadores.transform);
+			fjugadoreslista.jugadores.Add (fjugador);
+		}
 	}
 
 	public void BorrarJugador (string key)
 	{
-		Debug.Log ("BORRANDO JUGADOR");
+		Debug.Log ("BORRANDO JUGADOR: "+key);
 
 		GameObject go=fotosjugadores.GetComponent<FotosJugadores> ().GetPictureByKey (key);
 		fotosjugadores.GetComponent<FotosJugadores> ().jugadores.Remove (go.GetComponent<fotojugador>());
