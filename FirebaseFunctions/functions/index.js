@@ -206,40 +206,37 @@ exports.CreateTesterPlayers=functions.https.onRequest((req,res)=>{
 });
 
 //borra todos los jugadores y saca el estado "Usado" de los usuarios ()
-exports.ClearTesterUsers=functions.https.onRequest((req,res)=>{
+exports.ClearTesterUsers = functions.https.onRequest((req, res) => {
+    const refjugadores = admin.database().ref('Jugadores');
+    refjugadores.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            if (childSnapshot.child("token").val() == "fakeuser") {
+                //obtener userid
+                admin.auth().getUserByEmail(childSnapshot.child("email").val())
+                    .then(function(userRecord) {
+                      //borrar usuario
+                        admin.auth().deleteUser(userRecord.uid)
+                            .then(function() {
+                                //borra Jugador
+                                childSnapshot.ref.remove().then(function() {
+                                    //Borro Evento
 
-  const refjugadores= admin.database().ref('Jugadores');
-
-  refjugadores.once("value").then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-
-       if(childSnapshot.child("token").val()=="fakeuser") {
-            admin.auth().getUserByEmail(childSnapshot.child("email").val())
-            .then(function(userRecord) {
-              admin.auth().deleteUser(userRecord.uid)
-            .then(function() {
-              console.log("Successfully deleted user");
-              res.send("Successfully deleted user");
-            })
-            .catch(function(error) {
-              console.log("Error deleting user:", error);
-              res.send(error.toString());
-            });
-            })
-            .catch(function(error) {
-              res.send("ERROR FETCHING");
-              console.log("Error fetching user data:", error);
-            }); 
-           childSnapshot.ref.remove().then(function() {
-              console.log("Remove succeeded.")
-            }).catch(function(error) {
-              console.log("Remove failed: " + error.message)
-            });
-        
-      }
+                                }).catch(function(error) {
+                                    console.log("Remove failed: " + error.message)
+                                    res.send("Remove failed: " + error.message);
+                                });
+                            }).catch(function(error) {
+                                res.send(error.toString());
+                            });
+                    }).catch(function(error) {
+                        res.send("ERROR FETCHING");
+                        console.log("Error fetching user data:", error);
+                    });
+                
+            }
+        });
+        res.send("Done");
     });
-    res.send("Done");
-  });
 });
 
 //Cambia el estado del evento(string estado)
