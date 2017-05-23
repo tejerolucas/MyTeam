@@ -163,21 +163,35 @@ exports.CreateTesterPlayers=functions.https.onRequest((req,res)=>{
           }
           lista+="-"+snapshot.child(num.toString()).child("nombre").val();
           lista+=" <br/>";
-          snapshot.child(num.toString()).child("Usado").ref.set("true");
-          var newPlayer=refJugadores.child("Jugadores").push();
-          var filename=snapshot.child(num.toString()).child("foto").val().replace("http://images.etermax.com/rrhh/staff/","").replace(".jpg","");
-          var email=snapshot.child(num.toString()).child("nombre").val().replace(" ",".").toLowerCase();
-          newPlayer.set({
-            "nombre":snapshot.child(num.toString()).child("nombre").val(),
-            "puesto":snapshot.child(num.toString()).child("puesto").val(),
-            "amonestaciones":0,
-            "foto":snapshot.child(num.toString()).child("foto").val(),
-            "filename":filename,
-            "userid":newPlayer.ref.key,
-            "token":"fakeuser",
-            "email":email+"@etermax.com",
-            "etermaxid":num
-          });
+          snapshot.child(num.toString()).child("Usado").ref.set("true").then(function() {
+             
+              var filename=snapshot.child(num.toString()).child("foto").val().replace("http://images.etermax.com/rrhh/staff/","").replace(".jpg","");
+              var email=snapshot.child(num.toString()).child("nombre").val().replace(" ",".").toLowerCase()+"@etermax.com";
+               var uid;
+               admin.auth().createUser({
+                email: email,
+                emailVerified: false,
+                password: "asd123"
+              });
+               admin.auth().getUserByEmail(email).then(function(userRecord) {
+                  uid=userRecord.uid;
+               });
+               console.log(uid);
+              var newPlayer=refJugadores.child("Jugadores").child(uid);
+              newPlayer.set({
+                "nombre":snapshot.child(num.toString()).child("nombre").val(),
+                "puesto":snapshot.child(num.toString()).child("puesto").val(),
+                "amonestaciones":0,
+                "foto":snapshot.child(num.toString()).child("foto").val(),
+                "filename":filename,
+                "userid":uid,
+                "token":"fakeuser",
+                "email":email,
+                "etermaxid":num
+              });
+            }).catch(function(error) {
+              console.log("Set failed: " + error.message)
+            });
       }
     }else{
       res.send("No hay cantidad libres de usuarios: "+cantidadlibres.toString());
@@ -195,6 +209,22 @@ exports.ClearTesterUsers=functions.https.onRequest((req,res)=>{
     snapshot.forEach(function(childSnapshot) {
 
        if(childSnapshot.child("token").val()=="fakeuser") {
+            admin.auth().getUserByEmail(childSnapshot.child("email").val())
+            .then(function(userRecord) {
+              admin.auth().deleteUser(userRecord.uid)
+            .then(function() {
+              console.log("Successfully deleted user");
+              res.send("Successfully deleted user");
+            })
+            .catch(function(error) {
+              console.log("Error deleting user:", error);
+              res.send(error.toString());
+            });
+            })
+            .catch(function(error) {
+              res.send("ERROR FETCHING");
+              console.log("Error fetching user data:", error);
+            }); 
            childSnapshot.ref.remove().then(function() {
               console.log("Remove succeeded.")
             }).catch(function(error) {
@@ -223,7 +253,6 @@ exports.ChangeEventState=functions.https.onRequest((req,res)=>{
 
 //crea un usuario (string email,string password)
 exports.CreateNewUser=functions.https.onRequest((req,res)=>{
-var lista="Done";
 const email=req.query.email;
 const password=req.query.password;
 admin.auth().createUser({
@@ -231,7 +260,7 @@ admin.auth().createUser({
     emailVerified: false,
     password: password
   })
-  res.send(lista);
+  res.send("Done");
 });
 
 
