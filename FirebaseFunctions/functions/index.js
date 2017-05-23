@@ -167,16 +167,16 @@ exports.CreateTesterPlayers=functions.https.onRequest((req,res)=>{
              
               var filename=snapshot.child(num.toString()).child("foto").val().replace("http://images.etermax.com/rrhh/staff/","").replace(".jpg","");
               var email=snapshot.child(num.toString()).child("nombre").val().replace(" ",".").toLowerCase()+"@etermax.com";
-               var uid;
+               var uid="";
                admin.auth().createUser({
                 email: email,
                 emailVerified: false,
                 password: "asd123"
-              });
-               admin.auth().getUserByEmail(email).then(function(userRecord) {
+              }).then(function() {
+                admin.auth().getUserByEmail(email).then(function(userRecord) {
                   uid=userRecord.uid;
-               });
-               console.log(uid);
+                }).then(function() {
+                    console.log(uid);
               var newPlayer=refJugadores.child("Jugadores").child(uid);
               newPlayer.set({
                 "nombre":snapshot.child(num.toString()).child("nombre").val(),
@@ -192,6 +192,11 @@ exports.CreateTesterPlayers=functions.https.onRequest((req,res)=>{
             }).catch(function(error) {
               console.log("Set failed: " + error.message)
             });
+
+
+                });
+              });
+               
       }
     }else{
       res.send("No hay cantidad libres de usuarios: "+cantidadlibres.toString());
