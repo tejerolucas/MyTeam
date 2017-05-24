@@ -173,6 +173,7 @@ exports.CreateTesterPlayers=functions.https.onRequest((req,res)=>{
                 emailVerified: false,
                 password: "asd123"
               }).then(function() {
+                console.log(email);
                 admin.auth().getUserByEmail(email).then(function(userRecord) {
                   uid=userRecord.uid;
                 }).then(function() {
