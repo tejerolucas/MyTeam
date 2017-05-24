@@ -67,7 +67,13 @@ public class eterplayer : MonoBehaviour
 	public void AbrirPopUp ()
 	{
 		puntajemanager puntaje = Popup.GetComponent<puntajemanager> ();
-		FirebaseDatabase.DefaultInstance.GetReference ("Jugadores").Child("Editor").Child("valoraciones").Child(userid).GetValueAsync().ContinueWith (task2 => {
+		string ownuserid = "";
+		#if UNITY_EDITOR
+		ownuserid="Editor";
+		#else
+		ownuserid=UserAuth.instance.user.UserId;
+		#endif
+		FirebaseDatabase.DefaultInstance.GetReference ("Jugadores").Child(ownuserid).Child("valoraciones").Child(userid).GetValueAsync().ContinueWith (task2 => {
 			puntaje.SetData (_name.text, _posicion.text, filename, url, userid);
 			if (task2.IsFaulted) {
 				Debug.LogError ("ERROR");
